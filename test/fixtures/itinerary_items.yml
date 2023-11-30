@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trip_id: 1
+  event_name: MyText
+  type: MyText
+  address: MyText
+  date: 2023-11-30 12:10:02
+  start_time: 2023-11-30 12:10:02
+  end_time: 2023-11-30 12:10:02
+
+two:
+  trip_id: 1
+  event_name: MyText
+  type: MyText
+  address: MyText
+  date: 2023-11-30 12:10:02
+  start_time: 2023-11-30 12:10:02
+  end_time: 2023-11-30 12:10:02

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creator_id: 1
+  location: MyString
+  starting_date: 2023-11-29
+  ending_date: 2023-11-29
+
+two:
+  creator_id: 1
+  location: MyString
+  starting_date: 2023-11-29
+  ending_date: 2023-11-29

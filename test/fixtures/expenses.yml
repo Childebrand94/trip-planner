@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trip_id: 1
+  payer_id: 1
+  name: MyText
+  amount: 1
+  description: MyText
+  date: 2023-11-30 12:34:44
+
+two:
+  trip_id: 1
+  payer_id: 1
+  name: MyText
+  amount: 1
+  description: MyText
+  date: 2023-11-30 12:34:44
