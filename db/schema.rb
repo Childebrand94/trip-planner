@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_173953) do
-  create_table "comment_votes", force: :cascade do |t|
-    t.integer "author_id"
-    t.integer "comment_id"
-    t.boolean "up_vote"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_222337) do
   create_table "comments", force: :cascade do |t|
     t.integer "parent_id"
     t.integer "author_id"
@@ -42,7 +34,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_173953) do
     t.text "name"
     t.integer "amount"
     t.text "description"
-    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "itinerary_item_types", force: :cascade do |t|
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -50,11 +47,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_173953) do
   create_table "itinerary_items", force: :cascade do |t|
     t.integer "trip_id"
     t.text "event_name"
-    t.text "type"
+    t.integer "type"
     t.text "address"
     t.datetime "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,26 +57,29 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_173953) do
   create_table "itinerary_votes", force: :cascade do |t|
     t.integer "author_id"
     t.integer "itinerary_item_id"
-    t.boolean "up_vote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "trips", force: :cascade do |t|
     t.integer "creator_id"
-    t.string "location"
+    t.text "address"
     t.date "starting_date"
     t.date "ending_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_trip_roles", force: :cascade do |t|
+    t.text "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_trips", force: :cascade do |t|
     t.string "user_id"
-    t.string "integer"
     t.integer "trip_id"
-    t.string "user_role"
-    t.string "text"
+    t.integer "user_role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,18 +93,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_173953) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comment_votes", "comments"
-  add_foreign_key "comment_votes", "users", column: "author_id"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "debtors", "expenses"
   add_foreign_key "debtors", "users", column: "debtor_id"
   add_foreign_key "expenses", "trips"
   add_foreign_key "expenses", "users", column: "payer_id"
+  add_foreign_key "itinerary_items", "itinerary_item_types", column: "type"
   add_foreign_key "itinerary_items", "trips"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users", column: "author_id"
   add_foreign_key "trips", "users", column: "creator_id"
   add_foreign_key "user_trips", "trips"
+  add_foreign_key "user_trips", "user_trip_roles", column: "user_role"
   add_foreign_key "user_trips", "users"
 end

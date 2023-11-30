@@ -1,4 +1,5 @@
 class ItineraryItem < ApplicationRecord
   belongs_to :trips
-  has_many :itinerary_items
+  belongs_to :itinerary_item_types
+  has_many :comments
 end
