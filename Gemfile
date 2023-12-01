@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '3.2.2'
 
+gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3'
 gem 'importmap-rails'
@@ -16,6 +19,9 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~>6.1.0'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 group :development do
   gem 'web-console'

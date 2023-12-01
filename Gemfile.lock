@@ -80,6 +80,7 @@ GEM
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.17.0)
@@ -104,10 +105,16 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
     execjs (2.9.1)
+    factory_bot (6.4.2)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.2)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -205,6 +212,23 @@ GEM
     reline (0.4.1)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.1.0)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -219,6 +243,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -261,16 +287,20 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   bootstrap (~> 5.3)
   capybara
   debug
+  factory_bot_rails
   importmap-rails
   jbuilder
   puma (>= 5.0)
   rails (~> 7.1.2)
+  rspec-rails (~> 6.1.0)
   sassc-rails
   selenium-webdriver
+  shoulda-matchers (~> 4.0)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
