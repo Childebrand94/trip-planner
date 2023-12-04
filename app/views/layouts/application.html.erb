@@ -10,7 +10,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body style="padding: 1em">
+  <body>
+    <%= render "layouts/navbar" %>
+    <% flash.each do |key, message| %>
+      <div class="flash <%= key %>"><%= message %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
