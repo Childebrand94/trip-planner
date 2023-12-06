@@ -1,0 +1,16 @@
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+$theme-colors: (
+    "primary": #5d3320,
+    "secondary": #63605e,
+    "success": #52941b,
+    "info": #d85a2f,
+    "warning": #feba49,
+    "danger": #e91060,
+    "light": #e9e2dc,
+    "dark": #1b1f1d,
+    "white": #ffffff,
+);
+// Define your custom colors
+
+@import "bootstrap";

@@ -5,9 +5,9 @@
         <%= image_tag('tom-barrett-M0AWNxnLaMw-unsplash.jpg', class: "img-fluid") %>
       </div>
       <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
-        <div class="card-body mx-3">
+        <div class="card-body mx-3 bg-white rounded-4 p-3">
           <h5 class="card-title">Welcome to PathFindr</h5>
-          <a href="/trip/new" class="btn btn-primary my-2"> Create Trip </a>
+          <%= link_to "Create Trip", (user_signed_in? ? new_trip_path : login_path), class: "btn btn-success m-1" %>
         </div>
       </div>
     </div>

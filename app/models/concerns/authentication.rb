@@ -11,7 +11,6 @@ module Authentication
     Current.user = user
     reset_session
     session[:current_user_id] = user.id
-    Rails.logger.debug "Current.user set to: #{Current.user.inspect}"
   end
 
   def logout

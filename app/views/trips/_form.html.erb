@@ -1,33 +1,33 @@
-<%= form_with(model: trip) do |form| %>
+<%= form_with(model: trip, local: true, data: { controller: "places"}) do |form| %>
   <% if trip.errors.any? %>
     <div>
       <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
 
       <ul>
-        <% trips.errors.each do |error| %>
+        <% trip.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="mb-3">
+  <div class="mb-3" data-controller="places" data-action="google-maps-callback@window->places#initMap">
     <%= form.label :location, class: "form-label" %>
-    <%= form.text_field :location, class: "form-control" %>
+    <%= form.text_field :location, data_places_target: "input", id: "trip_location", class: "form-control", autocomplete: "off", required: true %>
   </div>
 
   <div class="mb-3">
     <%= form.label :starting_date, class: "form-label" %>
-    <%= form.date_field :starting_date, class: "form-control" %>
+    <%= form.date_field :starting_date, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
     <%= form.label :ending_date, class: "form-label" %>
-    <%= form.date_field :ending_date, class: "form-control" %>
+    <%= form.date_field :ending_date, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit class: "btn btn-success" %>
   </div>
 
 <% end %>

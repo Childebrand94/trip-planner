@@ -1,12 +1,17 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-secondary">
   <div class="container-fluid">
-    <%= link_to "PathFindr", root_path, class: "navbar-brand" %>
+    <%= link_to root_path, class: "navbar-brand fs-2 text " do %>
+    <%= image_tag("compass.svg", alt: "Brand logo", height: "30") %> PathFindr
+    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to "Your Trips", trips_path, class: "nav-link fs-5" %>
+    <% end %>
     <div class="ms-auto">
       <% if user_signed_in? %>
-        <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-primary mx-1" %>
+        <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-dark mx-1" %>
       <% else %>
-        <%= link_to "Log in", login_path, class: "btn btn-primary mx-1" %>
-        <%= link_to "Sign up", new_user_path, class: "btn btn-primary mx-1" %>
+        <%= link_to "Log in", login_path, class: "btn btn-dark mx-1" %>
+        <%= link_to "Sign up", new_user_path, class: "btn btn-dark mx-1" %>
       <% end %>
     </div>
   </div>

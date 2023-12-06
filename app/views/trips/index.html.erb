@@ -1,3 +1,25 @@
-<div class="container">
-  <%= render 'form', locals: { trip: @trips } %>
+<div class="container d-flex flex-column justify-content-center vw-100">
+  <div>
+    <% if @trips.any? %>
+      <h1>Your Trips</h1>
+      <ul class="list-group">
+        <% @trips.each do |trip| %>
+          <li class="list-group-item bg-light w-50">
+              <h2 class: "h2 lead"><%= trip.location %></h2>
+              <br>
+              <strong>Dates:</strong> <%= trip.starting_date %> to <%= trip.ending_date %>
+            <div class="d-flex">
+              <%= link_to 'View', trip_path(trip), class: "btn btn-info m-2" %>
+              <%= link_to 'Edit', edit_trip_path(trip), class: "btn btn-info m-2" %>
+              <%= button_to 'Delete', trip_path(trip), class: "btn btn-info m-2", method: :delete %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No trips have been created yet.</p>
+    <% end %>
+
+    <%= link_to 'Create New Trip', new_trip_path, class: "btn btn-secondary my-2" %>
+  </div>
 </div>
