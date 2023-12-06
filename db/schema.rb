@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_214207) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_06_230648) do
   create_table "comments", force: :cascade do |t|
     t.integer "parent_id"
     t.integer "author_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_214207) do
     t.datetime "updated_at", null: false
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "long", precision: 10, scale: 6
+    t.string "name"
   end
 
   create_table "user_trip_roles", force: :cascade do |t|
