@@ -5,7 +5,7 @@
       <ul class="list-group">
         <% @trips.each do |trip| %>
           <li class="list-group-item bg-light w-50">
-              <h2 class: "h2 lead"><%= trip.location %></h2>
+              <h2 class: "h2 lead"><%= trip.name %></h2>
               <br>
               <strong>Dates:</strong> <%= trip.starting_date %> to <%= trip.ending_date %>
             <div class="d-flex">

@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+  <div class='mb-3'>
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", required: true  %>
+  </div>
+
   <div class="mb-3" data-controller="places" data-action="google-maps-callback@window->places#initMap">
     <%= form.label :location, class: "form-label" %>
     <%= form.text_field :location, data_places_target: "input", id: "trip_location", class: "form-control", autocomplete: "off", required: true %>

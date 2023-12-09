@@ -1,0 +1,18 @@
+<%= form_with model: [ @trip, @trip.itinerary_items.build ] do |form| %> 
+    <div class="input-group mb-3 w-50">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="input-group mb-3 w-50">
+      <%= form.label :start_date, class: "form-label" %>
+      <%= form.date_field, class: "form-control", required: True %>
+    </div>
+
+    <div class="input-group mb-3 w-50">
+      <%= form.label :end_date, class: "form-label" %>
+      <%= form.date_field, class: "form-control", required: True %>
+    </div>
+
+    <%= form.sumbit, class: "btn btn-outline-secondary bg-secondary text-white" %>
+<% end %>

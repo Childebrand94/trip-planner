@@ -9,7 +9,7 @@
         </p> 
       </div>
 
-      <div class="col text-end d-flex flex-column justify-content-end">
+      <div class="col text-end d-flex flex-column justify-content-end ">
         <%= link_to "Edit this trip", edit_trip_path(@trip), class: "nav-link text-info" %>
         <%= button_to "Destroy this trip", @trip, method: :delete, class: "nav-link", form_class: "d-inline d-flex justify-content-end text-info" %>
       </div>
@@ -34,18 +34,11 @@
       </div>
     </nav>
   </section>
+  <section>
+    <div class="card-body p-2 my-3 bg-light rounded">
 
-   <section class="my-2 p-2  bg-body-tertiary">
-     <h4 class="card-title">Notes</h4>
-     <ul class="">
-       <li>Implement note taking features</li>
-     </ul>
+
+    </div>
   </section>
 
-   <section class="my-2 p-2 bg-body-tertiary">
-     <h4 class="card-title">Places to visit</h4>
-     <ul>
-       <li>Implement places features linked with Google maps places api</li>
-     </ul>
-  </section>
 </div>
