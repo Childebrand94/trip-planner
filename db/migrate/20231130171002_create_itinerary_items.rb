@@ -1,16 +1,14 @@
 class CreateItineraryItems < ActiveRecord::Migration[7.1]
   def change
     create_table :itinerary_items do |t|
-      t.integer :trip_id
-      t.text :event_name
-      t.text :type
-      t.text :address
-      t.datetime :date
-      t.datetime :start_time
-      t.datetime :end_time
+      t.references :trip_day, null: false, foreign_key: true
+      t.references :item_type, null: false, foreign_key: true
+      t.string :event_name, null: false
+      t.string :address, null: false
+      t.datetime :start_time, null: false
+      t.datetime :end_time, null: false
 
       t.timestamps
     end
-    add_foreign_key :itinerary_items, :trips
   end
 end

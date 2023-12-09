@@ -1,16 +1,14 @@
 class CreateExpenses < ActiveRecord::Migration[7.1]
   def change
     create_table :expenses do |t|
-      t.integer :trip_id
-      t.integer :payer_id
-      t.text :name
+      t.references :trip, foreign_key: true, null: false
+      t.references :payer, null: false, foreign_key: { to_table: :users }
+      t.string :name
       t.integer :amount
-      t.text :description
+      t.string :description
       t.datetime :date
 
       t.timestamps
     end
-    add_foreign_key :expenses, :trips
-    add_foreign_key :expenses, :users, column: :payer_id
   end
 end
