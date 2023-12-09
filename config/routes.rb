@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'home#home'
-  resources :trips
   resources :users
+  resources :trips do
+    resources :itinerary_items
+  end
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

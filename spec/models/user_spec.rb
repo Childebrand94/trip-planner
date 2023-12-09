@@ -4,7 +4,7 @@ require 'rails_helper'
 # rubocop:disable Metrics/BlockLength
 RSpec.describe User, type: :model do
   describe 'validations' do
-    subject { FactoryBot.build(:user) }
+    subject { build(:user) }
 
     it 'is valid with valid attributes' do
       expect(subject).to be_valid
@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid with duplicate email' do
-      FactoryBot.create(:user, email: 'user@example.com')
-      duplicate_user = FactoryBot.build(:user, email: 'user@example.com')
+      create(:user, email: 'user@example.com')
+      duplicate_user = build(:user, email: 'user@example.com')
       expect(duplicate_user).not_to be_valid
     end
 
