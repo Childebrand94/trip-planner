@@ -7,8 +7,8 @@ class Trip < ApplicationRecord
 
   validates_presence_of :name
   validates_presence_of :location
-  validates_presence_of :starting_date
-  validates_presence_of :ending_date
-  validates_comparison_of :ending_date, greater_than: :starting_date
-  validates_comparison_of :starting_date, greater_than: Date.today
+  validates_presence_of :start_date
+  validates_presence_of :end_date
+  validates_comparison_of :end_date, greater_than: :start_date
+  validates_comparison_of :start_date, greater_than: Date.today
 end

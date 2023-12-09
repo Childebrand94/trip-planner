@@ -3,7 +3,7 @@ class CreateItineraryVotes < ActiveRecord::Migration[7.1]
     create_table :itinerary_votes do |t|
       t.references :itinerary_item, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: { to_table: :users, column: :author_id }
-      t.boolean :up_vote
+      t.boolean :up_vote, null: false
 
       t.timestamps
     end

@@ -4,8 +4,8 @@
       <div class="col">
         <h1 class="card-title"><%= @trip.name %></h1> 
         <p class="card-subtitle text-body-secondary mt-4">
-        <%= image_tag "calendar.svg" %> <%= @trip.starting_date.strftime("%m/%d") %> 
-        <%= image_tag "calendar.svg" %> <%= @trip.ending_date.strftime("%m/%d") %>
+        <%= image_tag "calendar.svg" %> <%= @trip.start_date.strftime("%m/%d") %> 
+        <%= image_tag "calendar.svg" %> <%= @trip.end_date.strftime("%m/%d") %>
         </p> 
       </div>
 
