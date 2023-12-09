@@ -9,35 +9,35 @@ RSpec.describe ItineraryItem, type: :model do
       expect(subject).to be_valid
     end
 
-    it 'is not valid without start_date' do
-      subject.start_date = ''
+    it 'is not valid without start_time' do
+      subject.start_time = ''
       expect(subject).to_not be_valid
     end
 
     it 'is not valid without a type' do
-      subject.type_id = -1
+      subject.item_type_id = -1
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid without end_date' do
-      subject.end_date = ''
+    it 'is not valid without end_time' do
+      subject.end_time = ''
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid with invalid date' do
-      subject.start_date = '20220110 15:30:00'
-      subject.end_date = '20240130 15:30:00'
+    it 'is not valid with invalid time' do
+      subject.start_time = '20220110 15:30:00'
+      subject.end_time = '20240130 15:30:00'
       expect(subject).to_not be_valid
     end
 
-    it 'is not valid with end_date before start_date' do
-      subject.start_date = '20250110 15:30:00'
-      subject.end_date = '20240130 15:30:00'
+    it 'is not valid with end_time before start_date' do
+      subject.start_time = '20250110 15:30:00'
+      subject.end_time = '20240130 15:30:00'
       expect(subject).to_not be_valid
     end
 
     it 'is not valid with invalid foramt' do
-      subject.start_date = 'not a vaild date'
+      subject.start_time = 'not a vaild date'
       expect(subject).to_not be_valid
     end
   end

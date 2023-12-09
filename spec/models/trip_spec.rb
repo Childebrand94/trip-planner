@@ -19,25 +19,25 @@ RSpec.describe Trip, type: :model do
       expect(subject).not_to be_valid
     end
 
-    it 'is not valid without a starting date' do
-      subject.starting_date = nil
+    it 'is not valid without a start date' do
+      subject.start_date = nil
       expect(subject).not_to be_valid
     end
 
-    it 'is not valid without an ending date' do
-      subject.ending_date = nil
+    it 'is not valid without an end date' do
+      subject.end_date = nil
       expect(subject).not_to be_valid
     end
 
     it 'is not vaild with start date before end date' do
-      subject.ending_date = '2025-01-01'
-      subject.starting_date = '2025-01-10'
+      subject.end_date = '2025-01-01'
+      subject.start_date = '2025-01-10'
       expect(subject).not_to be_valid
     end
 
     it 'is not vaild with invaild date' do
-      subject.ending_date = '2023-01-20'
-      subject.starting_date = '2023-01-10'
+      subject.end_date = '2023-01-20'
+      subject.start_date = '2023-01-10'
       expect(subject).not_to be_valid
     end
   end

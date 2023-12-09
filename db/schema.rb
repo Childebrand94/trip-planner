@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_09_205015) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -127,7 +127,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_205015) do
   add_foreign_key "debtors", "users", column: "debtor_id"
   add_foreign_key "expenses", "trips"
   add_foreign_key "expenses", "users", column: "payer_id"
-  add_foreign_key "itinerary_items", "item_types"
+  add_foreign_key "itinerary_items", "itinerary_item_types", column: "item_type_id"
   add_foreign_key "itinerary_items", "trip_days"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users"
