@@ -32,15 +32,23 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.index ["expense_id"], name: "index_debtors_on_expense_id"
   end
 
+  create_table "expense_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "expenses", force: :cascade do |t|
     t.integer "trip_id", null: false
     t.integer "payer_id", null: false
+    t.integer "expense_category_id", null: false
     t.string "name", null: false
     t.integer "amount", null: false
     t.string "description", null: false
     t.datetime "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
     t.index ["payer_id"], name: "index_expenses_on_payer_id"
     t.index ["trip_id"], name: "index_expenses_on_trip_id"
   end
@@ -52,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   end
 
   create_table "itinerary_items", force: :cascade do |t|
-    t.integer "trip_day_id", null: false
+    t.integer "trip_id", null: false
     t.integer "item_type_id", null: false
     t.string "event_name", null: false
     t.string "address", null: false
@@ -61,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_type_id"], name: "index_itinerary_items_on_item_type_id"
-    t.index ["trip_day_id"], name: "index_itinerary_items_on_trip_day_id"
+    t.index ["trip_id"], name: "index_itinerary_items_on_trip_id"
   end
 
   create_table "itinerary_votes", force: :cascade do |t|
@@ -72,14 +80,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.datetime "updated_at", null: false
     t.index ["itinerary_item_id"], name: "index_itinerary_votes_on_itinerary_item_id"
     t.index ["user_id"], name: "index_itinerary_votes_on_user_id"
-  end
-
-  create_table "trip_days", force: :cascade do |t|
-    t.integer "trip_id", null: false
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["trip_id"], name: "index_trip_days_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -125,13 +125,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "debtors", "expenses"
   add_foreign_key "debtors", "users", column: "debtor_id"
+  add_foreign_key "expenses", "expense_categories"
   add_foreign_key "expenses", "trips"
   add_foreign_key "expenses", "users", column: "payer_id"
   add_foreign_key "itinerary_items", "itinerary_item_types", column: "item_type_id"
-  add_foreign_key "itinerary_items", "trip_days"
+  add_foreign_key "itinerary_items", "trips"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users"
-  add_foreign_key "trip_days", "trips"
   add_foreign_key "trips", "users", column: "creator_id"
   add_foreign_key "user_trips", "trips"
   add_foreign_key "user_trips", "user_trip_roles"

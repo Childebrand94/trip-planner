@@ -1,5 +1,5 @@
 class ItineraryItem < ApplicationRecord
-  belongs_to :trip_day
+  belongs_to :trip
   belongs_to :item_type, class_name: 'ItineraryItemType'
   has_many :comments
 

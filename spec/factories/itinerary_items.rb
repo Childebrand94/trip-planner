@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :itinerary_item do
-    trip_day
+    trip
     item_type
     event_name { 'Dinner' }
     address { '38 Rue de la Montagne Ste Geneviève, 75005 Paris, France' }

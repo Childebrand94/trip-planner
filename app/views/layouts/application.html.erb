@@ -13,6 +13,7 @@
 
   <body class="bg-white">
     <%= render "layouts/navbar" %>
+    <%= "#{controller_name}##{action_name}" %>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>"><%= message %></div>
     <% end %>

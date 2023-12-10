@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'home#home'
   resources :users
+
   resources :trips do
-    resources :itinerary_items
+    resources :itinerary_items, path: 'itinerary'
   end
 
   get 'login', to: 'sessions#new'
