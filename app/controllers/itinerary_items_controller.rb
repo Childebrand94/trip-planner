@@ -1,8 +1,7 @@
 class ItineraryItemsController < ApplicationController
   def index
     @trip = Trip.find(params[:trip_id])
-    @day = TripDay.find(params[:trip_id])
-    @itinerary_items = @trip.trip_days
+    @itinerary_items = @trip.itinerary_by_day
   end
 
   def new

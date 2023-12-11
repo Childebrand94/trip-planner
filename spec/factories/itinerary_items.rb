@@ -4,7 +4,7 @@ FactoryBot.define do
     item_type
     event_name { 'Dinner' }
     address { '38 Rue de la Montagne Ste Geneviève, 75005 Paris, France' }
-    start_time { '2024-06-15 13:45:30' }
-    end_time { '2024-06-15 14:45:30' }
+    sequence(:start_time) { |n| Time.zone.now.beginning_of_day + n.hours }
+    sequence(:end_time) { |n| Time.zone.now.beginning_of_day + n.hours + 1.hour }
   end
 end

@@ -41,4 +41,23 @@ RSpec.describe Trip, type: :model do
       expect(subject).not_to be_valid
     end
   end
+
+  describe '#itinerary_by_day' do
+    let(:trip) { create(:trip, start_date: Date.tomorrow, end_date: Date.tomorrow + 1) }
+    let!(:itinerary_item1) do
+      create(:itinerary_item, trip:, start_time: Date.tomorrow.noon, end_time: Date.tomorrow.noon + 2.hours)
+    end
+    let!(:itinerary_item2) do
+      create(:itinerary_item, trip:, start_time: (Date.tomorrow + 1).noon,
+                              end_time: (Date.tomorrow + 1).noon + 2.hours)
+    end
+
+    it 'groups itinerary items by each date of the trip' do
+      grouped_items = trip.itinerary_by_day
+
+      expect(grouped_items.keys).to contain_exactly(Date.tomorrow, Date.tomorrow + 1)
+      expect(grouped_items[Date.tomorrow]).to contain_exactly(itinerary_item1)
+      expect(grouped_items[Date.tomorrow + 1]).to contain_exactly(itinerary_item2)
+    end
+  end
 end

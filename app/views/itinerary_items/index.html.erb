@@ -36,6 +36,12 @@
   </section>
   <section>
     <div class="card-body p-2 my-3 bg-light rounded">
+      <% @trip.itinerary_by_day.each do |date, itinerary_items| %>
+        <h3><%= date %></h3>
+        <% itinerary_items.each do |itinerary_item| %>
+          <%= render 'itinerary_items/itinerary_item_form', itinerary_item: itinerary_item %>
+        <% end %>
+      <% end %> 
     </div>
   </section>
 

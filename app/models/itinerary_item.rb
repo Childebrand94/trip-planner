@@ -6,5 +6,5 @@ class ItineraryItem < ApplicationRecord
   validates_presence_of :start_time
   validates_presence_of :end_time
   validates_comparison_of :end_time, greater_than: :start_time
-  validates_comparison_of :start_time, greater_than: Date.today
+  validates_comparison_of :start_time, greater_than_or_equal_to: Time.zone.now
 end
