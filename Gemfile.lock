@@ -116,6 +116,7 @@ GEM
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
     ffi (1.16.3)
+    flatpickr (4.6.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -301,6 +302,7 @@ DEPENDENCIES
   capybara
   debug
   factory_bot_rails
+  flatpickr
   importmap-rails
   jbuilder
   puma (>= 5.0)

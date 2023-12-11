@@ -4,3 +4,6 @@
 //= link controllers/application.js
 //= link controllers/index.js
 //= link controllers/places_controller.js
+//= link controllers/flatpicker_controller.js
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
