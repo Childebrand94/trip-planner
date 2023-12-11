@@ -1,18 +1,14 @@
-<%= form_with model: [ @trip, @trip.itinerary_items.build], data: { controller: "flatpicker"} do |form| %> 
-  <div class="input-group mb-3 w-50">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
+<%= bootstrap_form_with(model: [ @trip, @itinerary_item || @trip.itinerary_items.build], inline_error: false, label_errors: true, data: { controller: "flatpicker"}) do |f| %> 
+  <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
+    <%= f.alert_message "Please fix the errors below." %>
+    <div class="container my-2">
+      <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
+      <%= f.text_field :address, label_as_placeholder: true, required: true%>
+      <div class="d-flex flex-row">
+        <%= f.datetime_field :start_time, class: 'start_time', label_as_placeholder: true, style: "width: 200px", required: true %>
+        <%= f.datetime_field :end_time, class: 'end_time mx-2', label_as_placeholder: true, style: "width: 200px", required: true %>
+      </div>
+      <%= f.submit "Add" %>
+    </div>
   </div>
-
-  <div class="input-group mb-3 w-50">
-    <%= form.label :start_time, class: "form-label" %>
-    <%= form.datetime_field :start_time, class: "start_time", required: true %>
-  </div>
-
-  <div class="input-group mb-3 w-50">
-    <%= form.label :end_time, class: "form-label" %>
-    <%= form.datetime_field :end_time, class: "start_time", required: true %>
-  </div>
-
-  <%= form.submit "Submit", class: "btn btn-outline-secondary bg-secondary text-white" %>
-<% end %> 
+<% end %>

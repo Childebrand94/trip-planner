@@ -4,10 +4,6 @@ class ItineraryItemsController < ApplicationController
     @itinerary_items = @trip.itinerary_by_day
   end
 
-  def new
-    @itinerary_items = ItineraryItems.new
-  end
-
   def show
     @trip = Trip.find(params[:trip_id])
     @itinerary_item = @trip.itinerary_items
@@ -29,8 +25,13 @@ class ItineraryItemsController < ApplicationController
 
   def create
     @trip = Trip.find(params[:trip_id])
-    @itinerary_item = @trip.itinerary_items.create(itinerary_items_params)
-    redirect_to trip_path(@trip)
+    @itinerary_item = @trip.itinerary_items.new(itinerary_item_params)
+
+    if @itinerary_item.save
+      redirect_to trip_path(@trip)
+    else
+      render 'trips/show', status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -42,7 +43,7 @@ class ItineraryItemsController < ApplicationController
 
   private
 
-  def itinerary_items_params
-    params.require(:itinerary_item).permit(:event_name, :start_time, :end_time)
+  def itinerary_item_params
+    params.require(:itinerary_item).permit(:event_name, :address, :start_time, :end_time)
   end
 end

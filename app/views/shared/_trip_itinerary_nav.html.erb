@@ -10,7 +10,9 @@
 
       <div class="col text-end d-flex flex-column justify-content-end ">
         <%= link_to "Edit this trip", edit_trip_path(@trip), class: "nav-link text-info" %>
-        <%= button_to "Destroy this trip", @trip, method: :delete, class: "nav-link", form_class: "d-inline d-flex justify-content-end text-info" %>
+        <%= button_to "Destroy this trip", @trip, method: :delete, class: "nav-link", form: {  data: { 
+          turbo_confirm: "Are you sure?"
+        } }, form_class: "d-inline d-flex justify-content-end text-info" %>
       </div>
     </div>
   </section>
