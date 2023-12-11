@@ -3,6 +3,8 @@
 import { application } from "controllers/application"
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
+import flatpicker_controller from './flatpicker_controller';
+application.register('flatpicker', flatpicker_controller);
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 

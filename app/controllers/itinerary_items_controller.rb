@@ -43,6 +43,6 @@ class ItineraryItemsController < ApplicationController
   private
 
   def itinerary_items_params
-    params.require(:itinerary_items).permit(:name, :start_time, :end_time)
+    params.require(:itinerary_item).permit(:event_name, :start_time, :end_time)
   end
 end

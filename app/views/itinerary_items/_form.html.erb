@@ -1,4 +1,4 @@
-<%= form_with model: [ @trip, @trip.itinerary_items.build], date: { controller: "flatpicker"} do |form| %> 
+<%= form_with model: [ @trip, @trip.itinerary_items.build], data: { controller: "flatpicker"} do |form| %> 
   <div class="input-group mb-3 w-50">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
@@ -6,12 +6,12 @@
 
   <div class="input-group mb-3 w-50">
     <%= form.label :start_time, class: "form-label" %>
-    <%= form.datetime_field :start_time, class: "form-control datetime-picker", required: true %>
+    <%= form.datetime_field :start_time, class: "start_time", required: true %>
   </div>
 
   <div class="input-group mb-3 w-50">
     <%= form.label :end_time, class: "form-label" %>
-    <%= form.datetime_field :end_time, class: "form-control datetime-picker", required: true %>
+    <%= form.datetime_field :end_time, class: "start_time", required: true %>
   </div>
 
   <%= form.submit "Submit", class: "btn btn-outline-secondary bg-secondary text-white" %>

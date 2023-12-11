@@ -1,0 +1,35 @@
+   <section class="card mt-2 p-2 shadow mb-4 bg-body-tertiary rounded">
+    <div class="card-body row">
+      <div class="col">
+        <h1 class="card-title"><%= @trip.name %></h1> 
+        <p class="card-subtitle text-body-secondary mt-4">
+        <%= image_tag "calendar.svg" %> <%= @trip.start_date.strftime("%m/%d") %> 
+        <%= image_tag "calendar.svg" %> <%= @trip.end_date.strftime("%m/%d") %>
+        </p> 
+      </div>
+
+      <div class="col text-end d-flex flex-column justify-content-end ">
+        <%= link_to "Edit this trip", edit_trip_path(@trip), class: "nav-link text-info" %>
+        <%= button_to "Destroy this trip", @trip, method: :delete, class: "nav-link", form_class: "d-inline d-flex justify-content-end text-info" %>
+      </div>
+    </div>
+  </section>
+  <section>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
+            <li class="nav-item mx-1"> 
+              <%= link_to "Overview", trip_path(@trip), class: "nav-link" %>
+            </li>
+            <li class="nav-item mx-1">
+              <%= link_to "Itinerary", trip_itinerary_items_path(@trip), class: "nav-link" %>
+            </li>
+            <li class="nav-item mx-1">
+              <%= link_to "Expenses", edit_trip_path(@trip), class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+ </section>
