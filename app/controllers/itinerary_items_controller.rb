@@ -34,6 +34,7 @@ class ItineraryItemsController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
     @itinerary_item = @trip.itinerary_items.new(itinerary_item_params)
+    @itinerary_item.creator_id = current_user.id
 
     if @itinerary_item.save
       redirect_to trip_itinerary_items_path
@@ -43,15 +44,15 @@ class ItineraryItemsController < ApplicationController
   end
 
   def destroy
-    @itinerary_items = ItineraryItems.find(params[:id])
-    @itinerary_items.destroy
+    @itinerary_item = ItineraryItem.find(params[:id])
+    @itinerary_item.destroy
 
-    redirect_to itinerary_items_path, status: :see_other
+    redirect_to trip_itinerary_items_path, status: :see_other
   end
 
   private
 
   def itinerary_item_params
-    params.require(:itinerary_item).permit(:item_type_id, :event_name, :address, :start_time, :end_time)
+    params.require(:itinerary_item).permit(:creator_id, :item_type_id, :event_name, :address, :start_time, :end_time)
   end
 end

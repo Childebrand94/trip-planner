@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :itinerary_items, path: 'itinerary'
+    get 'day/:date', to: 'trips#day', as: :trip_day
   end
 
   get 'login', to: 'sessions#new'

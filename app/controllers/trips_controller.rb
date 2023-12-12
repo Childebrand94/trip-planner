@@ -47,6 +47,12 @@ class TripsController < ApplicationController
     redirect_to trips_path, status: :see_other
   end
 
+  def day
+    @trip = Trip.find(params[:trip_id])
+    selected_date = Date.parse(params[:date])
+    @itinerary_items = @trip.itinerary_items.where('DATE(start_time) = ?', selected_date)
+  end
+
   private
 
   def trip_params

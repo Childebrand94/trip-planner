@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   end
 
   create_table "itinerary_items", force: :cascade do |t|
+    t.integer "creator_id", null: false
     t.integer "trip_id", null: false
     t.integer "item_type_id", null: false
     t.string "event_name", null: false
@@ -68,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.datetime "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_itinerary_items_on_creator_id"
     t.index ["item_type_id"], name: "index_itinerary_items_on_item_type_id"
     t.index ["trip_id"], name: "index_itinerary_items_on_trip_id"
   end
@@ -130,6 +132,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   add_foreign_key "expenses", "users", column: "payer_id"
   add_foreign_key "itinerary_items", "itinerary_item_types", column: "item_type_id"
   add_foreign_key "itinerary_items", "trips"
+  add_foreign_key "itinerary_items", "users", column: "creator_id"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users"
   add_foreign_key "trips", "users", column: "creator_id"
