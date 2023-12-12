@@ -9,6 +9,6 @@ class ItineraryItem < ApplicationRecord
   validates_comparison_of :start_time, greater_than_or_equal_to: Time.zone.now
 
   def item_types
-    ItineraryItemType.all
+    ItineraryItemType.pluck(:name)
   end
 end

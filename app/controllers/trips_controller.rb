@@ -9,6 +9,8 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @itinerary_item = ItineraryItem.new
+    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
   end
 
   def edit

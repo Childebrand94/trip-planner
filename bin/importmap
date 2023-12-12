@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
 
-require_relative "../config/application"
+reconst application = Application.start()
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+export { application }quire_relative "../config/application"
 require "importmap/commands"

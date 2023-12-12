@@ -318,7 +318,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
-  turbo-rails
+  turbo-rails (~> 1.0)
   tzinfo-data
   web-console
   webpacker

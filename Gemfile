@@ -17,7 +17,7 @@ gem 'sassc-rails'
 gem 'sprockets-rails'
 gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
-gem 'turbo-rails'
+gem 'turbo-rails', '~> 1.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'webpacker'
 group :development, :test do

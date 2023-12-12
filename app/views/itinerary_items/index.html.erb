@@ -3,13 +3,32 @@
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <section>
-    <div class="card-body p-2 my-3 bg-light rounded">
-      <% @trip.itinerary_by_day.each do |date, itinerary_items| %>
-        <h3><%= date %></h3>
-        <% itinerary_items.each do |itinerary_item| %>
-          <%= render 'itinerary_items/itinerary_item_form', itinerary_item: itinerary_item %>
-        <% end %>
-      <% end %> 
+    <div class="bg-body-tertiary p-2 mt-2">
+      <%= render 'itinerary_items/form' %>
     </div>
+  </section>
+
+  <section>
+    <% @date_range.each do |date| %>
+      <div class="card my-3">
+        <div class="card-body">
+          <h3 class='card-title'><%= date.strftime("%A, %B %d") %></h3>
+          <% itinerary_items = @trip.itinerary_by_day[date] %>
+          <% if itinerary_items.present? %>
+            <ul class='list-group list-group-flush'>
+              <% itinerary_items.each do |itinerary_item| %>
+                <li class='list-group-item d-flex align-items-center'>
+                  <span class='me-2'><%= itinerary_item.start_time.strftime("%H:%M") %> - <%= itinerary_item.end_time.strftime("%H:%M") %></span>
+                  <strong class='me-2'><%= itinerary_item.event_name %></strong>
+                  <span><%= itinerary_item.address %></span>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-muted">No plans for this day.</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </section>
 </div>
