@@ -1,0 +1,30 @@
+<div class='card my-2 p-2 mx-5 d-flex flex-row justify-content-between'>
+  <div>
+    <h6 class='card-subtitle mb-2 text-body-secondary'>
+      <%= item.start_time.strftime("%H:%M")%>
+      -
+      <%= item.end_time.strftime("%H:%M") %>
+    </h6>
+    <h5 class='card-title'>
+      <%= item.event_name %>
+    </h5>
+    <p class='card-title'>
+    <%= item.address %>
+    </p>
+  </div>
+  <div class='text-end d-flex flex-column'>
+    <div>
+      <div class="d-flex justify-content-end">
+        <%= link_to  edit_trip_itinerary_item_path(@trip, item.id, date: @date), class: "text-info me-2" do %>
+          <%= image_tag "pencil-square.svg" %> 
+        <% end %>
+        <%= button_to trip_itinerary_item_path(@trip, item.id), method: :delete, class: "text-info text-decoration-none nav-link", data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
+          <%= image_tag "x-lg.svg" %> 
+        <% end %>
+      </div>
+    </div>
+    <p class='text-end mt-4' >
+    <%= item.creator.first_name %> <%= item.creator.last_name %>
+    </p>
+  </div>
+</div>

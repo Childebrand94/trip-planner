@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :itinerary_items, foreign_key: 'creator_id', class_name: 'ItineraryItem'
   has_many :itinerary_votes
   has_many :expenses
-  has_many :comments
+  has_many :comments, foreign_key: 'author_id'
   has_many :debtors
 
   has_secure_password

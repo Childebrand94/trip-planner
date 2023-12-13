@@ -13,5 +13,6 @@ class Trip < ApplicationRecord
 
   def itinerary_by_day
     itinerary_items.group_by { |item| item.start_time.to_date }
+                   .transform_values { |items| items.sort_by(&:start_time) }
   end
 end

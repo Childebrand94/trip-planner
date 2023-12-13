@@ -1,4 +1,5 @@
 class ItineraryItemsController < ApplicationController
+  # drying out code
   before_action :set_trip, only: %i[index show new edit create update]
   before_action :set_types, only: %i[index new edit update]
 
@@ -17,6 +18,8 @@ class ItineraryItemsController < ApplicationController
 
   def edit
     @itinerary_item = ItineraryItem.find(params[:id])
+    @date = params[:date]
+    puts @date
     @date_range = (@trip.start_date..@trip.end_date)
   end
 
