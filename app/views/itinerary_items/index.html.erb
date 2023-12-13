@@ -12,8 +12,8 @@
     <% @date_range.each do |date| %>
       <div class="card my-3">
         <div class="card-body">
-          <%= link_to trip_trip_day_path(@trip.id, date) do %>
-            <h3 class='card-title'><%= date.strftime("%A, %B %d") %></h3>
+          <%= link_to trip_trip_day_path(@trip.id, date), class: "text-secondary" do %>
+            <h3 class='card-title text-secondary'><%= date.strftime("%A, %B %d") %></h3>
           <% end %>
           <% itinerary_items = @trip.itinerary_by_day[date] %>
           <% if itinerary_items.present? %>
@@ -23,7 +23,9 @@
                   <div>
                     <span class='me-2'><%= itinerary_item.start_time.strftime("%H:%M") %> - <%= itinerary_item.end_time.strftime("%H:%M") %></span>
                     <strong class='me-2'><%= itinerary_item.event_name %></strong>
-                    <span class='me-2'><%= itinerary_item.address %></span>
+                    <div>
+                      <span class='me-2'><%= itinerary_item.address %></span>
+                    </div>
                   </div>
                   <span>
                     <%= itinerary_item.creator.first_name %>

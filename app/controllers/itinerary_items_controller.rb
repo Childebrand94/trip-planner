@@ -1,32 +1,32 @@
 class ItineraryItemsController < ApplicationController
+  before_action :set_trip, only: %i[index show new edit create update]
+  before_action :set_types, only: %i[index new edit update]
+
   def index
-    @trip = Trip.find(params[:trip_id])
     @itinerary_item = ItineraryItem.new
-    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
     @date_range = (@trip.start_date..@trip.end_date)
   end
 
   def show
-    @trip = Trip.find(params[:trip_id])
-    @itinerary_item = @trip.itinerary_items
+    @itinerary_item = @trip.itinerary_items.find(params[:id])
   end
 
   def new
     @itinerary_item = ItineraryItem.new
-    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
   end
 
   def edit
     @itinerary_item = ItineraryItem.find(params[:id])
-    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
+    @date_range = (@trip.start_date..@trip.end_date)
   end
 
   def update
-    @itinerary_items = ItineraryItems.find(params[:id])
+    @itinerary_item = ItineraryItem.find(params[:id])
 
-    if @itinerary_items.update(trip_params)
-      redirect_to itinerary_items_path
+    if @itinerary_item.update(itinerary_item_params)
+      redirect_to trip_itinerary_items_path(@itinerary_item.trip)
     else
+      @date_range = (@trip.start_date..@trip.end_date)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -51,6 +51,14 @@ class ItineraryItemsController < ApplicationController
   end
 
   private
+
+  def set_trip
+    @trip = Trip.find(params[:trip_id])
+  end
+
+  def set_types
+    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
+  end
 
   def itinerary_item_params
     params.require(:itinerary_item).permit(:creator_id, :item_type_id, :event_name, :address, :start_time, :end_time)
