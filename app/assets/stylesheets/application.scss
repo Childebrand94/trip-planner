@@ -1,4 +1,11 @@
 @import "custom_bootstrap";
 @import "rails_bootstrap_forms";
 
+.lift-on-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.lift-on-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}

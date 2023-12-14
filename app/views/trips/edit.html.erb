@@ -1,13 +1,11 @@
 <div class="container w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center ">
   <div class="card p-4 bg-white" style="width: 350px">
-    <h1 class="h1 mb-3 card-title text-center">Create Your Trip</h1>
+    <h1 class="h1 mb-3 card-title text-center">Update Your Trip</h1>
     <%= render "form", trip: @trip %>
-
   </div>
   <div class="my-4">
-
-<br>
-
-<div>
-  <%= link_to "Back to trips", trips_path, class: "btn btn-secondary"%>
+    <div>
+      <%= link_to "Back to trips", trips_path, class: "btn btn-secondary"%>
+    </div>
+  </div>
 </div>
