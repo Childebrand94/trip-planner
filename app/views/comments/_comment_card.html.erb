@@ -11,7 +11,7 @@
           <%= image_tag "pencil-square.svg" %> 
         <% end %>
         <%= button_to trip_itinerary_item_comment_path(@trip, @itinerary_item, comment.id), 
-          method: :delete, class: "text-info text-decoration-none nav-link", 
+          method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
           data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
           <%= image_tag "x-lg.svg" %> 
         <% end %>

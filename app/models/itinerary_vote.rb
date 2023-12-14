@@ -1,4 +1,6 @@
 class ItineraryVote < ApplicationRecord
-  belongs_to :users
-  belongs_to :itinerary_items
+  belongs_to :user
+  belongs_to :itinerary_item
+
+  validates_presence_of :up_vote
 end

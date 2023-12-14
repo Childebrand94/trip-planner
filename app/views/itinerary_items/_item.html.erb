@@ -15,7 +15,7 @@
   <div class='text-end d-flex flex-column'>
     <div>
       <div class="d-flex justify-content-end">
-        <%= link_to  edit_trip_itinerary_item_path(@trip, item.id, date: @date), class: "text-info me-2" do %>
+        <%= link_to edit_trip_itinerary_item_path(@trip, item.id, date: @date), class: "text-info me-2 icon-link icon-hover" do %>
           <%= image_tag "pencil-square.svg" %> 
         <% end %>
         <%= button_to trip_itinerary_item_path(@trip, item.id), method: :delete, class: "text-info text-decoration-none nav-link", data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
@@ -26,8 +26,16 @@
     <p class='text-end mt-4' >
     <%= item.creator.display_name %> 
     </p>
-    <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "text-info me-2" do %>
+    <div class="d-flex justify-content-end">
+      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
+        <%= image_tag "hand-thumbs-up.svg" %> 
+      <% end %>
+      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
+        <%= image_tag "hand-thumbs-down.svg" %> 
+      <% end %>
+      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
         <%= image_tag "chat-left-dots.svg" %> 
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
