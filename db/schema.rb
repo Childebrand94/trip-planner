@@ -14,10 +14,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
+    t.integer "itinerary_item_id", null: false
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["itinerary_item_id"], name: "index_comments_on_itinerary_item_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
   end
 
@@ -115,8 +117,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "first_name", null: false
-    t.text "last_name", null: false
+    t.text "display_name", null: false
     t.text "email", null: false
     t.text "password_digest", null: false
     t.datetime "created_at", null: false
@@ -124,6 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   end
 
   add_foreign_key "comments", "comments", column: "parent_id"
+  add_foreign_key "comments", "itinerary_items"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "debtors", "expenses"
   add_foreign_key "debtors", "users", column: "debtor_id"

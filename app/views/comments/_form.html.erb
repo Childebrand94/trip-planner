@@ -1,0 +1,7 @@
+<%= bootstrap_form_with(model: [ @trip, @itinerary_item, @comment], inline_error: false, label_errors:true) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+  <div class="my-2">
+    <%= f.text_field :body, label_as_placeholder: true, required: true %>
+    <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), class: "btn btn-success" %>
+  </div>
+<% end %>

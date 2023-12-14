@@ -19,7 +19,6 @@ class ItineraryItemsController < ApplicationController
   def edit
     @itinerary_item = ItineraryItem.find(params[:id])
     @date = params[:date]
-    puts @date
     @date_range = (@trip.start_date..@trip.end_date)
   end
 

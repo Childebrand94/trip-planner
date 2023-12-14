@@ -24,7 +24,10 @@
       </div>
     </div>
     <p class='text-end mt-4' >
-    <%= item.creator.first_name %> <%= item.creator.last_name %>
+    <%= item.creator.display_name %> 
     </p>
+    <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "text-info me-2" do %>
+        <%= image_tag "chat-left-dots.svg" %> 
+    <% end %>
   </div>
 </div>

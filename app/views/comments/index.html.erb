@@ -1,0 +1,49 @@
+<div class="container">
+  <section class="card mt-2 p-2 shadow mb-4 bg-body-tertiary rounded">
+    <div class="card-body row">
+      <div class="col">
+        <h1 class="card-title"><%= @itinerary_item.event_name %></h1> 
+        <span class='me-2'>
+          <%= @itinerary_item.start_time.strftime("%H:%M") %> - 
+          <%= @itinerary_item.end_time.strftime("%H:%M") %>
+        </span>
+        <p class="card-subtitle text-body-secondary mt-4">
+        <%= @itinerary_item.address %> 
+        </p> 
+      </div>
+
+      <div class="col d-flex justify-content-end ">
+        <%= link_to  edit_trip_itinerary_item_path(@trip, @itinerary_item, date: @date), class: "text-info me-2" do %>
+          <%= image_tag "pencil-square.svg" %> 
+        <% end %>
+        <%= button_to trip_itinerary_item_path(trip_id: @trip.id, id: @itinerary_item.id), method: :delete, class: "text-info text-decoration-none nav-link", data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
+          <%= image_tag "x-lg.svg" %> 
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-3">
+    <div class="card p-2">
+      <h5 class="card-subtitle my-1">Comment</h5>
+      <%= render 'form' %>
+    </div>
+  </section>
+
+  <section class="my-3">
+    <% if @all_comments.any? %> 
+      <% @all_comments.each do |comment| %>
+        <% if comment.author.blank? %>
+          <div></div>
+        <% else %>
+          <%= render partial: "comment_card", locals: { comment: comment } %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="card">
+        <h5 class="card-title p-2"> No Comments yet...</h5>
+      </div>
+    <% end %>
+  </section>
+</div>
+

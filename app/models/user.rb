@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: 'author_id'
   has_many :debtors
 
+  validates :password, length: { minimum: 8 }
   has_secure_password
 
   validates_presence_of :email

@@ -1,8 +1,7 @@
 <%= bootstrap_form_with(model: user, inline_error: false, label_errors: true) do |f| %> 
     <%= f.alert_message "Please fix the errors below." %>
     <div class="container my-2">
-      <%= f.text_field :first_name, label_as_placeholder: true, required: true%>
-      <%= f.text_field :last_name, label_as_placeholder: true, required: true%>
+      <%= f.text_field :display_name, label_as_placeholder: true, required: true%>
       <%= f.text_field :email, label_as_placeholder: true, required: true%>
       <%= f.password_field :password, label_as_placeholder: true, required: true%>
       <%= f.password_field :password_confirmation, label_as_placeholder: true, required: true, label: "Confirm Password" %>

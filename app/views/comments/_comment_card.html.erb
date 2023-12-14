@@ -1,0 +1,25 @@
+<div class="card mx-4 my-2">
+  <div class="row">
+    <div class="col">
+      <h5 class="card-subtitle m-2 text-body-secondary">
+        <%= comment.author&.display_name %></h5>
+      <p class="mx-4"><%= comment.body %></p>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="d-flex justify-content-end m-2 ">
+        <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, comment.id), class: "text-info me-2" do %>
+          <%= image_tag "pencil-square.svg" %> 
+        <% end %>
+        <%= button_to trip_itinerary_item_comment_path(@trip, @itinerary_item, comment.id), 
+          method: :delete, class: "text-info text-decoration-none nav-link", 
+          data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
+          <%= image_tag "x-lg.svg" %> 
+        <% end %>
+      </div>
+        <div class="text-end">
+          <p><%= time_ago_in_words(comment.updated_at) %> ago</p>
+        </div>
+    </div>
+  </div>
+</div>
+

@@ -50,7 +50,7 @@ class TripsController < ApplicationController
   def day
     @trip = Trip.find(params[:trip_id])
     selected_date = Date.parse(params[:date])
-    @itinerary_items = @trip.itinerary_items.where('DATE(start_time) = ?', selected_date).sort_by(&:start_time)
+    @itinerary_items = @trip.itinerary_by_day[selected_date]
   end
 
   private
