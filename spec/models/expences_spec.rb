@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Expences, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Expense, type: :model do
+  describe 'validation' do
+    subject { build(:expense) }
+
+    it 'is valid with all attributes' do
+      expect(subject).to be_valid
+    end
+  end
 end

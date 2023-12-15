@@ -13,3 +13,25 @@ names = %w[Dining Stay Excursion Business Travel]
 names.each do |type|
   ItineraryItemType.create(name: type)
 end
+expenses = %w[
+  Accommodation
+  Transportation
+  Food_Dining
+  Activities_Entertainment
+  Shopping
+  Emergency_Funds
+  Insurance
+  Local_Transportation
+  Communication
+  Tips_Gratuities
+  Visas_Permits
+  Health_Wellness
+  Personal_Items
+  Miscellaneous
+  Gifts_Donations
+  Travel_Gear
+]
+
+expenses.each do |expense|
+  ExpenseCategory.create(name: expense)
+end

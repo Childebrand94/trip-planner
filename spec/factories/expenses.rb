@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :expence do
+  factory :expense do
     trip
-    association :payer_id, facory: :user
+    payer
     expense_category
     name { 'dinner' }
     amount { '100.00' }
