@@ -14,4 +14,8 @@ class User < ApplicationRecord
   normalizes :email, with: ->(email) { email.strip.downcase }
   validates_uniqueness_of :email
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  def voted_on?(itinerary_item)
+    itinerary_votes.exists?(itinerary_item_id: itinerary_item.id)
+  end
 end

@@ -22,15 +22,14 @@
           <%= image_tag "x-lg.svg" %> 
         <% end %>
       </div>
-    </div>
+    </div> 
     <p class='text-end mt-4' >
     <%= item.creator.display_name %> 
     </p>
     <div class="d-flex justify-content-end">
-      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
-        <%= image_tag "hand-thumbs-up.svg" %> 
-      <% end %>
-      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
+      <%= render 'itinerary_items/up_vote_form', trip: @trip, item: item, date: @date %>
+      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date), 
+          method: :post, params: { up_vote: false }, class: "me-2 icon-hover" do %>
         <%= image_tag "hand-thumbs-down.svg" %> 
       <% end %>
       <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>

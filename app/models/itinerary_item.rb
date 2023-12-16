@@ -3,6 +3,7 @@ class ItineraryItem < ApplicationRecord
   belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
   belongs_to :item_type, class_name: 'ItineraryItemType'
   has_many :comments, class_name: 'Comment'
+  has_many :itinerary_votes, class_name: 'ItineraryVote'
 
   validates_presence_of :start_time
   validates_presence_of :end_time

@@ -1,0 +1,8 @@
+<%= bootstrap_form_with(model: @itinerary_vote,url: trip_itinerary_item_vote_path(trip, item) , method: :post, inline_error: false, label_errors: true) do |f| %>
+  <%= f.hidden_field :up_vote, value: true %>
+  <%= f.hidden_field :itinerary_item_id, value: item.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.button type: "submit", class: "me-2 icon-hover" do %>
+    <%= image_tag "hand-thumbs-up.svg" %>
+  <% end %>
+<% end %>

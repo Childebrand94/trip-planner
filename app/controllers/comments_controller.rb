@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.author_id = current_user.id
     if @comment.save
       redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item),
-                  notice: 'Comment was successfull created'
+                  notice: 'Comment was successfully created'
     else
       render :new, status: :unprocessable_entity
     end
