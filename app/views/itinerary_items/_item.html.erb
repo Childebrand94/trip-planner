@@ -27,10 +27,29 @@
     <%= item.creator.display_name %> 
     </p>
     <div class="d-flex justify-content-end">
-      <%= render 'itinerary_items/up_vote_form', trip: @trip, item: item, date: @date %>
-      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date), 
-          method: :post, params: { up_vote: false }, class: "me-2 icon-hover" do %>
-        <%= image_tag "hand-thumbs-down.svg" %> 
+      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date),
+        method: :post, 
+        params: { itinerary_vote: { up_vote: true, itinerary_item_id: item.id, user_id: current_user.id }},
+        class: "btn position-relative icon-hover",
+        form_class: "d-inline-block" do %>
+
+        <%= image_tag "hand-thumbs-up.svg", alt: "Upvote" %>
+        <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill text-black">
+            <%= @up_votes %> 
+          <span class="visually-hidden">upvotes</span>
+        </span>
+      <% end %>
+      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date),
+        method: :post, 
+        params: { itinerary_vote: { up_vote: false, itinerary_item_id: item.id, user_id: current_user.id }},
+        class: "btn position-relative icon-hover",
+        form_class: "d-inline-block" do %>
+
+        <%= image_tag "hand-thumbs-down.svg", alt: "Upvote" %>
+        <span class="position-absolute top-0 start-90 translate-middle badge rounded-pill text-black">
+          to do 
+          <span class="visually-hidden">upvotes</span>
+        </span>
       <% end %>
       <%= link_to trip_itinerary_item_comments_path(@trip, item.id), class: "me-2 icon-hover" do %>
         <%= image_tag "chat-left-dots.svg" %> 

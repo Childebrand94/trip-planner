@@ -30,13 +30,10 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.build(trip_params)
 
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to trips_path, notice: 'Trip was successfully created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
+    if @trip.save
+      redirect_to trips_path, notice: 'Trip was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -49,8 +46,8 @@ class TripsController < ApplicationController
 
   def day
     @trip = Trip.find(params[:trip_id])
-    selected_date = Date.parse(params[:date])
-    @itinerary_items = @trip.itinerary_by_day[selected_date]
+    @date = Date.parse(params[:date])
+    @itinerary_items = @trip.itinerary_by_day[@date]
   end
 
   private

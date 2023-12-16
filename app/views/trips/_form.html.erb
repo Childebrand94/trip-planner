@@ -2,7 +2,7 @@
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
     <%= f.text_field :name, label_as_placeholder: true, required: true %>
-    <%= f.text_field :loaction, label_as_placeholder: true, required: true %>
+    <%= f.text_field :location, label_as_placeholder: true, required: true %>
     <%= f.date_field :start_date, label_as_placeholder: true, required: true %>
     <%= f.date_field :end_date, label_as_placeholder: true, required: true %>
     <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), class: "btn btn-success" %>

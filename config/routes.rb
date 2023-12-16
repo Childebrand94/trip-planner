@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :trips do
+    resources :expenses
     resources :itinerary_items, path: 'itinerary' do
       resources :comments
       post 'vote', to: 'itinerary_votes#vote'

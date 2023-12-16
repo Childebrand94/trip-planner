@@ -1,0 +1,17 @@
+<%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], inline_error: false, label_errors:true) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+  <div class="my-2">
+    <%= f.text_field :name, label_as_placeholder: true, required: true %>
+    <%= f.text_field :description, label_as_placeholder: true, required: true %>
+    <div class="d-flex">
+      <%= f.number_field :amount, label_as_placeholder: true, required: true %>
+      <%= f.date_field :date, label_as_placeholder: true, required: true, class: "mx-2" %>
+    </div>
+    <div class="d-flex">
+      <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", floating: true %>
+    </div>
+      <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
+      class: "btn btn-secondary" %>
+  </div>
+<% end %>
+

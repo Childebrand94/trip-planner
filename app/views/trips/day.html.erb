@@ -5,13 +5,22 @@
   <section>
     <div class='my-2 p-2 border-bottom'>
       <h3 class='card-title'>
-        <%= @trip.start_date.strftime("%A, %B %d") %>
+        <%= @date.strftime("%A, %B %d") %>
       </h3>
     </div>
   </section>
+
   <section class='container'>
-    <% @itinerary_items.each do |item| %>
-      <%= render partial: 'itinerary_items/item', locals: { item: item } %>
+    <% if @itinerary_items.present? %>
+      <% @itinerary_items.each do |item| %>
+        <%= render partial: 'itinerary_items/item', locals: { item: item } %>
+      <% end %>
+    <% else %>
+      <div class="card">
+        <h6 class='card-subtitle mb-2 text-body-secondary p-2'>
+          Nothing planned yet. 
+        </h6>
+      </div> 
     <% end %>
   </section>
 </div>

@@ -4,8 +4,8 @@
 #
 # Example:
 #
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
+#   ["Action", "Comedy", "Drama", "Horror"].each do |genre name|
+#     MovieGenre.find or_create_by!(name: genre_name)
 #   endo
 
 names = %w[Dining Stay Excursion Business Travel]
@@ -16,20 +16,19 @@ end
 expenses = %w[
   Accommodation
   Transportation
-  Food_Dining
-  Activities_Entertainment
+  Food Dining
+  Activities Entertainment
   Shopping
-  Emergency_Funds
+  Emergency Funds
   Insurance
-  Local_Transportation
+  Local Transportation
   Communication
-  Tips_Gratuities
-  Visas_Permits
-  Health_Wellness
-  Personal_Items
+  Tips Gratuities
+  Health Wellness
+  Personal Items
   Miscellaneous
-  Gifts_Donations
-  Travel_Gear
+  Gifts Donations
+  Travel Gear
 ]
 
 expenses.each do |expense|
