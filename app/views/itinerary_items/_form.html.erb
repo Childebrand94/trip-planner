@@ -7,8 +7,8 @@
       <div class="d-flex flex-row">
         <%= f.datetime_field :start_time, class: 'start_time', label_as_placeholder: true, style: "width: 200px", required: true %>
         <%= f.datetime_field :end_time, class: 'end_time mx-2', label_as_placeholder: true, style: "width: 200px", required: true %>
-        <%= f.select :item_type_id, @types, include_blank: "Select Category", floating: true %>
       </div>
+        <%= f.select :item_type_id, @types, include_blank: "Select Category", floating: true %>
       <%= f.submit(controller.action_name == 'edit' ? 'Update' : 'Add') %>
     </div>
   </div>

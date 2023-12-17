@@ -1,17 +1,20 @@
-<%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], inline_error: false, label_errors:true) do |f| %>
-  <%= f.alert_message "Please fix the errors below." %>
-  <div class="my-2">
-    <%= f.text_field :name, label_as_placeholder: true, required: true %>
-    <%= f.text_field :description, label_as_placeholder: true, required: true %>
-    <div class="d-flex">
-      <%= f.number_field :amount, label_as_placeholder: true, required: true %>
-      <%= f.date_field :date, label_as_placeholder: true, required: true, class: "mx-2" %>
-    </div>
-    <div class="d-flex">
-      <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", floating: true %>
-    </div>
+<%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], inline_error: false, label_errors:true, data: { controller: "flatpicker"}) do |f| %>
+  <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
+    <%= f.alert_message "Please fix the errors below." %>
+    <div class="my-2">
+      <%= f.text_field :name, label_as_placeholder: true, required: true %>
+      <%= f.text_field :description, label_as_placeholder: true, required: true %>
+      <div class="d-flex">
+        <span class="mx-1 fs-4 text-secondary">$</span>
+        <%= f.number_field :amount, step: '0.01', min: '0', label_as_placeholder: 'Amount ($)', required: true %>
+        <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date mx-2" %>
+      </div>
+      <div class="d-flex">
+        <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", floating: true %>
+      </div>
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-      class: "btn btn-secondary" %>
+        class: "btn btn-secondary" %>
+    </div>
   </div>
 <% end %>
 

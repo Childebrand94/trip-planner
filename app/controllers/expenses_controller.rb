@@ -18,7 +18,7 @@ class ExpensesController < ApplicationController
     if @expense.save
       redirect_to trip_expenses_path(@trip), notice: 'Expense was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 

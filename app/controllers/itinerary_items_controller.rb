@@ -1,7 +1,8 @@
 class ItineraryItemsController < ApplicationController
-  # drying out code
   before_action :set_trip, only: %i[index show new edit create update]
   before_action :set_types, only: %i[index new edit update]
+  before_action :set_itinerary_item, only: %i[show update edit]
+  before_action :set_date, only: %i[show edit]
 
   def index
     @itinerary_item = ItineraryItem.new
@@ -9,7 +10,16 @@ class ItineraryItemsController < ApplicationController
   end
 
   def show
-    @itinerary_item = @trip.itinerary_items.find(params[:id])
+    @up_votes = @itinerary_item.itinerary_votes.where(up_vote: true)
+    @down_votes = @itinerary_item.itinerary_votes.where(up_vote: false)
+    @all_comments = @itinerary_item.comments
+    @items_by_day = @trip.itinerary_by_day[@date]
+    @conflicting_items = @items_by_day.select do |item|
+      next if item.id == @itinerary_item.id
+
+      item.start_time < @itinerary_item.end_time &&
+        @itinerary_item.start_time < item.end_time
+    end
   end
 
   def new
@@ -17,14 +27,10 @@ class ItineraryItemsController < ApplicationController
   end
 
   def edit
-    @itinerary_item = ItineraryItem.find(params[:id])
-    @date = params[:date]
     @date_range = (@trip.start_date..@trip.end_date)
   end
 
   def update
-    @itinerary_item = ItineraryItem.find(params[:id])
-
     if @itinerary_item.update(itinerary_item_params)
       redirect_to trip_itinerary_items_path(@itinerary_item.trip)
     else
@@ -34,7 +40,6 @@ class ItineraryItemsController < ApplicationController
   end
 
   def create
-    @trip = Trip.find(params[:trip_id])
     @itinerary_item = @trip.itinerary_items.new(itinerary_item_params)
     @itinerary_item.creator_id = current_user.id
 
@@ -54,8 +59,16 @@ class ItineraryItemsController < ApplicationController
 
   private
 
+  def set_date
+    @date = Date.parse(params[:date])
+  end
+
   def set_trip
     @trip = Trip.find(params[:trip_id])
+  end
+
+  def set_itinerary_item
+    @itinerary_item = @trip.itinerary_items.find(params[:id])
   end
 
   def set_types

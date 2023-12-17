@@ -5,9 +5,11 @@
       -
       <%= item.end_time.strftime("%H:%M") %>
     </h6>
-    <h5 class='card-title'>
-      <%= item.event_name %>
-    </h5>
+    <%= link_to  trip_itinerary_item_path(@trip, item.id, date: @date) do %>
+      <h5 class='card-title'>
+        <%= item.event_name %>
+      </h5>
+    <% end %>
     <p class='card-title'>
     <%= item.address %>
     </p>

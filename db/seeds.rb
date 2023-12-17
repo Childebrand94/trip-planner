@@ -34,3 +34,15 @@ expenses = %w[
 expenses.each do |expense|
   ExpenseCategory.create(name: expense)
 end
+
+user_roles = %w[Admin Editor Viewer]
+
+user_roles.each do |r|
+  UserTripRole.create(role: r)
+end
+
+10.times do
+  FactoryBot.create(:user)
+end
+
+FactoryBot.create(:trip)

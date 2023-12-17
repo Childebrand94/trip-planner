@@ -1,1 +1,80 @@
-<h2>Hello from the show view</h2>
+<div class="container">
+
+  <%= render partial: 'shared/trip_itinerary_nav' %>
+
+  <section>
+    <div class='my-2 p-2 border-bottom'>
+      <h3 class='card-title'>
+        <%= @date.strftime("%A, %B %d") %>
+      </h3>
+    </div>
+  </section>
+
+  <section>
+    <div class="my-3">
+      <div class="card-body">
+        <h4 class="card-title mb-2 border-bottom">Votes</h4>
+        
+        <div style="min-height: 2.5rem" class="p-2">
+          <h6 class="card-subtitle text-secondary border-bottom">Up Votes
+            <span class="mx-2"><%= @up_votes.count%></span>
+          </h6>
+          <% @up_votes.each do |vote| %>
+            <p class="my-2"><%= vote.user.display_name %></p>
+          <% end %>
+        </div>
+
+        <div style="min-height: 2.5rem" class="p-2">
+          <h6 class="card-subtitle text-secondary border-bottom" >Down Votes
+            <span class="mx-2"><%= @down_votes.count%></span>
+          </h6>
+          <% @down_votes.each do |vote| %>
+            <p class="my-2"><%= vote.user.display_name %></p>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="my-3" >
+      <div class="card-body">
+        <h4 class="card-title border-bottom mb-2">Comments</h4>
+        <% if @all_comments.present? %>
+          <% @all_comments.each do |comment| %>
+            <div>
+              <%= render partial: "comments/comment_card", locals: { trip: @trip, itinerary_item: @itinerary_item, comment: comment } %>
+            </div>
+          <% end %>
+        <% else %>
+          <p> No comments yet </p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="my-3">
+      <div class="card-body">
+        <h4 class="card-title border-bottom mb-2">Conflicts</h4>
+        <div class="p-2">
+          <% if @conflicting_items.present? %>
+            <div class="d-flex justify-content-between w-100">
+              <% @conflicting_items.each do |item| %>
+                <p> <%= item.event_name %> </p>
+                <p>
+                <%= item.start_time.strftime("%b %d %H:%M") %> - 
+                <%= item.end_time.strftime("%b %d %H:%M") %>
+                </p>
+            </div>
+            <% end %>
+          <% else %>
+            <p>No Conflicts</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

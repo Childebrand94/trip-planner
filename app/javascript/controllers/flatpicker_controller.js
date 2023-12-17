@@ -19,5 +19,10 @@ export default class extends Controller {
             maxDate: tripEnd,
             enableTime: true,
         });
+
+        flatpickr('.date', {
+            minDate: tripStart,
+            maxDate: tripEnd,
+        });
     }
 }
