@@ -3,11 +3,7 @@
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <section>
-    <div class='my-2 p-2 border-bottom'>
-      <h3 class='card-title'>
-        <%= @date.strftime("%A, %B %d") %>
-      </h3>
-    </div>
+    <%= render partial: "item", locals: { item: @itinerary_item } %>
   </section>
 
   <section>

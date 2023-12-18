@@ -28,9 +28,10 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.build(trip_params)
+    @trip = Trip.new(trip_params)
 
     if @trip.save
+      @trip.user_trips.create!(user_id: current_user.id, user_trip_role_id: 1)
       redirect_to trips_path, notice: 'Trip was successfully created.'
     else
       render :new, status: :unprocessable_entity

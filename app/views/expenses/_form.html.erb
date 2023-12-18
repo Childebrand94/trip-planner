@@ -5,7 +5,7 @@
       <%= f.text_field :name, label_as_placeholder: true, required: true %>
       <%= f.text_field :description, label_as_placeholder: true, required: true %>
       <div class="d-flex">
-        <span class="mx-1 fs-4 text-secondary">$</span>
+        <span class="mx-1 fs-5 text-secondary">$</span>
         <%= f.number_field :amount, step: '0.01', min: '0', label_as_placeholder: 'Amount ($)', required: true %>
         <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date mx-2" %>
       </div>

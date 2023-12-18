@@ -38,6 +38,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:trips) }
+    it { should have_many(:created_trips) }
   end
 end

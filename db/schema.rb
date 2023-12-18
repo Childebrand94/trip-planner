@@ -89,7 +89,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.integer "creator_id", null: false
     t.string "name", null: false
     t.string "location", null: false
     t.date "start_date", null: false
@@ -98,7 +97,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.decimal "longitude", precision: 10, scale: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["creator_id"], name: "index_trips_on_creator_id"
   end
 
   create_table "user_trip_roles", force: :cascade do |t|
@@ -140,7 +138,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   add_foreign_key "itinerary_items", "users", column: "creator_id"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users"
-  add_foreign_key "trips", "users", column: "creator_id"
   add_foreign_key "user_trips", "trips"
   add_foreign_key "user_trips", "user_trip_roles"
   add_foreign_key "user_trips", "users"
