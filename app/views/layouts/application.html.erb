@@ -15,6 +15,10 @@
   <body class="bg-white">
     <%= render "layouts/navbar" %>
     <%= "#{controller_name}##{action_name}" %>
+    <br>
+    <% if current_user.present? %>
+      <%= "display name: #{current_user.display_name} id: #{current_user.id}" %>
+    <% end %>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>"><%= message %></div>
     <% end %>

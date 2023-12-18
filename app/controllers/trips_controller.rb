@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
   def index
+    puts '@@@@@@@@@@@'
+    puts UserTripRole.exists?(2)
     @trips = current_user.trips
   end
 
