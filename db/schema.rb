@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_19_193651) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -25,13 +25,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
 
   create_table "debtors", force: :cascade do |t|
     t.integer "expense_id", null: false
-    t.integer "debtor_id", null: false
+    t.integer "user_id", null: false
     t.integer "amount_owed", null: false
-    t.boolean "paid", null: false
+    t.boolean "paid", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["debtor_id"], name: "index_debtors_on_debtor_id"
     t.index ["expense_id"], name: "index_debtors_on_expense_id"
+    t.index ["user_id"], name: "index_debtors_on_user_id"
   end
 
   create_table "expense_categories", force: :cascade do |t|
@@ -128,7 +128,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   add_foreign_key "comments", "itinerary_items"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "debtors", "expenses"
-  add_foreign_key "debtors", "users", column: "debtor_id"
+  add_foreign_key "debtors", "users"
   add_foreign_key "expenses", "expense_categories"
   add_foreign_key "expenses", "itinerary_items"
   add_foreign_key "expenses", "trips"

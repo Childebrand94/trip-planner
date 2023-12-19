@@ -4,13 +4,18 @@
     <div class="my-2">
       <%= f.text_field :name, label_as_placeholder: true, required: true %>
       <%= f.text_field :description, label_as_placeholder: true, required: true %>
-      <div class="d-flex">
-        <span class="mx-1 fs-5 text-secondary">$</span>
-        <%= f.number_field :amount, step: '0.01', min: '0', label_as_placeholder: 'Amount ($)', required: true %>
-        <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date mx-2" %>
+      <div class="d-flex w-100 justify-content-between">
+        <div class="d-flex align-item-center">
+          <span class="mx-1 fs-5 text-secondary inline">$</span>
+          <%= f.number_field :amount, step: '0.01', min: '0', label_as_placeholder: 'Amount ($)', required: true %>
+        </div>
+        <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date" %>
+        <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", hide_label: true %>
       </div>
-      <div class="d-flex">
-        <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", floating: true %>
+      <div class="d-flex w-100">
+        <%= f.select :user_ids,
+          options_for_select(@debtors),
+          { multiple: true, name: 'user_ids[]', class: 'form-control', label: 'Choose Who to Split With' } %>
       </div>
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
         class: "btn btn-secondary" %>

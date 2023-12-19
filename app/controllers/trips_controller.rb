@@ -1,7 +1,5 @@
 class TripsController < ApplicationController
   def index
-    puts '@@@@@@@@@@@'
-    puts UserTripRole.exists?(2)
     @trips = current_user.trips
   end
 
@@ -33,7 +31,9 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
 
     if @trip.save
-      @trip.user_trips.create!(user_id: current_user.id, user_trip_role_id: 1)
+
+      role = UserTripRole.find_by role: 'Admin'
+      @trip.user_trips.create(user: current_user, user_trip_role: role)
       redirect_to trips_path, notice: 'Trip was successfully created.'
     else
       render :new, status: :unprocessable_entity

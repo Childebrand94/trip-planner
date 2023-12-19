@@ -1,0 +1,8 @@
+<tr>
+  <th scope="row"></th>
+  <td><%= expense.date.strftime('%b %d, %Y') %></td>
+  <td><%= expense.payer.display_name %></td>
+  <td><%= expense.name %></td>
+  <td>$ <%= expense.amount %></td>
+  <td><%= expense.expense_category.name %></td>
+</tr>
