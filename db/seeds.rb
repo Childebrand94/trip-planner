@@ -40,3 +40,14 @@ user_roles = %w[Admin Editor Viewer]
 user_roles.each do |r|
   UserTripRole.create(role: r)
 end
+
+# For development
+
+# Create users
+user1 = FactoryBot.create(:user)
+user2 = FactoryBot.create(:user)
+
+trip = Trip.create(name: 'Las Vegas', location: 'Las Vegas NV, USA', start_date: '2024-01-18', end_date: '2024-01-22')
+
+UserTrip.create(user: user1, trip:, user_trip_role_id: 1)
+UserTrip.create(user: user2, trip:, user_trip_role_id: 2)

@@ -8,14 +8,18 @@ class ExpensesController < ApplicationController
     @expnese.build_debtor
   end
 
+  def edit
+    @expense = Expense.find(params[:id])
+  end
+
   def index
-    @all_expenses = @trip.expenses.reject(&:new_record?)
+    @all_expenses = @trip.expenses.reject(&:new_record?).select { |expense| expense.payer_id == current_user.id }
   end
 
   def create
     @expense = @trip.expenses.build(expense_params)
     @expense.payer_id = current_user.id
-    user_ids = params[:expense][:user_ids].reject(&:blank?)
+    user_ids = params[:debtor][:user_ids].reject(&:blank?)
 
     if @expense.save
       create_expense_debts(@expense, user_ids)
@@ -52,7 +56,7 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:expense_category_id, :name, :amount, :description, :date,
+    params.require(:expense).permit(:expense_category_id, :name, :amount, :description, :date, :paid,
                                     debtors_attributes: [:user_id])
   end
 

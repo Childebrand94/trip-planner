@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_19_193651) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -26,8 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_193651) do
   create_table "debtors", force: :cascade do |t|
     t.integer "expense_id", null: false
     t.integer "user_id", null: false
-    t.integer "amount_owed", null: false
-    t.boolean "paid", default: false, null: false
+    t.decimal "amount_owed", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expense_id"], name: "index_debtors_on_expense_id"
@@ -43,16 +42,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_193651) do
   create_table "expenses", force: :cascade do |t|
     t.integer "trip_id", null: false
     t.integer "payer_id", null: false
-    t.integer "itinerary_item_id"
     t.integer "expense_category_id", null: false
     t.string "name", null: false
-    t.integer "amount", null: false
-    t.string "description", null: false
-    t.datetime "date", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.boolean "paid", default: false, null: false
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
-    t.index ["itinerary_item_id"], name: "index_expenses_on_itinerary_item_id"
     t.index ["payer_id"], name: "index_expenses_on_payer_id"
     t.index ["trip_id"], name: "index_expenses_on_trip_id"
   end
@@ -130,7 +127,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_19_193651) do
   add_foreign_key "debtors", "expenses"
   add_foreign_key "debtors", "users"
   add_foreign_key "expenses", "expense_categories"
-  add_foreign_key "expenses", "itinerary_items"
   add_foreign_key "expenses", "trips"
   add_foreign_key "expenses", "users", column: "payer_id"
   add_foreign_key "itinerary_items", "itinerary_item_types", column: "item_type_id"

@@ -1,0 +1,34 @@
+<div class='container'>
+
+  <%= render partial: 'shared/trip_itinerary_nav' %>
+
+  <section class='my-2'>
+    <div class='p-3 m-2 bg-body-tertiary'>
+      <table class="table">
+        <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Date</th>
+              <th scope="col">Payer</th>
+              <th scope="col">Event Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: 'expense_row', locals: { expense: @expense } %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class='my-2'>
+    <div class='p-3 m-2 bg-body-tertiary'>
+      <h5>Update Expense</h5>
+      <%= render partial: 'form' %>
+    </div>
+  </section>
+
+</div>
+ 
+

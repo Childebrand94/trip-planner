@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :trip do
-    association :creator, factory: :user
     sequence(:name) { |n| "Trip name #{n}" }
     location { 'Paris' }
     start_date { '2024-01-01' }

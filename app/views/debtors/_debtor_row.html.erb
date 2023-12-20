@@ -1,0 +1,8 @@
+  <tr onclick="window.location='<%= trip_debtor_path(@trip, debt) %>'" style="cursor: pointer;">
+    <th scope="row"></th>
+    <td><%= debt.expense.date.strftime('%b %d, %Y') %></td>
+    <td><%= debt.expense.payer.display_name %></td>
+    <td><%= debt.expense.name %></td>
+    <td>$ <%= debt.expense.amount %></td>
+    <td>$ <%= debt.amount_owed %></td>
+  </tr>

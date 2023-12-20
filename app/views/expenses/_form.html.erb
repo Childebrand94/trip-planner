@@ -1,25 +1,53 @@
 <%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], inline_error: false, label_errors:true, data: { controller: "flatpicker"}) do |f| %>
   <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
-    <div class="my-2">
-      <%= f.text_field :name, label_as_placeholder: true, required: true %>
-      <%= f.text_field :description, label_as_placeholder: true, required: true %>
-      <div class="d-flex w-100 justify-content-between">
-        <div class="d-flex align-item-center">
-          <span class="mx-1 fs-5 text-secondary inline">$</span>
-          <%= f.number_field :amount, step: '0.01', min: '0', label_as_placeholder: 'Amount ($)', required: true %>
+    <div class="my-2 ">
+
+      <div class="row">
+          <%= f.text_field :name, label_as_placeholder: true, required: true %>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date" %>
         </div>
-        <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date" %>
-        <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", hide_label: true %>
+        <div class="col">
+          <%= f.number_field :amount, 
+            step: '0.01', 
+            min: '0', 
+            label_as_placeholder: 'Amount ($)', 
+            required: true, 
+            class: 'form-control',
+            disabled: (controller.action_name == 'edit') %>
+        </div>
       </div>
-      <div class="d-flex w-100">
-        <%= f.select :user_ids,
-          options_for_select(@debtors),
-          { multiple: true, name: 'user_ids[]', class: 'form-control', label: 'Choose Who to Split With' } %>
+
+      <div class="row">
+        <div class="col">
+          <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", hide_label: true, class: 'form-control' %>
+          <%= f.check_box :paid %>
+        </div>
+        <div class="col">
+          <%= bootstrap_fields_for :debtor do |df| %>
+            <%= df.select :user_ids,
+              options_for_select(@debtors),
+              {},
+              { multiple: true, 
+                class: 'form-control',
+                disabled: (controller.action_name == 'edit')} %>
+            <% end %>
+        </div>
       </div>
-      <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-        class: "btn btn-secondary" %>
+
+      <div class="row">
+        <div class="col" >
+          <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
+            class: "btn btn-secondary inline" %>
+        </div>
+      </div>
+
     </div>
+
   </div>
 <% end %>
 
