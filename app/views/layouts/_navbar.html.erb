@@ -8,7 +8,14 @@
     <% end %>
     <div class="ms-auto">
       <% if user_signed_in? %>
-        <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-dark mx-1" %>
+        <div class="d-flex align-items-center" >
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag "person-circle.svg", style: "width: 30px;",
+            class: "mx-5"%> 
+          <% end %>
+          <%= button_to "Log out", logout_path, method: :delete, 
+            class: "btn btn-dark mx-1" %>
+        </div>
       <% else %>
         <%= link_to "Log in", login_path, class: "btn btn-dark mx-1" %>
         <%= link_to "Sign up", new_user_path, class: "btn btn-dark mx-1" %>

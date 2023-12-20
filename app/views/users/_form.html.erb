@@ -5,6 +5,7 @@
       <%= f.text_field :email, label_as_placeholder: true, required: true%>
       <%= f.password_field :password, label_as_placeholder: true, required: true%>
       <%= f.password_field :password_confirmation, label_as_placeholder: true, required: true, label: "Confirm Password" %>
-      <%= f.submit 'Create User'%>
+      <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
+        class: "btn btn-primary" %>
     </div>
 <% end %>

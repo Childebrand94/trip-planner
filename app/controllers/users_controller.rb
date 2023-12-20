@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  # GET /users or /users.json
-  def index
-    @users = User.all
-  end
-
   # GET /users/1 or /users/1.json
   def show
     @users = User.find(params[:id])
@@ -43,10 +38,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: 'User was successfully destroyed.'
   end
 
   private

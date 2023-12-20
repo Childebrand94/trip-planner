@@ -1,10 +1,13 @@
-<h1>Editing user</h1>
-
-<%= render "form", user: @user %>
-
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
-</div>
+<section>
+  <div class="row">
+    <div class="col-lg-4 d-flex justify-content-center">
+      <div class="card mb-4 w-75">
+        <div class="card-body text-center bg-light">
+          <%= render "form", user: @user %>
+          <div class="d-flex justify-content-center mb-2">
+              <%= link_to "Back to Profile", user_path(@user),
+                class: "btn btn-outline-info ms-1" %>
+          </div>
+        </div>
+      </div>
+</section>

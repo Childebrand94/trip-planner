@@ -1,17 +1,13 @@
-<div id="<%= dom_id user %>">
-  <p>
-    <strong>Display name:</strong>
-    <%= user.display_name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= user.email %>
-  </p>
-
-  <p>
-    <strong>Password:</strong>
-    <%= user.password %>
-  </p>
-
-</div>
+<%= bootstrap_form_with(url: login_path, scope: :user, inline_error: false, label_errors:true)  do |f| %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <%= f.alert_message "Please fix the errors below." %>
+  <div class="my-2">
+    <%= f.email_field :email, placeholder: 'Email', label: 'Email', required: true %>
+    <%= f.password_field :password, placeholder: 'Password', label: 'Password', required: true %>
+    <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), class: "btn btn-success" %>
+  </div>
+<% end %>
