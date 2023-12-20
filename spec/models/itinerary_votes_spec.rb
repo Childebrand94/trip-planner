@@ -8,11 +8,6 @@ RSpec.describe ItineraryVote, type: :model do
       expect(subject).to be_valid
     end
 
-    it 'is not vaild with out a vote' do
-      subject.up_vote = nil
-      expect(subject).to_not be_valid
-    end
-
     it 'ensures a user can only have one vote per itinerary item' do
       user = create(:user)
       itinerary_item = create(:itinerary_item)

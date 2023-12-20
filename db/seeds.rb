@@ -13,25 +13,23 @@ names = %w[Dining Stay Excursion Business Travel]
 names.each do |type|
   ItineraryItemType.create(name: type)
 end
-expenses = %w[
-  Accommodation
-  Transportation
-  Food Dining
-  Activities Entertainment
-  Shopping
-  Emergency Funds
-  Insurance
-  Local Transportation
-  Communication
-  Tips Gratuities
-  Health Wellness
-  Personal Items
-  Miscellaneous
-  Gifts Donations
-  Travel Gear
-]
+EXPENSES = %w[
+  flights
+  accommodation
+  transportation
+  food
+  activities
+  entertainment
+  shopping
+  insurance
+  health
+  wellness
+  personal_items
+  miscellaneous
+  travel_gear
+].freeze
 
-expenses.each do |expense|
+EXPENSES.each do |expense|
   ExpenseCategory.create(name: expense)
 end
 
@@ -44,10 +42,10 @@ end
 # For development
 
 # Create users
-user1 = FactoryBot.create(:user)
-user2 = FactoryBot.create(:user)
+# user1 = FactoryBot.create(:user)
+# user2 = FactoryBot.create(:user)
 
-trip = Trip.create(name: 'Las Vegas', location: 'Las Vegas NV, USA', start_date: '2024-01-18', end_date: '2024-01-22')
+# trip = Trip.create(name: 'Las Vegas', location: 'Las Vegas NV, USA', start_date: '2024-01-18', end_date: '2024-01-22')
 
-UserTrip.create(user: user1, trip:, user_trip_role_id: 1)
-UserTrip.create(user: user2, trip:, user_trip_role_id: 2)
+# UserTrip.create(user: user1, trip:, user_trip_role_id: 1)
+# UserTrip.create(user: user2, trip:, user_trip_role_id: 2)

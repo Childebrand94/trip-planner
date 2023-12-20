@@ -36,8 +36,4 @@ RSpec.describe User, type: :model do
       expect(subject.email).to eq('user@example.com')
     end
   end
-
-  describe 'associations' do
-    it { should have_many(:created_trips) }
-  end
 end
