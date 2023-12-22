@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>You are Invited to Join a Trip</title>
+</head>
+<body>
+  <h1>Hello!</h1>
+  <p>You have been invited by <%= @sender.display_name %> to join <%= @trip.name %> on our platform.</p>
+  <p>
+    To accept the invitation and register, please follow the link below:
+    <%= link_to 'Sign Up', @signup_url %>
+  </p>
+  <p>We're excited to have you onboard and join our trips!</p>
+  <p>Best regards</p>
+</body>
+</html>
+

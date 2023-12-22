@@ -8,13 +8,18 @@
         </p> 
       </div>
 
-      <div class="col d-flex justify-content-end ">
-        <%= link_to edit_trip_path(@trip) do %>
-          <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
-        <% end %>
-        <%= button_to trip_path(@trip), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
-          <%= image_tag "x-lg.svg", alt: "Delete" %>
-        <% end %>
+      <div class="col d-flex justify-content-end">
+          <%= link_to edit_trip_path(@trip) do %>
+            <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
+          <% end %>
+          <%= button_to trip_path(@trip), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
+            <%= image_tag "x-lg.svg", alt: "Delete" %>
+          <% end %>
+        <div class="row">
+          <%= link_to new_invite_path(trip_id: @trip) do %>
+            <%= image_tag "person-plus.svg", class: "mx-2", alt: "Edit" %> 
+          <% end %>
+        </div>
       </div>
     </div>
   </section>

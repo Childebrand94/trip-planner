@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_22_164659) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_09_203316) do
     t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
     t.index ["payer_id"], name: "index_expenses_on_payer_id"
     t.index ["trip_id"], name: "index_expenses_on_trip_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "trip_id", null: false
+    t.string "token", null: false
   end
 
   create_table "itinerary_item_types", force: :cascade do |t|

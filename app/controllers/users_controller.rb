@@ -1,31 +1,34 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  # GET /users/1 or /users/1.json
   def show
     @users = User.find(params[:id])
   end
 
-  # GET /users/new
   def new
+    puts @token = params[:invite_token]
+
     @user = User.new
   end
 
-  # GET /users/1/edit
   def edit; end
 
-  # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    @token = params[:user][:invite_token]
 
-    if @user.save
-      redirect_to login_path, notice: 'User was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
+    # Using a transaction block in case any part of the user creation
+    # with the invitation fails the whole transaction will be rolled back.
+    User.transaction do
+      if @user.save
+        process_invite_token if @token.present?
+        redirect_to login_path, notice: 'User was successfully created.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
   def update
     if @user.update(user_params)
       redirect_to user_url(@user), notice: 'User was successfully updated.'
@@ -34,7 +37,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy!
 
@@ -43,12 +45,25 @@ class UsersController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def process_invite_token
+    invite = Invite.find_by_token(@token)
+    if invite
+      add_user_to_trip(invite.trip)
+    else
+      render :new, status: :unprocessable_entity
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def add_user_to_trip(trip)
+    role = UserTripRole.find_or_create_by(role: 'Viewer')
+    UserTrip.create!(user: @user, trip:, user_trip_role: role)
+  end
+
   def set_user
     @user = User.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:display_name, :email, :password, :password_confirmation)
   end

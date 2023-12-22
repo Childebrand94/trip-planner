@@ -5,6 +5,8 @@ class Trip < ApplicationRecord
   has_many :itinerary_items, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
+  has_many :invites
+
   validates_presence_of :name
   validates_presence_of :location
   validates_presence_of :start_date
