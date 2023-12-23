@@ -8,16 +8,18 @@
         </p> 
       </div>
 
-      <div class="col d-flex justify-content-end">
+      <div class="col d-flex align-items-end flex-column">
+        <div>
           <%= link_to edit_trip_path(@trip) do %>
             <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
           <% end %>
           <%= button_to trip_path(@trip), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
             <%= image_tag "x-lg.svg", alt: "Delete" %>
           <% end %>
-        <div class="row">
-          <%= link_to new_invite_path(trip_id: @trip) do %>
-            <%= image_tag "person-plus.svg", class: "mx-2", alt: "Edit" %> 
+        </div>
+        <div class="mt-4">
+          <%= link_to new_invite_path(trip_id: @trip), class: "d-flex text-decoration-none text-secondary" do %>
+            <%= image_tag "person-plus.svg", class: "", style: "width: 25px;", alt: "Add" %> 
           <% end %>
         </div>
       </div>

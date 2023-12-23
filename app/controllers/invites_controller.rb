@@ -28,7 +28,7 @@ class InvitesController < ApplicationController
     else
       handle_new_user
     end
-    redirect_to root_path, notice: 'Invite was successful'
+    redirect_to trip_path(@invite.trip.id), notice: 'Invite was successful'
   end
 
   def handle_existing_user
@@ -37,7 +37,7 @@ class InvitesController < ApplicationController
   end
 
   def handle_new_user
-    InvitationMailer.new_user_invite(@invite, new_user_url(invite_token: @invite.token)).deliver
+    InvitationMailer.new_user_invite(@invite, new_user_url(invite_token: @invite.token)).deliver_later
   end
 
   def add_user_to_trip_with_role

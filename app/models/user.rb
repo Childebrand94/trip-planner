@@ -13,7 +13,6 @@ class User < ApplicationRecord
   has_many :invitiations, class_name: 'Invite', foreign_key: 'recipient_id'
   has_many :sent_invites, class_name: 'Invite', foreign_key: 'sender_id'
 
-  validates :password, length: { minimum: 8 }
   has_secure_password
 
   validates_presence_of :email

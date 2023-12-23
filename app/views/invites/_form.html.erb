@@ -1,27 +1,25 @@
-<%= form_with(model: @invite, url: invites_path) do |f| %>
+<%= form_with(model: @invite, url: invites_path, html: { class: 'needs-validation', novalidate: true }) do |f| %>
   <% if @invite.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
-
       <ul>
-      <% @invite.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @invite.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.hidden_field :trip_id, value: @trip.id %>
-  </div>
+  <%= f.hidden_field :trip_id, value: @trip.id %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
+  <div class="mb-3">
+    <%= f.label :email, class: 'form-label' %>
+    <%= f.email_field :email, class: 'form-control', required: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit 'Send', class: "btn btn-secondary" %>
+    <%= f.submit 'Send', class: "btn btn-primary" %>
   </div>
 <% end %>
+
 

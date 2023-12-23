@@ -8,6 +8,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3'
 gem 'bootstrap_form', '~> 5.4'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'flatpickr'
 gem 'importmap-rails'
 gem 'jbuilder'

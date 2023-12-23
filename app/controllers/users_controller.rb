@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    puts @token = params[:invite_token]
-
     @user = User.new
   end
 
@@ -30,8 +28,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    unless @user.authenticate(params[:user][:old_password])
+      @user.errors.add(:old_password, 'is incorrect')
+      render :edit, status: :unprocessable_entity and return
+    end
+
     if @user.update(user_params)
-      redirect_to user_url(@user), notice: 'User was successfully updated.'
+      redirect_to user_path(@user), notice: 'User was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -65,6 +68,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:display_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:display_name, :email, :password,
+                                 :password_confirmation)
   end
 end

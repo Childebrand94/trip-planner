@@ -6,8 +6,9 @@
       </div>
       <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
         <div class="card-body mx-3 bg-white rounded-4 p-3">
-          <h5 class="card-title">Welcome to PathFindr</h5>
-          <%= link_to "Create Trip", (user_signed_in? ? new_trip_path : login_path), class: "btn btn-success m-1" %>
+          <h2 class="display-2">Welcome to PathFindr</h2>
+          <h4 class="card-subtitle text-secondary lead"> Your Journey awaits.</h4>
+          <%= link_to "New Trip", (user_signed_in? ? new_trip_path : login_path), class: "btn btn-secondary m-4 py-2 px-3 fs-4 lead" %>
         </div>
       </div>
     </div>

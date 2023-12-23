@@ -32,3 +32,15 @@ input[type=number] {
     text-decoration: underline;
 }
 
+.form {
+    margin-top: 10rem;
+}
+
+.main-content {
+  display: flex;
+  align-items: center; /* Vertical alignment */
+  justify-content: center; /* Horizontal alignment, if needed */
+  height: calc(100vh - 180px); /* Adjust 50px to your nav's height */
+  margin-top: 50px; /* Adjust this too, to push down from the nav */
+}
+

@@ -1,5 +1,5 @@
 class InvitationMailer < ApplicationMailer
-  default from: 'no-reply@gmail.com'
+  default from: ENV['EMAIL_USERNAME']
 
   def existing_user_invite(invite)
     @invite = invite
