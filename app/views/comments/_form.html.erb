@@ -1,4 +1,5 @@
-<%= bootstrap_form_with(model: [ @trip, @itinerary_item, @comment], inline_error: false, label_errors:true) do |f| %>
+<%= bootstrap_form_with(model: [ @trip, @itinerary_item, @comment], 
+                        inline_error: false, label_errors:true) do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
     <%= f.text_field :body, label_as_placeholder: true, required: true %>
@@ -9,4 +10,4 @@
         class: "btn btn-secondary" %>
     <% end %>
   </div>
-<% end %>
+<% end %> 

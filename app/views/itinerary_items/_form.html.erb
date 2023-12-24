@@ -3,6 +3,9 @@
                         data: { controller: "flatpicker"}) do |f| %> 
   <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
+    <% if params[:return_to].present? %>
+      <%= hidden_field_tag :return_to, params[:return_to] %>
+    <% end %>
 
     <div class="container my-2">
       <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
