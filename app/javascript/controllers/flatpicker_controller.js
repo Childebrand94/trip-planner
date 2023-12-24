@@ -12,12 +12,14 @@ export default class extends Controller {
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
+            allowInput: true,
             altInput: 'M/j: h:i K',
         });
         flatpickr('.end_time', {
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
+            allowInput: true,
         });
 
         flatpickr('.date', {
