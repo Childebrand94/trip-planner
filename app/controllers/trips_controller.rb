@@ -21,7 +21,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
 
     if @trip.update(trip_params)
-      redirect_to trips_path
+      redirect_to params[:return_to] || trips_path
     else
       render :edit, status: :unprocessable_entity
     end

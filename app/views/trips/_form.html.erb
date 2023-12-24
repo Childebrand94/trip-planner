@@ -1,5 +1,8 @@
 <%= bootstrap_form_with(model: trip, inline_error: false, label_errors:true) do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
+  <% if params[:return_to].present? %>
+      <%= hidden_field_tag :return_to, params[:return_to] %>
+  <% end %>
   <div class="my-2">
     <%= f.text_field :name, label_as_placeholder: true, required: true %>
     <%= f.text_field :location, label_as_placeholder: true, required: true %>

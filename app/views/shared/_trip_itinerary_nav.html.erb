@@ -10,10 +10,12 @@
 
       <div class="col d-flex align-items-end flex-column">
         <div>
-          <%= link_to edit_trip_path(@trip) do %>
+          <%= link_to edit_trip_path(@trip, return_to: request.fullpath) do %>
             <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
           <% end %>
-          <%= button_to trip_path(@trip), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
+          <%= button_to trip_path(@trip), method: :delete, 
+            class: "btn btn-link p-0", 
+            form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
             <%= image_tag "x-lg.svg", alt: "Delete" %>
           <% end %>
         </div>
