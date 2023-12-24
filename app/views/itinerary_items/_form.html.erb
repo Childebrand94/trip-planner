@@ -3,18 +3,25 @@
                         data: { controller: "flatpicker"}) do |f| %> 
   <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
+
     <div class="container my-2">
       <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
       <%= f.text_field :address, label_as_placeholder: true, required: true%>
+
       <div class="d-flex flex-row">
         <%= f.datetime_field :start_time, class: 'start_time', 
           label_as_placeholder: true, style: "width: 200px", required: true %>
         <%= f.datetime_field :end_time, class: 'end_time mx-2', 
           label_as_placeholder: true, style: "width: 200px", required: true %>
       </div>
+
       <%= f.select :item_type_id, @types, include_blank: "Select Category", 
         floating: true %>
       <%= f.submit(controller.action_name == 'edit' ? 'Update' : 'Add') %>
+      <% if controller.action_name == 'edit' %>
+        <%= link_to 'Back', 'javascript:history.back()',
+          class: "btn btn-secondary" %>
+      <% end %>
     </div>
   </div>
 <% end %>

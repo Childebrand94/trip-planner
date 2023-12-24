@@ -2,6 +2,11 @@
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
     <%= f.text_field :body, label_as_placeholder: true, required: true %>
-    <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), class: "btn btn-success" %>
+    <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
+      class: "btn btn-secondary" %>
+    <% if controller.action_name == 'edit' %>
+      <%= link_to 'Back', 'javascript:history.back()',
+        class: "btn btn-secondary" %>
+    <% end %>
   </div>
 <% end %>
