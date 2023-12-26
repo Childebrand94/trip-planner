@@ -57,14 +57,16 @@
         <h4 class="card-title border-bottom mb-2">Conflicts</h4>
         <div class="p-2">
           <% if @conflicting_items.present? %>
-            <div class="d-flex justify-content-between w-100">
-              <% @conflicting_items.each do |item| %>
-                <p> <%= item.event_name %> </p>
+            <% @conflicting_items.each do |item| %>
+              <%= link_to  trip_itinerary_item_path(@trip, item.id, date: params[:date]), 
+                class: "d-flex justify-content-between w-100 text-black 
+                        text-decoration-none custom-link" do %>
+                <p class='link-hover'> <%= item.event_name %></p>
                 <p>
-                <%= item.start_time.strftime("%b %d %H:%M") %> - 
-                <%= item.end_time.strftime("%b %d %H:%M") %>
+                  <%= item.start_time.strftime("%b %d %H:%M") %> - 
+                  <%= item.end_time.strftime("%b %d %H:%M") %>
                 </p>
-            </div>
+              <% end %>
             <% end %>
           <% else %>
             <p>No Conflicts</p>

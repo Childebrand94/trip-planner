@@ -22,7 +22,7 @@
   <div class='text-end d-flex flex-column'>
     <div>
       <div class="d-flex justify-content-end">
-        <%= link_to edit_trip_itinerary_item_path(@trip, item.id, date: @date,
+        <%= link_to edit_trip_itinerary_item_path(@trip, item.id, date: params[:date],
                                                  return_to: request.fullpath), 
           class: "text-info me-2 icon-link icon-hover" do %>
           <%= image_tag "pencil-square.svg" %> 
@@ -41,7 +41,7 @@
     <%# up and down vote %>
 
     <div class="d-flex justify-content-end">
-      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date),
+      <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
         method: :post, 
         params: { itinerary_vote: { up_vote: true, itinerary_item_id: item.id, 
                                     user_id: current_user.id }},
@@ -55,7 +55,7 @@
         </span>
       <% end %>
 
-      <%= button_to trip_itinerary_item_vote_path(@trip, item.id, date: @date),
+      <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
         method: :post, 
         params: { itinerary_vote: { up_vote: false, itinerary_item_id: item.id, 
                                     user_id: current_user.id }},
@@ -71,7 +71,7 @@
 
       <%# comments %>
 
-      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), 
+      <%= link_to trip_itinerary_item_comments_path(@trip, item.id, date: params[:date]), 
         class: "me-2 mt-1 icon-hover position-relative" do %>
         <%= image_tag "chat-left-dots.svg", alt: "Comments" %> 
         <span class="position-absolute translate-middle badge rounded-pill text-black">
