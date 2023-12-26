@@ -8,18 +8,28 @@ export default class extends Controller {
         const tripStart = tripContainer.getAttribute('data-trip-start');
         const tripEnd = tripContainer.getAttribute('data-trip-end');
 
-        flatpickr('.start_time', {
+        let startTimePicker = flatpickr('.start_time', {
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
             allowInput: true,
             altInput: 'M/j: h:i K',
+            onChange: function(selectedDates, dateStr, instance) {
+                if (selectedDates[0]) {
+                    let newMinDate = new Date(selectedDates[0]);
+
+                    newMinDate.setHours(newMinDate.getHours() + 1);
+
+                    endTimePicker.set('minDate', newMinDate);
+                }
+            }
         });
-        flatpickr('.end_time', {
+        let endTimePicker = flatpickr('.end_time', {
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
             allowInput: true,
+            altInput: 'M/j: h:i K',
         });
 
         flatpickr('.date', {
