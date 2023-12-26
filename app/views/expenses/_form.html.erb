@@ -1,4 +1,6 @@
-<%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], inline_error: false, label_errors:true, data: { controller: "flatpicker"}) do |f| %>
+<%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], 
+                        inline_error: false, label_errors:true, 
+                        data: { controller: "flatpicker"}) do |f| %>
   <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
     <div class="my-2 ">
@@ -24,14 +26,18 @@
 
       <div class="row">
         <div class="col">
-          <%= f.select :expense_category_id, @categories, include_blank: "Select a Category", hide_label: true, class: 'form-control' %>
+          <%= f.select :expense_category_id, @categories, 
+            include_blank: "Select a Category", 
+            hide_label: true, class: 'form-control' %>
+
           <%= f.check_box :paid %>
         </div>
         <div class="col">
           <%= bootstrap_fields_for :debtor do |df| %>
-            <%= df.select :user_ids,
+            <%= df.label :user_ids, 'Trip Members' %>
+            <%= df.select :user_ids, 
               options_for_select(@debtors),
-              {},
+              {hide_label: true,},
               { multiple: true, 
                 class: 'form-control',
                 disabled: (controller.action_name == 'edit')} %>
