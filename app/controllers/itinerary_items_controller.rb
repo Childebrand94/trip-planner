@@ -1,5 +1,5 @@
 class ItineraryItemsController < ApplicationController
-  before_action :set_trip, only: %i[index show new edit create update]
+  before_action :set_trip, only: %i[index show new edit create update destroy]
   before_action :set_types, only: %i[index new edit update]
   before_action :set_itinerary_item, only: %i[show update edit]
   # before_action :set_date, only: %i[show edit]
@@ -53,8 +53,10 @@ class ItineraryItemsController < ApplicationController
   def destroy
     @itinerary_item = ItineraryItem.find(params[:id])
     @itinerary_item.destroy
+    date = Date.parse(params[:date])
 
-    redirect_to trip_itinerary_items_path, status: :see_other
+    # redirect_to params[:return_to] || root_path
+    redirect_to trip_trip_day_path(@trip, date), status: :see_other
   end
 
   private

@@ -27,8 +27,8 @@
           class: "text-info me-2 icon-link icon-hover" do %>
           <%= image_tag "pencil-square.svg" %> 
         <% end %>
-        <%= button_to trip_itinerary_item_path(@trip, item.id), method: :delete, 
-          class: "text-info text-decoration-none nav-link", 
+        <%= button_to trip_itinerary_item_path(@trip, item.id, date: params[:date]),
+          method: :delete, class: "text-info text-decoration-none nav-link", 
           data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
           <%= image_tag "x-lg.svg" %> 
         <% end %>
