@@ -25,7 +25,6 @@ class ItineraryItemsController < ApplicationController
 
   def update
     if @itinerary_item.update(itinerary_item_params)
-      # redirect_to params[:return_to] || root_path
       redirect_to trip_itinerary_item_path(@itinerary_item.trip,
                                            @itinerary_item, date: params[:date])
     else

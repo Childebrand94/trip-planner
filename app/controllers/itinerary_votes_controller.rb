@@ -5,8 +5,13 @@ class ItineraryVotesController < ApplicationController
 
   def vote
     @vote = @itinerary_item.itinerary_votes.find_by(user_id: current_user.id)
+
     if @vote
-      update_user_vote
+      if @vote[:up_vote].to_s == params[:itinerary_vote][:up_vote]
+        remove_vote(@vote)
+      else
+        update_user_vote
+      end
     else
       create_user_vote
     end
@@ -26,10 +31,15 @@ class ItineraryVotesController < ApplicationController
     @itinerary_vote = @itinerary_item.itinerary_votes.new(vote_params)
     @itinerary_vote.user = current_user
     if @itinerary_vote.save
-      redirect_to request.referer || fallback_location, notice: 'Vote was updated'
+      redirect_to request.referer || fallback_location, notice: 'Vote was created'
     else
       render 'trips/day', status: :unprocessable_entity
     end
+  end
+
+  def remove_vote(vote)
+    vote.destroy
+    redirect_to request.referer || fallback_location, notice: 'Vote was removed'
   end
 
   def set_itinerary_item
