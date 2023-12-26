@@ -1,13 +1,12 @@
 <%= bootstrap_form_with(model: [ @trip, @itinerary_item, @comment], 
                         inline_error: false, label_errors:true) do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
+  <%= hidden_field_tag :date, params[:date] %>
   <div class="my-2">
     <%= f.text_field :body, label_as_placeholder: true, required: true %>
     <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
       class: "btn btn-secondary" %>
-    <% if controller.action_name == 'edit' %>
-      <%= link_to 'Back', 'javascript:history.back()',
+      <%= link_to 'Back', trip_trip_day_path(@trip, date: params[:date]),
         class: "btn btn-secondary" %>
-    <% end %>
   </div>
 <% end %> 

@@ -11,10 +11,11 @@ class CommentsController < ApplicationController
     @comment = @itinerary_item.comments.new(comment_params)
     @comment.author_id = current_user.id
     if @comment.save
-      redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item),
+      redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
+                                                    date: params[:date]),
                   notice: 'Comment was successfully created'
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +27,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item)
+      redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
+                                                    date: params[:date])
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +37,8 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item)
+    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
+                                                  date: params[:date])
   end
 
   def show; end

@@ -7,10 +7,15 @@
     </div>
     <div class="col d-flex flex-column">
       <div class="d-flex justify-content-end m-2 ">
-        <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, comment.id), class: "text-info me-2" do %>
+        <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, 
+                                                          comment.id, date: params[:date]), 
+                                                          class: "text-info me-2" do %>
           <%= image_tag "pencil-square.svg" %> 
         <% end %>
-        <%= button_to trip_itinerary_item_comment_path(@trip, @itinerary_item, comment.id), 
+        <%= button_to trip_itinerary_item_comment_path(@trip, 
+                                                       @itinerary_item, 
+                                                       comment.id,
+                                                       date: params[:date]), 
           method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
           data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
           <%= image_tag "x-lg.svg" %> 
