@@ -11,6 +11,26 @@ class UsersController < ApplicationController
 
   def edit; end
 
+  def edit_password
+    @user = User.find(params[:user_id])
+    render 'edit_password'
+  end
+
+  def update_password
+    @user = User.find(params[:user_id])
+
+    unless @user.authenticate(params[:user][:old_password])
+      @user.errors.add(:old_password, 'is incorrect')
+      render :edit, status: :unprocessable_entity and return
+    end
+
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'User was successfully updated.'
+    else
+      render user_edit_password_path(@user), status: :unprocessable_entity
+    end
+  end
+
   def create
     @user = User.new(user_params)
     @token = params[:user][:invite_token]
@@ -28,11 +48,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    unless @user.authenticate(params[:user][:old_password])
-      @user.errors.add(:old_password, 'is incorrect')
-      render :edit, status: :unprocessable_entity and return
-    end
-
     if @user.update(user_params)
       redirect_to user_path(@user), notice: 'User was successfully updated.'
     else

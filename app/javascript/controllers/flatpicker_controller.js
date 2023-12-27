@@ -4,6 +4,16 @@ import flatpickr from 'flatpickr';
 // Connects to data-controller="flatpicker"
 export default class extends Controller {
     connect() {
+        this.initializeDatePicker();
+        const tripContainer = document.querySelector('[data-trip-start]');
+
+        if (tripContainer) {
+            this.initializeTimePickers();
+        }
+    }
+
+    initializeTimePickers() {
+
         const tripContainer = document.querySelector('[data-trip-start]');
         const tripStart = tripContainer.getAttribute('data-trip-start');
         const tripEnd = tripContainer.getAttribute('data-trip-end');
@@ -42,7 +52,16 @@ export default class extends Controller {
             }
         });
 
+
+    }
+
+    initializeDatePicker() {
         flatpickr('.date', {
+            allowInput: true,
+            altInput: true,
+            altFormat: 'F, d Y',
+            dateFormat: 'Y-m-d'
         });
     }
+
 }
