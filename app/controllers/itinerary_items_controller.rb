@@ -2,7 +2,7 @@ class ItineraryItemsController < ApplicationController
   before_action :set_trip, only: %i[index show new edit create update destroy]
   before_action :set_types, only: %i[index new edit update]
   before_action :set_itinerary_item, only: %i[show update edit]
-  before_action :set_date, only: %i[show]
+  before_action :set_date, only: %i[show update]
 
   def index
     @itinerary_item = ItineraryItem.new
@@ -26,7 +26,7 @@ class ItineraryItemsController < ApplicationController
   def update
     if @itinerary_item.update(itinerary_item_params)
       redirect_to trip_itinerary_item_path(@itinerary_item.trip,
-                                           @itinerary_item, date: params[:date])
+                                           @itinerary_item)
     else
       @date_range = (@trip.start_date..@trip.end_date)
       render :edit, status: :unprocessable_entity
@@ -45,9 +45,9 @@ class ItineraryItemsController < ApplicationController
   end
 
   def destroy
-    @itinerary_item = ItineraryItem.find(params[:id])
-    @itinerary_item.destroy
-    date = Date.parse(params[:date])
+    itinerary_item = ItineraryItem.find(params[:id])
+    itinerary_item.destroy
+    date = Date.parse(itinerary_item.start_time.strftime('%Y-%m-%d'))
 
     redirect_to trip_trip_day_path(@trip, date), status: :see_other
   end
@@ -64,7 +64,7 @@ class ItineraryItemsController < ApplicationController
   end
 
   def set_date
-    @date = Date.parse(params[:date])
+    @date = Date.parse(@itinerary_item.start_time.strftime('%Y-%m-%d'))
   end
 
   def set_trip
