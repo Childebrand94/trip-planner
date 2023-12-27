@@ -16,5 +16,8 @@
         required: true, class: 'date' %>
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 
                     'Create'), class: "btn btn-success" %>
+      <%= link_to 'Back', 'javascript:history.back()',
+        class: "btn btn-secondary" %>
+
     </div>
 <% end %>
