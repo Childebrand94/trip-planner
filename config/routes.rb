@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'home#home'
-  resources :users
+  resources :users do
+    get 'edit_password', to: 'users#edit_password'
+    patch 'update_password', to: 'users#update_password'
+  end
   resources :invites
 
   resources :trips do

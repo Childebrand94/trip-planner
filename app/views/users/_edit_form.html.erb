@@ -3,11 +3,6 @@
   <div class="container my-2">
     <%= f.text_field :display_name, label_as_placeholder: true, required: true%>
     <%= f.text_field :email, label_as_placeholder: true, required: true%>
-    <%= f.password_field :old_password , label_as_placeholder: true, 
-      required: true %>
-    <%= f.password_field :password, label_as_placeholder: true, required: true%>
-    <%= f.password_field :password_confirmation, label_as_placeholder: true, 
-      required: true, label: "Confirm Password" %>
-    <%= f.submit  'Update', class: "btn btn-primary" %>
-</div>
+    <%= f.submit  'Update', class: "btn btn-primary", style: "width: 200px" %>
+  </div>
 <% end %>
