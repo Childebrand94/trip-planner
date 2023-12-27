@@ -9,6 +9,7 @@ export default class extends Controller {
 
         if (tripContainer) {
             this.initializeTimePickers();
+
         }
     }
 
@@ -50,6 +51,15 @@ export default class extends Controller {
             onChange: function() {
                 endTimeManuallySet = true;
             }
+        });
+
+        flatpickr('.date_expense', {
+            minDate: tripStart,
+            maxDate: tripEnd,
+            allowInput: true,
+            altInput: true,
+            altFormat: 'F, d Y',
+            dateFormat: 'Y-m-d'
         });
 
 

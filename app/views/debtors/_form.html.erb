@@ -1,7 +1,13 @@
 <%= bootstrap_form_with(model: [@trip, @debtor], inline_error: false, label_errors: true) do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
-    <%= f.number_field :amount_owed, label_as_placeholder: 'Amount Owed', required: true %>
+    <%= f.number_field :amount, 
+          prepend: "$",
+          step: '0.01', 
+          min: '0', 
+          label_as_placeholder: 'Amount ($)', 
+          required: true, 
+          class: 'form-control' %>
     <%= f.submit 'Pay', class: "btn btn-secondary" %>
   </div>
 <% end %>

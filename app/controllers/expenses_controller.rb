@@ -52,7 +52,7 @@ class ExpensesController < ApplicationController
   end
 
   def set_categories
-    @categories = ExpenseCategory.all.map { |c| [c.name, c.id] }
+    @categories = ExpenseCategory.all.map { |c| [c.name.capitalize, c.id] }
   end
 
   def expense_params
