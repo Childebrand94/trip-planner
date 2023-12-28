@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :trips do
     resources :expenses
     resources :debtors
+    get 'get_members', to: 'trip#member_roles'
     resources :itinerary_items, path: 'itinerary' do
       resources :comments
       post 'vote', to: 'itinerary_votes#vote'
