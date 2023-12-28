@@ -1,9 +1,9 @@
 <%= bootstrap_form_with(model: [ @trip, @itinerary_item || @trip.itinerary_items.build], 
                         inline_error: false, label_errors: true, 
                         data: { controller: "flatpicker"}) do |f| %> 
-  <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
+
+  <div data-trip-start="<%= @trip.start_date %>"data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
-    <%= hidden_field_tag :date, params[:date] %>
     <div class="container my-2">
       <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
       <%= f.text_field :address, label_as_placeholder: true, required: true%>

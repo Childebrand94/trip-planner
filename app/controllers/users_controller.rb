@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
 
-  def show
-    @users = User.find(params[:id])
-  end
+  def show; end
 
   def new
     @user = User.new
