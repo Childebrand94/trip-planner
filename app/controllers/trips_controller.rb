@@ -11,6 +11,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @itinerary_item = ItineraryItem.new
     @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
+    @date_range = (@trip.start_date..@trip.end_date)
   end
 
   def edit
