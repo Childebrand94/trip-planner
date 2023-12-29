@@ -1,0 +1,16 @@
+<%= bootstrap_form_with(model: [@trip, @user_trip],  
+                        method: "patch",
+                        inline_error: false, 
+                        label_errors:true,
+                        data: { controller: "flatpicker"}) do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+    <div class="my-2">
+      <%= f.label :user_trip_role_id, "Roles" %>
+      <%= f.select :user_trip_role_id, @roles, 
+            hide_label: true, class: 'form-control' %>
+        <%= f.submit (controller.action_name == 'edit' ? 'Update' : 
+                      'Create'), class: "btn btn-primary" %>
+        <%= link_to 'Back', 'javascript:history.back()',
+          class: "btn btn-secondary" %>
+    </div>
+<% end %>

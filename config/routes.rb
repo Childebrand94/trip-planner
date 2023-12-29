@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   resources :invites
 
   resources :trips do
+    get 'day/:date', to: 'trips#day', as: :trip_day
     resources :expenses
     resources :debtors
-    get 'get_members', to: 'trip#member_roles'
+    resources :user_trips
     resources :itinerary_items, path: 'itinerary' do
       resources :comments
       post 'vote', to: 'itinerary_votes#vote'
     end
-    get 'day/:date', to: 'trips#day', as: :trip_day
   end
 
   get 'login', to: 'sessions#new'
