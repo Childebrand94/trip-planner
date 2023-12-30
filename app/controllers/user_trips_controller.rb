@@ -1,6 +1,7 @@
 class UserTripsController < ApplicationController
   before_action :set_roles, only: %i[edit update]
   before_action :set_trip, only: %i[index edit update destroy]
+  include Authorization
 
   def new
     @user_trip = UserTrip.new
@@ -11,22 +12,30 @@ class UserTripsController < ApplicationController
   end
 
   def edit
-    redirect_to trip_user_trips_path(@trip) unless current_user.user_trips.user_trip_role_id == 1
+    return unless authorize_for_trip(@trip, [ROLES['Admin']])
+
     @trip = Trip.find_by(id: params[:trip_id])
     @user_trip = @trip.user_trips.find_by(id: params[:id])
   end
 
   def update
-    @user_role = UserTrip.find(params[:id])
+    @trip = Trip.find_by(id: params[:trip_id])
+    @user_trip = UserTrip.find(params[:id])
 
-    if @user_role.update(user_trip_params)
+    result = change_role(@user_trip, user_trip_params[:user_trip_role_id])
+
+    if result[:success]
+      flash[:notice] = result[:message]
       redirect_to trip_user_trips_path(@trip)
     else
+      flash[:alert] = result[:message]
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    return unless authorize_for_trip(@trip, [ROLES['Admin']])
+
     @user_trip = UserTrip.find(params[:id])
     @user_trip.destroy
 
@@ -34,6 +43,20 @@ class UserTripsController < ApplicationController
   end
 
   private
+
+  def change_role(user_trip, new_role_id)
+    is_currently_admin = user_trip.user_trip_role.role == ROLES['Admin']
+    admin_count = UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: ROLES['Admin'] }).count
+
+    return { success: false, message: 'Cannot remove the last admin.' } if is_currently_admin && admin_count == 1
+
+    user_trip.user_trip_role_id = new_role_id
+    if user_trip.save
+      { success: true, message: 'Role updated successfully.' }
+    else
+      { success: false, message: 'Failed to update role.' }
+    end
+  end
 
   def set_trip
     @trip = Trip.find(params[:trip_id])
