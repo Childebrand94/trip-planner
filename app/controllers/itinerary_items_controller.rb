@@ -3,6 +3,7 @@ class ItineraryItemsController < ApplicationController
   before_action :set_types, only: %i[index new edit update]
   before_action :set_itinerary_item, only: %i[show update edit]
   before_action :set_date, only: %i[show update]
+  include Authorization
 
   def index
     @itinerary_item = ItineraryItem.new
@@ -34,6 +35,8 @@ class ItineraryItemsController < ApplicationController
   end
 
   def create
+    return unless authorize_for_trip(@trip, [ROLES['Admin'], ROLES['Editor']])
+
     @itinerary_item = @trip.itinerary_items.new(itinerary_item_params)
     @itinerary_item.creator_id = current_user.id
 

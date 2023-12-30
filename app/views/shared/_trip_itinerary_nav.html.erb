@@ -43,9 +43,11 @@
             <li class="nav-item mx-1">
               <%= link_to "My Debts", trip_debtors_path(@trip), class: "nav-link" %>
             </li>
-            <li class="nav-item mx-1">
-              <%= link_to "Manage Members", trip_user_trips_path(@trip), class: "nav-link" %>
-            </li>
+            <% if admin_for_trip?(@trip) %>
+              <li class="nav-item mx-1">
+                <%= link_to "Manage Members", trip_user_trips_path(@trip), class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
     </nav>
