@@ -3,7 +3,6 @@ class ItineraryItemsController < ApplicationController
   before_action :set_types, only: %i[index new edit update]
   before_action :set_itinerary_item, only: %i[show update edit]
   before_action :set_date, only: %i[show update]
-  include Authorization
 
   def index
     @itinerary_item = ItineraryItem.new
@@ -25,18 +24,21 @@ class ItineraryItemsController < ApplicationController
   def edit; end
 
   def update
+    @date_range = (@trip.start_date..@trip.end_date)
+
+    unless user_has_permission?(@itinerary_item, @trip, :creator_id)
+      redirect_back(fallback_location: trip_itinerary_item_path(@itinerary_item.trip, @itinerary_item),
+                    alert: 'You are not authorized to perform this action.') and return
+    end
+
     if @itinerary_item.update(itinerary_item_params)
-      redirect_to trip_itinerary_item_path(@itinerary_item.trip,
-                                           @itinerary_item)
+      redirect_to trip_itinerary_item_path(@itinerary_item.trip, @itinerary_item)
     else
-      @date_range = (@trip.start_date..@trip.end_date)
       render :edit, status: :unprocessable_entity
     end
   end
 
   def create
-    return unless authorize_for_trip(@trip, [ROLES['Admin'], ROLES['Editor']])
-
     @itinerary_item = @trip.itinerary_items.new(itinerary_item_params)
     @itinerary_item.creator_id = current_user.id
 
@@ -49,9 +51,14 @@ class ItineraryItemsController < ApplicationController
 
   def destroy
     itinerary_item = ItineraryItem.find(params[:id])
-    itinerary_item.destroy
     date = Date.parse(itinerary_item.start_time.strftime('%Y-%m-%d'))
 
+    unless user_has_permission?(itinerary_item, @trip, :creator_id)
+      redirect_back(fallback_location: trip_trip_day_path(@trip, date),
+                    alert: 'You are not authorized to perform this action.') and return
+    end
+
+    itinerary_item.destroy
     redirect_to trip_trip_day_path(@trip, date), status: :see_other
   end
 

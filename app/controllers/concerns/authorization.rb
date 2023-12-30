@@ -3,16 +3,19 @@ module Authorization
 
   ROLES = {
     'Admin' => 'Admin',
-    'Editor' => 'Editor',
-    'Viewer' => 'Viewer'
+    'Member' => 'Member'
   }.freeze
 
-  def authorize_for_trip(trip, roles)
-    user_trip_role = current_user.user_trips.find_by(trip_id: trip.id)&.user_trip_role&.role
-    unless user_trip_role && roles.include?(user_trip_role)
-      redirect_back(fallback_location: root_path, alert: 'You are not authorized to perform this action.')
-      return false
-    end
+  def admin_for_trip?(trip)
+    current_user_role = current_user.user_trips.find_by(trip_id: trip.id)&.user_trip_role&.role
+    return false unless current_user_role && current_user_role == ROLES['Admin']
+
     true
+  end
+
+  def user_has_permission?(record, trip, user_id_method = :user_id)
+    return true if admin_for_trip?(trip)
+
+    record.send(user_id_method) == current_user.id
   end
 end

@@ -22,6 +22,10 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    return if user_has_permission?(@comment, @trip, :author_id)
+
+    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item),
+                alert: 'You are not authorized to perform this action.' and return
   end
 
   def update
@@ -37,6 +41,11 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    return if user_has_permission?(@comment, @trip, :author_id)
+
+    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item),
+                alert: 'You are not authorized to perform this action.' and return
+
     @comment.destroy
     redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
                                                   date: params[:date])

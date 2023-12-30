@@ -41,7 +41,7 @@ class InvitesController < ApplicationController
   end
 
   def add_user_to_trip_with_role
-    role = UserTripRole.find_or_create_by(role: 'Viewer')
+    role = UserTripRole.find_or_create_by(role: 'Member')
     UserTrip.create!(user: @invite.recipient, trip: @invite.trip, user_trip_role: role)
   end
 

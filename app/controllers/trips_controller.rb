@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_action :set_trip, only: %i[show edit update destroy]
+
   def index
     @trips = current_user.trips
   end
@@ -8,19 +10,22 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find(params[:id])
     @itinerary_item = ItineraryItem.new
     @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
     @date_range = (@trip.start_date..@trip.end_date)
   end
 
   def edit
+    unless admin_for_trip?(@trip)
+      redirect_back(fallback_location: trip_path,
+                    alert: 'You are not authorized to perform this action.')
+      return
+    end
+
     @trip = Trip.find(params[:id])
   end
 
   def update
-    @trip = Trip.find(params[:id])
-
     if @trip.update(trip_params)
       redirect_to params[:return_to] || trips_path
     else
@@ -42,7 +47,12 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = Trip.find(params[:id])
+    unless admin_for_trip?(@trip)
+      redirect_back(fallback_location: trip_path,
+                    alert: 'You are not authorized to perform this action.')
+      return
+    end
+
     @trip.destroy
 
     redirect_to trips_path, status: :see_other
@@ -55,6 +65,10 @@ class TripsController < ApplicationController
   end
 
   private
+
+  def set_trip
+    @trip = Trip.find(params[:id])
+  end
 
   def trip_params
     params.require(:trip).permit(:name, :location, :start_date, :end_date)
