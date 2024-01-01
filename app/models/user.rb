@@ -15,7 +15,11 @@ class User < ApplicationRecord
            dependent: :destroy
 
   has_many :debtors, dependent: :destroy
-  has_many :expenses, dependent: :destroy
+  has_many :expenses,
+           foreign_key: 'payer_id',
+           class_name: 'Expense',
+           dependent: :destroy
+
   has_many :debtor_expenses,
            through: :debtors,
            source: :expense

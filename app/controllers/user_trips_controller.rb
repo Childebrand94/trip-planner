@@ -1,6 +1,6 @@
 class UserTripsController < ApplicationController
   before_action :set_roles, only: %i[edit update]
-  before_action :set_trip, only: %i[index edit update destroy]
+  before_action :set_trip, only: %i[index edit update destroy update]
 
   def new
     @user_trip = UserTrip.new
@@ -21,7 +21,6 @@ class UserTripsController < ApplicationController
   end
 
   def update
-    @trip = Trip.find_by(id: params[:trip_id])
     @user_trip = UserTrip.find(params[:id])
 
     result = change_role(@user_trip, user_trip_params[:user_trip_role_id])
@@ -51,10 +50,10 @@ class UserTripsController < ApplicationController
   private
 
   def change_role(user_trip, new_role_id)
-    is_currently_admin = admin_for_trip?(@trip)
-    admin_count = UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: ROLES['Admin'] }).count
+    is_currently_admin = user_admin_for_trip?(@trip, user_trip.user)
+    admin_count = get_admin_count(@trip)
 
-    return { success: false, message: 'Cannot remove the last admin.' } if is_currently_admin && admin_count == 1
+    return { success: false, message: 'Cannot remove the last admin.' } if admin_count == 1 && is_currently_admin
 
     user_trip.user_trip_role_id = new_role_id
     if user_trip.save
@@ -62,6 +61,19 @@ class UserTripsController < ApplicationController
     else
       { success: false, message: 'Failed to update role.' }
     end
+  end
+
+  def user_admin_for_trip?(trip, user)
+    user_trip = user.user_trips.find_by(trip:)
+    user_trip&.user_trip_role&.role == ROLES['Admin']
+  end
+
+  def get_admin_count(trip)
+    admin_role = UserTripRole.find_by(role: 'Admin')
+
+    UserTrip.where(user_trip_role_id: admin_role.id)
+            .where(trip_id: trip.id)
+            .count
   end
 
   def set_trip
