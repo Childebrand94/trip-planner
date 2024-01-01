@@ -7,7 +7,7 @@
     </div>
     <div class="col d-flex flex-column">
       <div class="d-flex justify-content-end m-2 ">
-        <% if user_has_permission?(@comment, @trip, :author_id) %>
+        <% if user_has_permission?(comment, @trip, :author_id) %>
           <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, 
                                                             comment.id, date: params[:date]), 
                                                             class: "text-info me-2" do %>
