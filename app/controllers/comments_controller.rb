@@ -32,8 +32,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
-                                                    date: params[:date])
+      redirect_to trip_itinerary_item_path(@trip, @itinerary_item),
+                  notice: 'Comment was updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,14 +41,14 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    return if user_has_permission?(@comment, @trip, :author_id)
-
-    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item),
-                alert: 'You are not authorized to perform this action.' and return
+    unless user_has_permission?(@comment, @trip, :author_id)
+      redirect_back(fallback_location: trip_itinerary_item_comments_path(@trip, @itinerary_item),
+                    alert: 'You are not authorized to perform this action.') and return
+    end
 
     @comment.destroy
-    redirect_to trip_itinerary_item_comments_path(@trip, @itinerary_item,
-                                                  date: params[:date])
+    redirect_back(fallback_location: trip_itinerary_item_comments_path(@trip, @itinerary_item),
+                  notice: 'Comment was successfully deleted.')
   end
 
   def show; end
