@@ -1,5 +1,7 @@
 FactoryBot.define do
-  factory :debtors do
-    
+  factory :debtor do
+    association :user
+    association :expense
+    amount_owed { 100 }
   end
 end
