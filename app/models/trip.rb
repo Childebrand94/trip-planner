@@ -12,7 +12,7 @@ class Trip < ApplicationRecord
   validates_presence_of :start_date
   validates_presence_of :end_date
   validates_comparison_of :end_date, greater_than: :start_date
-  validates_comparison_of :start_date, greater_than: Date.today
+  validates_comparison_of :end_date, greater_than: Date.today
 
   def itinerary_by_day
     itinerary_items.group_by { |item| item.start_time.to_date }

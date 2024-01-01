@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_21_162330) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_31_213854) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -119,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_21_162330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_user_trips_on_trip_id"
+    t.index ["user_id", "trip_id"], name: "index_user_trips_on_user_id_and_trip_id", unique: true
     t.index ["user_id"], name: "index_user_trips_on_user_id"
     t.index ["user_trip_role_id"], name: "index_user_trips_on_user_trip_role_id"
   end

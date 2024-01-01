@@ -4,27 +4,35 @@
       <h1>Your Trips</h1>
       <ul class="list-group">
         <% @trips.each do |trip| %>
-          <li class="list-group-item card w-75 lift-on-hover">
+          <li class="list-group-item card w-75 my-1 lift-on-hover">
             <div class="row">
-              <div class="col"  onclick="location.href='<%= trip_path(trip) %>'" style="cursor: pointer">
-                <%= link_to trip_path(trip), class: "text-decoration-none text-secondary" do %>
+              <div class="col"  
+                onclick="location.href='<%= trip_path(trip) %>'" 
+                style="cursor: pointer">
+                <%= link_to trip_path(trip), 
+                  class: "text-decoration-none text-secondary" do %>
                   <h2 class: "h2 lead"><%= trip.name %></h2>
                 <% end %>
                 <br>
                 <%= trip.start_date.strftime("%b %d, %Y") %> - <%= trip.end_date.strftime("%b %d, %Y") %>
               </div>
-              <div class="col">
-                <div class="d-flex justify-content-end">
-                  <%= link_to edit_trip_path(trip), class: "text-info m-2" do %>
-                    <%= image_tag "pencil-square.svg" %> 
-                  <% end %>
-                  <%= button_to trip_path(trip), 
-                    method: :delete, class: "text-info text-decoration-none nav-link m-2", 
-                    data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
-                    <%= image_tag "x-lg.svg" %> 
-                  <% end %>
+
+              <%# edit and delete links  %>
+
+              <% if admin_for_trip?(@trip) %>
+                <div class="col">
+                  <div class="d-flex justify-content-end">
+                    <%= link_to edit_trip_path(trip), class: "text-info m-2" do %>
+                      <%= image_tag "pencil-square.svg" %> 
+                    <% end %>
+                    <%= button_to trip_path(trip), 
+                      method: :delete, class: "text-info text-decoration-none nav-link m-2", 
+                      data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
+                      <%= image_tag "x-lg.svg" %> 
+                    <% end %>
+                  </div>
                 </div>
-              </div>
+              <% end %>
             </div>
           </li>
         <% end %>
