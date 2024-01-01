@@ -5,6 +5,7 @@ class Invite < ApplicationRecord
 
   before_create :generate_token
   before_save :check_user_existence
+  validates :email, presence: true
 
   def check_user_existence
     user = User.find_by_email(email)
