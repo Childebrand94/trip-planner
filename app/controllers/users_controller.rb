@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @token = params[:invite_token]
   end
 
   def edit; end
