@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_31_213854) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_02_142557) do
   create_table "comments", force: :cascade do |t|
     t.integer "author_id", null: false
     t.integer "parent_id"
@@ -95,6 +95,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_31_213854) do
     t.index ["user_id"], name: "index_itinerary_votes_on_user_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.text "body", null: false
+    t.boolean "completed", default: false
+    t.integer "trip_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_notes_on_author_id"
+    t.index ["trip_id"], name: "index_notes_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.string "name", null: false
     t.string "location", null: false
@@ -145,6 +156,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_31_213854) do
   add_foreign_key "itinerary_items", "users", column: "creator_id"
   add_foreign_key "itinerary_votes", "itinerary_items"
   add_foreign_key "itinerary_votes", "users"
+  add_foreign_key "notes", "trips"
+  add_foreign_key "notes", "users", column: "author_id"
   add_foreign_key "user_trips", "trips"
   add_foreign_key "user_trips", "user_trip_roles"
   add_foreign_key "user_trips", "users"
