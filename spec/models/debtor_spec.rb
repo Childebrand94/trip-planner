@@ -6,7 +6,7 @@ RSpec.describe Debtor, type: :model do
 
   describe 'validations' do
     it 'is valid with all attributes' do
-      debtor = build(:debtor)
+      debtor = create(:debtor)
       puts debtor.inspect
       expect(debtor).to be_valid
     end
