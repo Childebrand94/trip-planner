@@ -1,7 +1,19 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  display_name    :text             not null
+#  email           :text             not null
+#  password_digest :text             not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 class User < ApplicationRecord
   has_secure_password
 
   has_many :user_trips, dependent: :destroy
+
   has_many :trips, through: :user_trips
 
   has_many :created_itinerary_items,
@@ -9,6 +21,7 @@ class User < ApplicationRecord
            class_name: 'ItineraryItem',
            dependent: :destroy
   has_many :itinerary_votes, dependent: :destroy
+
   has_many :authored_comments,
            foreign_key: 'author_id',
            class_name: 'Comment',
@@ -31,6 +44,11 @@ class User < ApplicationRecord
   has_many :sent_invites,
            class_name: 'Invite',
            foreign_key: 'sender_id',
+           dependent: :destroy
+
+  has_many :authored_notes,
+           foreign_key: 'author_id',
+           class_name: 'Note',
            dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: trips
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  location   :string           not null
+#  start_date :date             not null
+#  end_date   :date             not null
+#  latitude   :decimal(10, 6)
+#  longitude  :decimal(10, 6)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Trip < ApplicationRecord
   has_many :user_trips, dependent: :destroy
   has_many :users, through: :user_trips
@@ -6,6 +20,7 @@ class Trip < ApplicationRecord
   has_many :expenses, dependent: :destroy
 
   has_many :invites
+  has_many :notes
 
   validates_presence_of :name
   validates_presence_of :location

@@ -1,0 +1,44 @@
+Invite.all
+Invite.delete_all
+UserTrip.all
+User.all
+Trip.all
+clear
+Invite.all
+UserTrip.all
+quit
+Invite.all
+UserTrip
+UserTrip.all
+reload!
+Invite.all
+Invite.last
+UserTrip.all
+User.all
+reload!
+User.all
+reload
+reload!
+User.all
+UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: ROLES['Admin'] })
+UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: 'Admin'] })
+UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: 'Admin'})
+UserTrip.joins(:user_trip_role).where(user_trip_roles: { role: 'Admin'})
+admin_role_id = UserTripRole.find_by(role: "Admin")
+admin_role_id
+u = UserTrip.first
+u.user
+UserTripRole.find_by(role: 'Admin')
+quit
+Note.all
+reload!
+Notes
+Note.all
+trip = Trip.first
+trip
+trip.notes
+rails g rspec:request
+rails g rspec:request
+quit
+User.all
+quit

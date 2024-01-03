@@ -3,21 +3,24 @@
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <section class="my-2 p-2  bg-body-tertiary">
-    <h4 class="card-title">Plan Something</h4>
-    <%= render partial: 'itinerary_items/form' %>
+    <h4 class="card-title">Create Notes</h4>
+    <%= render partial: 'notes/form' %>
   </section>
 
   <section class="my-2 p-2  bg-body-tertiary">
     <h4 class="card-title">Notes</h4>
     <ul class="">
-      <li>Implement note taking features</li>
+      <%= render partial: "notes/notes_filter" %>
+      <% if @all_notes.any? %> 
+        <% @all_notes.each do |note| %>
+          <%= render partial: "notes/note_card", locals: { note: note } %>
+        <% end %>
+      <% else %>
+        <div class="card">
+          <h5 class="card-title p-2"> No Notes yet...</h5>
+        </div>
+      <% end %>
     </ul>
   </section>
 
-  <section class="my-2 p-2 bg-body-tertiary">
-    <h4 class="card-title">Places to visit</h4>
-    <ul>
-       <li>Implement places features linked with Google maps places api</li>
-     </ul>
-  </section>
 </div>

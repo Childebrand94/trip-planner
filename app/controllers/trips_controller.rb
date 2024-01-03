@@ -10,9 +10,8 @@ class TripsController < ApplicationController
   end
 
   def show
-    @itinerary_item = ItineraryItem.new
-    @types = ItineraryItemType.all.map { |type| [type.name, type.id] }
-    @date_range = (@trip.start_date..@trip.end_date)
+    @note = Note.new
+    show_notes(params[:notes_filter])
   end
 
   def edit
@@ -65,6 +64,17 @@ class TripsController < ApplicationController
   end
 
   private
+
+  def show_notes(method)
+    @all_notes = case method
+                 when 'active'
+                   @trip.notes.active
+                 when 'completed'
+                   @trip.notes.completed
+                 else
+                   @trip.notes
+                 end
+  end
 
   def set_trip
     @trip = Trip.find(params[:id])
