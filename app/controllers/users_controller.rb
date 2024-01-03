@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   end
 
   def add_user_to_trip(trip)
-    role = UserTripRole.find_or_create_by(role: 'Viewer')
+    role = UserTripRole.find_by(role: 'Member')
     UserTrip.create!(user: @user, trip:, user_trip_role: role)
   end
 

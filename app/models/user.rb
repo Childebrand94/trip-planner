@@ -51,6 +51,8 @@ class User < ApplicationRecord
            class_name: 'Note',
            dependent: :destroy
 
+  validates :display_name, presence: true
+
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   before_validation :normalize_email
 
