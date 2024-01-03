@@ -1,0 +1,21 @@
+<section>
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid w-100">
+      <ul class="navbar-nav me-auto mb-2 w-100 d-flex flex-row">
+        <li class="nav-item mx-1 note-filter rounded text-center"> 
+          <%= link_to "ALL", trip_path(@trip, notes_filter: 'all'), 
+            class: "nav-link fw-bold" %>
+        </li>
+        <li class="nav-item mx-1 note-filter rounded text-center">
+          <%= link_to "ACTIVE", trip_path(@trip,notes_filter: 'active'), 
+            class: "nav-link fw-bold" %>
+        </li>
+        <li class="nav-item mx-1 note-filter rounded text-center">
+          <%= link_to "COMPLETED", trip_path(@trip, notes_filter: 'completed'), 
+            class: "nav-link fw-bold" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>
+

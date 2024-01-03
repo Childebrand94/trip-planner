@@ -1,0 +1,29 @@
+<div class="card mx-4 my-2 p-1">
+  <div class="row">
+    <div class="col">
+      <h5 class="card-subtitle m-2 text-body-secondary">
+        <%= note.author&.display_name %></h5>
+      <p class="mx-4"><%= note.body %></p>
+    </div>
+    <div class="col d-flex flex-column">
+      <div class="d-flex justify-content-end m-2 ">
+        <% if user_has_permission?(note, @trip, :author_id) %>
+          <%= link_to edit_trip_note_path(@trip.id, note.id),
+                                          class: "text-info me-2" do %>
+            <%= image_tag "pencil-square.svg" %> 
+          <% end %>
+
+          <%= button_to trip_note_path(@trip, note.id), 
+            method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
+            data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
+            <%= image_tag "x-lg.svg" %> 
+          <% end %>
+        <% end %>
+      </div>
+        <div class="text-end">
+          <p><%= time_ago_in_words(note.updated_at) %> ago</p>
+        </div>
+    </div>
+  </div>
+</div>
+
