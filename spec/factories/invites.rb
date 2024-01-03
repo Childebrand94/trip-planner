@@ -13,6 +13,8 @@
 #
 FactoryBot.define do
   factory :invite do
-    
+    association :sender, factory: :user
+    trip
+    email { 'user@gmail.com' }
   end
 end
