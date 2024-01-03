@@ -12,13 +12,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="bg-white min-vh-100">
+  <body class="<%= 'blurred-background' unless controller_name == 'home' && action_name == 'home' %> home-page min-vh-100">
     <%= render "layouts/navbar" %>
     <%= "#{controller_name}##{action_name}" %>
     <br>
-    <% if current_user.present? %>
-      <%= "display name: #{current_user.display_name} id: #{current_user.id}" %>
-    <% end %>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>"><%= message %></div>
     <% end %>

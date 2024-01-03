@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-secondary">
+<nav class="navbar navbar-expand-lg bg-transparent text-primary">
   <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand fs-2 text " do %>
+    <%= link_to root_path, class: "navbar-brand fs-2 text-primary" do %>
     <%= image_tag("compass.svg", alt: "Brand logo", height: "30") %> PathFindr
     <% end %>
     <% if user_signed_in? %>
@@ -14,11 +14,11 @@
             class: "mx-5"%> 
           <% end %>
           <%= button_to "Log out", logout_path, method: :delete, 
-            class: "btn btn-dark mx-1" %>
+            class: "btn btn-outline-primary mx-1" %>
         </div>
       <% else %>
-        <%= link_to "Log in", login_path, class: "btn btn-dark mx-1" %>
-        <%= link_to "Sign up", new_user_path, class: "btn btn-dark mx-1" %>
+        <%= link_to "Log in", login_path, class: "btn btn-outline-primary mx-1" %>
+        <%= link_to "Sign up", new_user_path, class: "btn btn-outline-primary mx-1" %>
       <% end %>
     </div>
   </div>

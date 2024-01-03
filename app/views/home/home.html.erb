@@ -1,16 +1,10 @@
-<section class="d-flex ms-auto">
-  <div>
-    <div class="row g-0">
-      <div class="col-md-4">
-        <%= image_tag('tom-barrett-M0AWNxnLaMw-unsplash.jpg', class: "img-fluid") %>
-      </div>
-      <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
-        <div class="card-body mx-3 bg-white rounded-4 p-3">
-          <h2 class="display-2">Welcome to PathFindr</h2>
-          <h4 class="card-subtitle text-secondary lead"> Your Journey awaits.</h4>
-          <%= link_to "New Trip", (user_signed_in? ? new_trip_path : login_path), class: "btn btn-secondary m-4 py-2 px-3 fs-4 lead" %>
-        </div>
-      </div>
+<section class="main-content">
+  <div class="d-flex flex-col justify-content-center align-items-center ">
+    <div class="card-body mx-3 bg-transparent rounded-4 p-3">
+      <h2 class="display-2 text-white">Welcome to PathFindr</h2>
+      <h4 class="card-subtitle text-white lead"> Your Journey awaits.</h4>
+      <%= link_to "Start Here", (user_signed_in? ? new_trip_path : login_path), 
+        class: "btn btn-outline-light m-4 py-2 px-3 fs-4 lead" %>
     </div>
   </div>
 </section>

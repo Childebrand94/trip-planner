@@ -1,0 +1,17 @@
+<div class="card-body">
+  <%= link_to trip_trip_day_path(trip.id, date), class: "text-secondary" do %>
+    <h3 class='card-title text-secondary'><%= date.strftime("%A, %B %d") %></h3>
+  <% end %>
+  <% itinerary_items = trip.itinerary_by_day[date] %>
+  <% if itinerary_items.present? %>
+    <ul class='list-group list-group-flush'>
+      <% itinerary_items.each do |itinerary_item| %>
+        <%= render partial: 'item_index',
+          locals: { itinerary_item: itinerary_item } %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">No plans for this day.</p>
+  <% end %>
+</div>
+

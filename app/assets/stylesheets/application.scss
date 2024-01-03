@@ -3,9 +3,8 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
 }
 
 input[type=number] {
@@ -38,10 +37,10 @@ input[type=number] {
 
 .main-content {
   display: flex;
-  align-items: center; /* Vertical alignment */
-  justify-content: center; /* Horizontal alignment, if needed */
-  height: calc(100vh - 180px); /* Adjust 50px to your nav's height */
-  margin-top: 50px; /* Adjust this too, to push down from the nav */
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 180px);
+  margin-top: 50px;
 }
 
 .custom-link:hover {
@@ -54,4 +53,15 @@ input[type=number] {
 
 .note-filter:hover{
   background-color: #c1cad3;
+}
+
+.home-page{
+  background-image: url('home-page.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.blurred-background {
+  backdrop-filter: blur(20px);
 }

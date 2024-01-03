@@ -3,42 +3,18 @@
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <section>
-    <div class="bg-body-tertiary p-2 mt-2">
-      <h4 class='card-title mb-3'>Plan Something</h4>
+    <div class="bg-white p-3 mt-2 rounded-4">
+      <h4 class='display-5'>Plan Something</h4>
       <%= render 'itinerary_items/form' %>
     </div>
   </section>
 
   <section>
+    <ul class="list-group list-group-flush bg-white rounded-4 p-4 my-2" >
     <% @date_range.each do |date| %>
-      <div class="card my-3">
-        <div class="card-body">
-          <%= link_to trip_trip_day_path(@trip.id, date), class: "text-secondary" do %>
-            <h3 class='card-title text-secondary'><%= date.strftime("%A, %B %d") %></h3>
-          <% end %>
-          <% itinerary_items = @trip.itinerary_by_day[date] %>
-          <% if itinerary_items.present? %>
-            <ul class='list-group list-group-flush'>
-              <% itinerary_items.each do |itinerary_item| %>
-                <li class='list-group-item d-flex justify-content-between'>
-                  <div>
-                    <span class='me-2'><%= itinerary_item.start_time.strftime("%H:%M") %> - <%= itinerary_item.end_time.strftime("%H:%M") %></span>
-                    <strong class='me-2'><%= itinerary_item.event_name %></strong>
-                    <div>
-                      <span class='me-2'><%= itinerary_item.address %></span>
-                    </div>
-                  </div>
-                  <span>
-                    <%= itinerary_item.creator.display_name %>
-                  </span>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="text-muted">No plans for this day.</p>
-          <% end %>
-        </div>
-      </div>
+        <%= render partial: 'trips/trip_day', 
+          locals: { date: date, trip: @trip} %>
     <% end %>
+    </ul
   </section>
 </div>

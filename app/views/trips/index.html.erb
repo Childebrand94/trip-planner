@@ -1,46 +1,19 @@
-<div class="container d-flex flex-column justify-content-center vw-100">
-  <div>
+<div class="main-content align-items-start">
+  <div class="w-75">
     <% if @trips.any? %>
-      <h1>Your Trips</h1>
-      <ul class="list-group">
+      <ul class="list-group d-flex flex-column justify-content-center mx-auto" 
+      style="max-width: 768px;">
+      <h1 class="display-3 text-primary">Your Trips</h1>
         <% @trips.each do |trip| %>
-          <li class="list-group-item card w-75 my-1 lift-on-hover">
-            <div class="row">
-              <div class="col"  
-                onclick="location.href='<%= trip_path(trip) %>'" 
-                style="cursor: pointer">
-                <%= link_to trip_path(trip), 
-                  class: "text-decoration-none text-secondary" do %>
-                  <h2 class: "h2 lead"><%= trip.name %></h2>
-                <% end %>
-                <br>
-                <%= trip.start_date.strftime("%b %d, %Y") %> - <%= trip.end_date.strftime("%b %d, %Y") %>
-              </div>
-
-              <%# edit and delete links  %>
-
-              <% if admin_for_trip?(@trip) %>
-                <div class="col">
-                  <div class="d-flex justify-content-end">
-                    <%= link_to edit_trip_path(trip), class: "text-info m-2" do %>
-                      <%= image_tag "pencil-square.svg" %> 
-                    <% end %>
-                    <%= button_to trip_path(trip), 
-                      method: :delete, class: "text-info text-decoration-none nav-link m-2", 
-                      data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
-                      <%= image_tag "x-lg.svg" %> 
-                    <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
+          <%= render partial: 'trip_card', locals: { trip: trip } %>
+      <% end %>
+      <%= link_to 'Create New Trip', new_trip_path, 
+        class: "btn btn-secondary my-2", 
+        style: "max-width: 175px" %>
       </ul>
     <% else %>
       <p>No trips have been created yet.</p>
     <% end %>
 
-    <%= link_to 'Create New Trip', new_trip_path, class: "btn btn-secondary my-2" %>
   </div>
 </div>
