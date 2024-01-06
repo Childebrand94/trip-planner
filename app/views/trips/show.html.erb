@@ -1,12 +1,11 @@
-<div class="" style="margin-top: 80px">
+<div class="container pb-2" style="margin-top: 80px; margin-bottom: 80px; max-width: 720px;">
 
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section class="my-2 p-3  bg-white rounded-4">
+  <section class="my-2 p-3  bg-light card rounded-4">
     <h4 class="display-5">Notes</h4>
     <%= render partial: 'notes/form' %>
-    <ul class="">
-      <%= render partial: "notes/notes_filter" %>
+    <div class="list-group">
       <% if @all_notes.any? %> 
         <% @all_notes.each do |note| %>
           <%= render partial: "notes/note_card", locals: { note: note } %>
@@ -16,9 +15,10 @@
           <h5 class="lead p-2"> No notes yet...</h5>
         </div>
       <% end %>
-    </ul>
+    </div>
   </section>
 
-  <%= render partial: 'shared/trip_itinerary_footer' %>
-
+  <div class="itinerary-footer">
+    <%= render partial: 'shared/trip_itinerary_footer' %>
+  </div>
 </div>

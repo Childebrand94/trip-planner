@@ -13,18 +13,19 @@
   </head>
 
   <body class="position-relative">
-  <%= render "layouts/navbar" %>
-  <div class="position-absolute" style="top: 70px; z-index: 1030;">
-    <p ><%= "#{controller_name}##{action_name}" %></p>
-    <% flash.each do |key, message| %>
-      <div class="flash <%= key %>" style="top: 80px; z-index: 1030;"><%= message %></div>
-    <% end %>
-  </div>
+    <%= render "layouts/navbar" %>
+    <div class="position-absolute" style="top: 70px; z-index: 1030;">
+      <p ><%= "#{controller_name}##{action_name}" %></p>
+      <% flash.each do |key, message| %>
+        <div class="flash <%= key %>" style="top: 80px; z-index: 1030;"><%= message %></div>
+      <% end %>
+    </div>
 
-  <div style="margin-top: 65px">
-  <%= yield %>
-  </div>
-  <%= render partial: 'shared/trip_itinerary_footer' if render_trip_itinerary_footer? %>
-</body>
-</body>
+    <%= yield %>
+
+
+    <div class="itinerary-footer">
+      <%= render partial: 'shared/trip_itinerary_footer' if render_trip_itinerary_footer? %>
+    </div>
+  </body>
 </html>

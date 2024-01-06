@@ -12,8 +12,13 @@
     <% end %>
 
     <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-      class: "btn btn-secondary" %>
+      class: "btn btn-primary my-1" %>
 
+    <% if controller.action_name == 'edit' %>
+      <%= button_to "Delete", trip_note_path(@trip, params[:id]), 
+        method: :delete, class: "btn btn-outline-danger d-block0", 
+        data: { turbo_confirm: "Are you sure?" } %>
+    <% end %>
   </div>
 
 <% end %> 

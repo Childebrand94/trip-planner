@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-end m-2 ">
+  <% if user_has_permission?(note, @trip, :author_id) %>
+    <%= link_to edit_path,
+      class: "text-info me-2" do %>
+      <%= image_tag "pencil-square.svg" %> 
+    <% end %>
+    <%= button_to delte_path, 
+      method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
+      data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
+      <%= image_tag "x-lg.svg" %> 
+    <% end %>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
-<nav class="navbar fixed-bottom navbar-light bg-light border-top">
+<nav class="navbar fixed-bottom bg-light border-top">
   <div class="container-fluid">
     <ul class="nav nav-pills nav-fill w-100 flex-nowrap">
       <% [['Overview', trip_path(@trip), 'house'],
@@ -7,15 +7,15 @@
         <li class="nav-item text-center">
           <%= link_to path, class: "nav-link text-secondary" do %>
             <%= image_tag "#{icon}.svg", class: "img-fluid", alt: "#{label} icon" %>
-            <small class="d-block mt-1"><%= label %></small>
+            <small class="d-block mt-1 <%= 'text-decoration-underline' if current_page?(path) %>"><%= label %></small>
           <% end %>
         </li>
       <% end %>
       <% if admin_for_trip?(@trip) %>
-        <li class="nav-item text-center">
+        <li class="nav-item text-center ">
           <%= link_to trip_user_trips_path(@trip), class: "nav-link text-secondary" do %>
             <%= image_tag 'people.svg', class: "img-fluid", alt: "Members icon" %>
-            <small class="d-block mt-1">Members</small>
+            <small class="d-block mt-1 <%= 'text-decoration-underline' if current_page?(trip_user_trips_path(@trip)) %>">Members</small>
           <% end %>
         </li>
       <% end %>

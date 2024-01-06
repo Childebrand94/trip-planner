@@ -1,0 +1,20 @@
+<aside class="d-flex flex-column flex-shrink-0 p-3 bg-dark" style="width: 180px; height: 100vh; position: fixed;">  
+  <ul class="nav nav-pills flex-column mb-auto">
+    <% [['Overview', trip_path(@trip)],
+        ['Itinerary', trip_itinerary_items_path(@trip)],
+        ['Expenses', trip_expenses_path(@trip)]].each do |label, path| %>
+      <li class="nav-item">
+        <%= link_to path, class: "nav-link text-secondary" do %>
+          <small><%= label %></small>
+        <% end %>
+      </li>
+    <% end %>
+    <% if admin_for_trip?(@trip) %>
+      <li class="nav-item">
+        <%= link_to trip_user_trips_path(@trip), class: "nav-link text-secondary" do %>
+          <small>Members</small>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</aside>

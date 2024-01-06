@@ -81,3 +81,24 @@ input[type=number] {
   min-width: 100px;
   margin-right: 20px;
 }
+
+/* Hide the aside and show the footer on screens smaller than 720px */
+@media screen and (max-width: 540px) {
+  .itinerary-nav {
+    display: none;
+  }
+  .itinerary-footer {
+    display: block;
+  }
+}
+
+/* Hide the footer and show the aside on screens larger than 720px */
+@media screen and (min-width: 540px) {
+  .itinerary-nav {
+    display: block;
+  }
+  .itinerary-footer {
+    display: none;
+  }
+}
+

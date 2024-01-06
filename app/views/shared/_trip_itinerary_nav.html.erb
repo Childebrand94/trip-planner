@@ -28,7 +28,16 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </section>
-
-
+<nav class="navbar border-bottom text-black itinerary-nav">
+  <ul class="navbar-nav me-auto mb-2 w-100 d-flex flex-row justify-content-around">
+    <% navigation_items(@trip).each do |item| %>
+      <li class="nav-item mx-1">
+        <%= link_to item[:title], item[:path], 
+          class: "nav-link fs-6 rounded text-center #{'text-primary' if current_page?(item[:path])}" %>
+    </li>
+  <% end %>
+  </ul>
+</nav>

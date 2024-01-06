@@ -1,8 +1,7 @@
-<div class="main-content">
-
+<div class="main-content flex-column">
   <div class="p-2 card">
     <h5 class="card-title text-secondary">Edit note</h5>
-    <%= render 'form' %>
+    <%= render "form" %>
   </div>
-  
+  <%= link_to "Back to Overview", trip_path(@trip.id), class: "btn btn-secondary mt-2" %>
 </div>
