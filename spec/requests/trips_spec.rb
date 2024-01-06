@@ -15,6 +15,7 @@ RSpec.describe 'Trips', type: :request do
   describe 'GET #index' do
     it 'render successful response' do
       get trips_path(trip)
+      expect(response.body).to include 'Trip name 1'
       expect(response).to be_successful
     end
   end
