@@ -12,16 +12,15 @@
     // "white": #ffffff,
 // );
 $theme-colors: (
-  "primary":   #34568b, // A strong blue from the sky
-  "secondary": #567572, // A muted green from the foliage
-  "success":   #2f9e44, // A vibrant green from the grass
-  "info":      #17a2b8, // A sky blue reflecting the lighter areas of the sky
-  "warning":   #ffc107, // A sun-kissed yellow for contrast
-  "danger":    #dc3545, // A strong color for critical elements, not directly from the image but useful for alerts
-  "light":     #f8f9fa, // Almost white, for backgrounds and cards
-  "dark":      #343a40  // A dark shade for text
+  "primary":   #007bff, // A strong blue from the sky
+  "secondary": #6c757d, // A neutral, versatile gray for less prominent elements
+  "success":   #28a745, // A green for positive actions or statuses
+  "info":      #17a2b8, // A lighter blue for informational messages
+  "warning":   #ffc107, // An amber/yellow for warnings or caution
+  "danger":    #dc3545, // A red for alerts and errors
+  "light":     #f8f9fa, // A very light gray for backgrounds or card headers
+  "dark":      #343a40  // A dark gray for text or other elements on light backgrounds
 );
 
-// Define your custom colors
 
 @import "bootstrap";

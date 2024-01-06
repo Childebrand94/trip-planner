@@ -1,36 +1,38 @@
-<li class="list-group-item bg-light card my-1 lift-on-hover rounded-4" 
-  style="max-width: 650px;">
-  <div class="row">
-    <div class="col"  
-      onclick="location.href='<%= trip_path(trip) %>'" 
-      style="cursor: pointer">
-      <%= link_to trip_path(trip), 
-        class: "text-decoration-none text-secondary" do %>
-        <h2 class: "h2 lead"><%= trip.name.capitalize %></h2>
-      <% end %>
-      <br>
-      <p>
-      <%= trip.start_date.strftime("%b %d") %> - 
-      <%= trip.end_date.strftime("%b %d, %Y") %>
-      </p>
+<div class="bg-white my-1 mx-4 lift-on-hover shadow card" style="width: 18rem; cursor: pointer" onclick="location.href='<%= trip_path(trip) %>'">
+
+    <%= image_tag "trip-image-1.png", class: "rounded-top", style: "" %> 
+    <div class="card-body">
+      <div class="row">
+        <h5 class="card-title pb-2 border-bottom"><%= trip.name.capitalize %></h5>
+        <div class="row">
+          <div class="col border-end">
+            <%= trip.start_date.strftime("%b %d") %> - <%= trip.end_date.strftime("%b %d, %Y") %>
+          </div>
+          <div class="col">
+            <%= trip.location %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <%# edit and delete links  %>
-
+  <!-- Edit and Delete Links for Admins -->
+  <% unless controller_name == 'trips' && action_name == 'index' %>">
     <% if admin_for_trip?(trip) %>
-      <div class="col">
-        <div class="d-flex justify-content-end">
+      <div class="col-auto">
+        <div class="d-flex">
           <%= link_to edit_trip_path(trip), class: "text-info m-2" do %>
-            <%= image_tag "pencil-square.svg" %> 
+            <%= image_tag "pencil-square.svg", style: "width: 16px;" %> 
           <% end %>
-          <%= button_to trip_path(trip), 
-            method: :delete, class: "text-info text-decoration-none nav-link m-2", 
-            data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
-            <%= image_tag "x-lg.svg" %> 
+          <%= button_to trip_path(trip), method: :delete, 
+            class: "btn btn-link text-info m-2 p-0", 
+            data: { turbo_confirm: "Are you sure?" }, 
+            form_class: "d-inline" do %>
+            <%= image_tag "x-lg.svg", style: "width: 16px;" %> 
           <% end %>
         </div>
       </div>
     <% end %>
-  </div>
-</li>
+  <% end %>
+</div>
+
 

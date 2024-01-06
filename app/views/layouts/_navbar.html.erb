@@ -1,25 +1,41 @@
-<nav class="navbar navbar-expand-lg bg-transparent text-primary">
-  <div class="container-fluid">
-    <%= link_to root_path, class: "navbar-brand fs-2 text-primary" do %>
-    <%= image_tag("compass.svg", alt: "Brand logo", height: "30") %> PathFindr
-    <% end %>
-    <% if user_signed_in? %>
-      <%= link_to "Your Trips", trips_path, class: "nav-link fs-5" %>
-    <% end %>
-    <div class="ms-auto">
+<nav class="navbar fixed-top bg-white bg-transparent-sm shadow rouded-4 border border-bottom text-primary">
+  <!-- Navbar brand/logo -->
+  <%= link_to root_path, class: "navbar-brand fs-2 text-primary" do %>
+    <span class="d-flex align-items-center">
+      <%= image_tag("compass.svg", alt: "Brand logo", height: "30", class: "mt-1 mx-1") %>
+      PathFindr
+    </span>
+  <% end %>
+
+  <!-- Navbar toggler for mobile view -->
+  <div class="dropdown mx-2">
+    <button class="navbar-toggler rounded-5 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <%= image_tag "person-circle.svg", style: "height:20px;" %> 
+      <span class="navbar-toggler-icon fs-5"></span>
+    </button>
+
+    <!-- Collapsible content for smaller screens -->
+    <ul class="dropdown-menu dropdown-menu-end p-2">
       <% if user_signed_in? %>
-        <div class="d-flex align-items-center" >
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag "person-circle.svg", style: "width: 30px;",
-            class: "mx-5"%> 
-          <% end %>
-          <%= button_to "Log out", logout_path, method: :delete, 
-            class: "btn btn-outline-primary mx-1" %>
-        </div>
+        <li class="rounded-4">
+          <%= link_to "Your Trips", trips_path, class: "nav-link p-1" %>
+        </li>
+        <li class="rounded-4">
+          <%= link_to "Your profile", user_path(current_user), class: "nav-link p-1" %>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li class="rounded-4">
+          <%= button_to "Log out", logout_path, method: :delete, class: "nav-link p-1" %>
+        </li>
       <% else %>
-        <%= link_to "Log in", login_path, class: "btn btn-outline-primary mx-1" %>
-        <%= link_to "Sign up", new_user_path, class: "btn btn-outline-primary mx-1" %>
+        <li class="rounded-3">
+          <%= link_to "Log in", login_path, class: "nav-link p-1" %>
+        </li>
+        <li class="rounded-3">
+          <%= link_to "Sign up", new_user_path, class: "nav-link p-1" %>
+        </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </nav>
+

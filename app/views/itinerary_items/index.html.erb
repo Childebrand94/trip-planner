@@ -1,16 +1,16 @@
-<div class="container">
+<div>
 
-  <%= render partial: 'shared/trip_itinerary_nav' %>
+    <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section>
-    <div class="bg-white p-3 mt-2 rounded-4">
+  <section class="d-flex justify-content-center">
+    <div class="p-3 mt-2 rounded-4 w-75 border">
       <h4 class='display-5'>Plan Something</h4>
       <%= render 'itinerary_items/form' %>
     </div>
   </section>
 
   <section>
-    <ul class="list-group list-group-flush bg-white rounded-4 p-4 my-2" >
+    <ul class="list-group list-group-flush" >
     <% @date_range.each do |date| %>
         <%= render partial: 'trips/trip_day', 
           locals: { date: date, trip: @trip} %>

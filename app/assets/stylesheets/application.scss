@@ -30,17 +30,20 @@ input[type=number] {
 .link-hover:hover {
     text-decoration: underline;
 }
+.dropdown-menu li:hover {
+    background-color: #E9E8E8;
+}
 
 .form {
     margin-top: 10rem;
 }
 
 .main-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 180px);
-  margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 180px);
+    margin-top: 50px;
 }
 
 .custom-link:hover {
@@ -52,16 +55,29 @@ input[type=number] {
 }
 
 .note-filter:hover{
-  background-color: #c1cad3;
+    background-color: #c1cad3;
 }
 
 .home-page{
-  background-image: url('home-page.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    position: relative;
+    background-image: url('home-page.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.blurred-background {
-  backdrop-filter: blur(20px);
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value to control darkness */
+    z-index: 1; /* Ensure this is below your main content */
+}
+
+.min-button-width {
+  min-width: 100px;
+  margin-right: 20px;
 }

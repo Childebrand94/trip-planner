@@ -8,10 +8,10 @@
       <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
       <%= f.text_field :address, label_as_placeholder: true, required: true%>
 
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-column">
         <%= f.datetime_field :start_time, class: 'start_time', 
           label_as_placeholder: true, style: "width: 200px", required: true %>
-        <%= f.datetime_field :end_time, class: 'end_time mx-2', 
+        <%= f.datetime_field :end_time, class: 'end_time', 
           label_as_placeholder: true, style: "width: 200px", required: true %>
       </div>
 

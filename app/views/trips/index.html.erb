@@ -1,19 +1,19 @@
-<div class="main-content align-items-start">
+<div class="main-content align-items-start bg-white">
   <div class="w-75">
+    <h1 class="display-3 my-4">Trips</h1>
+    <h4 class="card-subtitle my-2 mx-5">Upcoming Plans</h4>
     <% if @trips.any? %>
-      <ul class="list-group d-flex flex-column justify-content-center mx-auto" 
-      style="max-width: 768px;">
-      <h1 class="display-3 text-primary">Your Trips</h1>
+      <div class="d-flex flex-wrap mx-auto" style="max-width: 768px;"> 
         <% @trips.each do |trip| %>
-          <%= render partial: 'trip_card', locals: { trip: trip } %>
-      <% end %>
+            <%= render partial: 'trip_card', locals: { trip: trip } %>
+        <% end %>
+      </div>
       <%= link_to 'Create New Trip', new_trip_path, 
-        class: "btn btn-secondary my-2", 
-        style: "max-width: 175px" %>
-      </ul>
+          class: "btn btn-primary my-2", 
+          style: "max-width: 175px" %>
     <% else %>
       <p>No trips have been created yet.</p>
     <% end %>
-
   </div>
 </div>
+
