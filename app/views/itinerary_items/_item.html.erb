@@ -1,85 +1,98 @@
-<div class='card my-2 p-2 mx-5 d-flex flex-row justify-content-between'>
+<div class="list-group-item list-group-item-action ">
   <div>
-    <h6 class='card-subtitle mb-2 text-body-secondary'>
-      <%= item.start_time.strftime("%H:%M")%>
-      -
-      <%= item.end_time.strftime("%H:%M") %>
-    </h6>
-    <%= link_to  trip_itinerary_item_path(@trip, item.id), 
-      class: "text-black text-decoration-none" do %>
-      <h5 class='lead link-hover'>
-        <%= item.event_name %>
-      </h5>
-    <% end %>
-    <p class='card-title'>
-    <%= item.address %>
-    </p>
-  </div>
+    <div class="row">
+      <div class="col">
+        <h6 class='card-subtitle mb-2 text-body-secondary'>
+          <%= item.start_time.strftime("%H:%M")%>
+          -
+          <%= item.end_time.strftime("%H:%M") %>
+        </h6>
+      </div>
 
-   
-  <%# edit and delete icons %>
+      <%# edit and delete icons %>
 
-  <div class='text-end d-flex flex-column'>
-    <% if item.creator_id == current_user.id || admin_for_trip?(@trip) %>
-    <div>
-      <div class="d-flex justify-content-end">
-        <%= link_to edit_trip_itinerary_item_path(@trip, item.id,
-                                                 return_to: request.fullpath), 
-          class: "text-info me-2 icon-link icon-hover" do %>
-          <%= image_tag "pencil-square.svg" %> 
-        <% end %>
-        <%= button_to trip_itinerary_item_path(@trip, item.id),
-          method: :delete, class: "text-info text-decoration-none nav-link", 
-          data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
-          <%= image_tag "x-lg.svg" %> 
+      <div class="col text-end d-flex justify-content-end">
+        <% if item.creator_id == current_user.id || admin_for_trip?(@trip) %>
+            <%= link_to edit_trip_itinerary_item_path(@trip, item.id,
+                                                     return_to: request.fullpath), 
+              class: "text-info me-2 icon-link icon-hover" do %>
+              <%= image_tag "pencil-square.svg" %> 
+            <% end %>
+            <%= button_to trip_itinerary_item_path(@trip, item.id),
+              method: :delete, class: "text-info text-decoration-none nav-link", 
+              data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
+              <%= image_tag "x-lg.svg" %> 
+            <% end %>
         <% end %>
       </div>
-    </div> 
-    <% end %>
-    <p class='text-end mt-4' >
-    <%= item.creator.display_name %> 
-    </p>
+    </div>
 
-    <%# up and down vote %>
+    <%# Event name %>
 
-    <div class="d-flex justify-content-end">
-      <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
-        method: :post, 
-        params: { itinerary_vote: { up_vote: true, itinerary_item_id: item.id, 
-                                    user_id: current_user.id }},
-        class: "btn position-relative icon-hover",
-        form_class: "d-inline-block" do %>
+    <div class="row">
+        <%= link_to  trip_itinerary_item_path(@trip, item.id), 
+          class: "text-black text-decoration-none" do %>
+          <h5 class='card-title link-hover'>
+            <%= item.event_name %>
+          </h5>
+        <% end %>
+        <p class='card-title'>
+        <%= item.address %>
+        </p>
+      
+    </div>
+    <div class="row">
+      <div class="col">
 
-        <%= image_tag "hand-thumbs-up.svg", alt: "Up vote" %>
-        <span class="position-absolute top-0 start-90 translate-middle 
-          badge rounded-pill text-black">
-            <%= item.itinerary_votes.where(up_vote: true).count %> 
-        </span>
-      <% end %>
+        <small class='text-secondary' >
+        <%= item.creator.display_name %> 
+        </small>
+      </div>
+      <div class="col">
 
-      <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
-        method: :post, 
-        params: { itinerary_vote: { up_vote: false, itinerary_item_id: item.id, 
-                                    user_id: current_user.id }},
-        class: "btn position-relative icon-hover ",
-        form_class: "d-inline-block" do %>
+        
+        <%# up and down vote %>
 
-        <%= image_tag "hand-thumbs-down.svg", alt: "Down vote" %>
-        <span class="position-absolute top-0 start-90 translate-middle badge 
-          rounded-pill text-black">
-          <%=  item.itinerary_votes.where(up_vote: false).count %>
-        </span>
-      <% end %>
+        <div class="d-flex justify-content-end">
+          <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
+            method: :post, 
+            params: { itinerary_vote: { up_vote: true, itinerary_item_id: item.id, 
+                                        user_id: current_user.id }},
+            class: "btn position-relative icon-hover",
+            form_class: "d-inline-block" do %>
 
-      <%# comments %>
+            <%= image_tag "hand-thumbs-up.svg", alt: "Up vote" %>
+            <span class="position-absolute top-0 start-90 translate-middle 
+              badge rounded-pill text-black">
+                <%= item.itinerary_votes.where(up_vote: true).count %> 
+            </span>
+          <% end %>
 
-      <%= link_to trip_itinerary_item_comments_path(@trip, item.id), 
-        class: "me-2 mt-1 icon-hover position-relative" do %>
-        <%= image_tag "chat-left-dots.svg", alt: "Comments" %> 
-        <span class="position-absolute translate-middle badge rounded-pill text-black">
-          <%= item.comments.count %>
-        </span>
-      <% end %>
+          <%= button_to trip_itinerary_item_vote_path(@trip, item.id),
+            method: :post, 
+            params: { itinerary_vote: { up_vote: false, itinerary_item_id: item.id, 
+                                        user_id: current_user.id }},
+            class: "btn position-relative icon-hover ",
+            form_class: "d-inline-block" do %>
+
+            <%= image_tag "hand-thumbs-down.svg", alt: "Down vote" %>
+            <span class="position-absolute top-0 start-90 translate-middle badge 
+              rounded-pill text-black">
+              <%=  item.itinerary_votes.where(up_vote: false).count %>
+            </span>
+          <% end %>
+
+          <%# comments %>
+
+          <%= link_to trip_itinerary_item_comments_path(@trip, item.id), 
+            class: "me-2 mt-1 icon-hover position-relative" do %>
+            <%= image_tag "chat-left-dots.svg", alt: "Comments" %> 
+            <span class="position-absolute translate-middle badge rounded-pill text-black">
+              <%= item.comments.count %>
+            </span>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

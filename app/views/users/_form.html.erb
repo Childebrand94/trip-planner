@@ -10,6 +10,6 @@
     <%= f.password_field :password_confirmation, label_as_placeholder: true, 
       required: true, label: "Confirm Password" %>
     <%= f.submit (controller.action_name == 'new' ? 'Create': 'Update'), 
-      class: "btn btn-primary" %>
-</div>
+      class: "btn btn-primary w-100 text-white" %>
+  </div>
 <% end %>

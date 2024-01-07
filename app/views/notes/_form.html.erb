@@ -12,7 +12,7 @@
     <% end %>
 
     <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-      class: "btn btn-primary my-1" %>
+      class: "btn btn-primary my-1 text-white" %>
 
     <% if controller.action_name == 'edit' %>
       <%= button_to "Delete", trip_note_path(@trip, params[:id]), 

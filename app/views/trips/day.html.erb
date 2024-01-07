@@ -4,16 +4,18 @@
 
   <section>
     <div class='my-2 p-2 border-bottom'>
-      <h3 class='display-5 text-light'>
+      <h3 class='display-5' >
         <%= @date.strftime("%A, %b %d") %>
       </h3>
     </div>
   </section>
 
-  <section class='container'>
+  <section class='card rounded-4 bg-light p-3 my-2'>
     <% if @itinerary_items.present? %>
       <% @itinerary_items.each do |item| %>
-        <%= render partial: 'itinerary_items/item', locals: { item: item } %>
+        <div class="list-group" >
+          <%= render partial: 'itinerary_items/item', locals: { item: item } %>
+        </div>
       <% end %>
     <% else %>
       <div class="card">
@@ -23,4 +25,8 @@
       </div> 
     <% end %>
   </section>
+
+  <div class="itinerary-footer">
+    <%= render partial: 'shared/trip_itinerary_footer' %>
+  </div>
 </div>

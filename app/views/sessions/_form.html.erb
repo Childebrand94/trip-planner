@@ -6,8 +6,16 @@
   <% end %>
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
-    <%= f.email_field :email, placeholder: 'Email', label: 'Email', required: true %>
-    <%= f.password_field :password, placeholder: 'Password', label: 'Password', required: true %>
-    <%= f.submit 'Sign In',class: "btn btn-primary" %>
+    <%= f.email_field :email, 
+      placeholder: 'Email', 
+      label: 'Email', 
+      required: true,
+      label_as_placeholder: true%>
+    <%= f.password_field :password, 
+      placeholder: 'Password', 
+      label: 'Password', 
+      required: true, 
+      label_as_placeholder: true %>
+    <%= f.submit 'Sign In',class: "btn btn-primary text-white w-100" %>
   </div>
 <% end %>

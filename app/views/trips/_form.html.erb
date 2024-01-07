@@ -15,9 +15,9 @@
       <%= f.date_field :end_date, label_as_placeholder: true, 
         required: true, class: 'date' %>
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 
-                    'Create'), class: "btn btn-primary" %>
+                    'Create'), class: "btn btn-primary w-100 text-white" %>
       <%= link_to 'Back', 'javascript:history.back()',
-        class: "btn btn-outline-primary" %>
+        class: "btn btn-outline-primary w-100 mt-2" %>
 
     </div>
 <% end %>

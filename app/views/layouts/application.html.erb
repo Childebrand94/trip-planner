@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body class="position-relative">
+  <body data-controller="nav-footer">
+    <div data-nav-footer-target="topSpacer"></div>
     <%= render "layouts/navbar" %>
+
     <div class="position-absolute" style="top: 70px; z-index: 1030;">
       <p ><%= "#{controller_name}##{action_name}" %></p>
       <% flash.each do |key, message| %>
@@ -27,5 +29,7 @@
     <div class="itinerary-footer">
       <%= render partial: 'shared/trip_itinerary_footer' if render_trip_itinerary_footer? %>
     </div>
+
+    <div data-nav-footer-target="bottomSpacer"></div>
   </body>
 </html>

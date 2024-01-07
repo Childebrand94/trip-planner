@@ -42,8 +42,7 @@ input[type=number] {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 180px);
-    margin-top: 50px;
+    height: calc(100vh - 75px);
 }
 
 .custom-link:hover {
@@ -67,38 +66,32 @@ input[type=number] {
 }
 
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value to control darkness */
-    z-index: 1; /* Ensure this is below your main content */
-}
-
 .min-button-width {
-  min-width: 100px;
-  margin-right: 20px;
+    min-width: 100px;
+    margin-right: 20px;
 }
 
-/* Hide the aside and show the footer on screens smaller than 720px */
 @media screen and (max-width: 540px) {
-  .itinerary-nav {
-    display: none;
-  }
-  .itinerary-footer {
-    display: block;
-  }
+    .itinerary-nav {
+        display: none;
+    }
+    .itinerary-footer {
+        display: block;
+    }
+    .debtor-link {
+        display: flex;
+    }
 }
 
-/* Hide the footer and show the aside on screens larger than 720px */
 @media screen and (min-width: 540px) {
-  .itinerary-nav {
-    display: block;
-  }
-  .itinerary-footer {
-    display: none;
-  }
+    .itinerary-nav {
+        display: block;
+    }
+    .itinerary-footer {
+        display: none;
+    }
+    .debtor-link {
+        display: none;
+    }
 }
 

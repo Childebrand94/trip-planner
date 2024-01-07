@@ -1,0 +1,11 @@
+<div class="list-group-item bg-warning">
+  <%= link_to  trip_itinerary_item_path(@trip, item.id, date: params[:date]), 
+              class: "d-flex justify-content-between w-100 text-black 
+                      text-decoration-none" do %>
+    <span class="pb-0"> <%= item.event_name %></span>
+    <span>
+      <%= item.start_time.strftime("%H:%M") %> - 
+      <%= item.end_time.strftime("%H:%M") %>
+    </span>
+  <% end %>
+</div>

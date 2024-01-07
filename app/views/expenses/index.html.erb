@@ -1,16 +1,22 @@
-<div class='container'>
+<div class='container pb-2 mt-4'>
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section class='my-2'>
-    <div class='p-3 m-2 bg-white rounded-4'>
-      <h4 class='display-5'>Add an Expense</h4>
-      <%= render 'form' %>
-    </div>
+  <div class="border-bottom debtor-link">
+    <%= link_to 'View Debts', trip_debtors_path(@trip), class: "nav-link fs-4" %>
+    <%= image_tag "arrow-right", class:"mx-2" %> 
+  </div>
+
+
+  <section class='my-2 p-3 bg-light card rounded-4'>
+    <h4 class='display-5'>Add an Expense</h4>
+    <%= render 'form' %>
   </section>
 
+
+
   <section class='my-2'>
-    <div class='p-3 m-2 bg-white rounded-4'>
-      <h4 class='card-title mb-3'>Expenses for this trip</h4>
+    <div class='p-3 m-2 bg-light card rounded-4'>
+      <h4 class='card-title mb-3'>Expenses</h4>
       <% if @all_expenses.present? %>
         <table class="table table-hover">
           <thead>
@@ -31,7 +37,7 @@
           </tbody>
         </table>
       <% else %>
-        <p>No expenses recorded yet.</p>
+        <p>You haven't added any expense yet.</p>
       <% end %>
     </div>
   </section>

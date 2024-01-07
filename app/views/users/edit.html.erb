@@ -1,17 +1,12 @@
-<section>
-  <div class="row">
-    <div class="d-flex justify-content-center">
-      <div class="card mb-4 max-w-2xl">
-        <div class="card-body text-center bg-light">
-          <%= image_tag "male-avatar.png", style: "width: 150px;", class: "rounded-circle img-fluid mx-5" %>
-          <div>
-            <%= render "edit_form", user: @user %>
-            <div class="d-flex justify-content-center mb-2">
-                <%= link_to "Back to Profile", user_path(@user),
-                  class: "btn btn-outline-secondary ms-1",
-                  style: "width: 200px" %>
-            </div>
-          </div>
-        </div>
+<div class="main-content bg-body-tertiary min-vh-100">
+  <div class="card mb-4">
+    <div class="card-body text-center bg-light">
+      <%= image_tag "male-avatar.png", style: "width: 150px;", 
+        class: "rounded-circle img-fluid mx-5" %>
+      <div>
+        <%= render "edit_form", user: @user %>
       </div>
-</section>
+    </div>
+  </div>
+</div>
+

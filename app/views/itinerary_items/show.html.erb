@@ -1,13 +1,15 @@
-<div class="container">
+<div class="container pb-2 mt-3" style="max-width: 720px;">
 
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section>
+  <div class="p-3 card rounded-4 shadow-sm mt-2">
     <%= render partial: "item", locals: { item: @itinerary_item } %>
-  </section>
+  </div>
 
-  <section>
-    <div class="my-3">
+  <div class="p-3 my-3 bg-light card rounded-4">
+
+    <%# Votes %>
+    <section>
       <div class="card-body">
         <h4 class="card-title mb-2 border-bottom">Votes</h4>
         
@@ -28,19 +30,17 @@
             <p class="my-2"><%= vote.user.display_name %></p>
           <% end %>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
+    <%# comments %>
 
-  <section>
-    <div class="my-3" >
+    <section>
       <div class="card-body">
         <h4 class="card-title border-bottom mb-2">Comments</h4>
         <% if @all_comments.present? %>
           <% @all_comments.each do |comment| %>
-            <div>
+            <div class="list-group">
               <%= render partial: "comments/comment_card", locals: { trip: @trip, itinerary_item: @itinerary_item, comment: comment } %>
             </div>
           <% end %>
@@ -48,31 +48,25 @@
           <p> No comments yet </p>
         <% end %>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="my-3">
+    <%# conflicts %>
+
+    <section>
       <div class="card-body">
         <h4 class="card-title border-bottom mb-2">Conflicts</h4>
-        <div class="p-2">
+        <div class="list-group mx-2">
           <% if @conflicting_items.present? %>
             <% @conflicting_items.each do |item| %>
-              <%= link_to  trip_itinerary_item_path(@trip, item.id, date: params[:date]), 
-                class: "d-flex justify-content-between w-100 text-black 
-                        text-decoration-none custom-link" do %>
-                <p class='link-hover'> <%= item.event_name %></p>
-                <p>
-                  <%= item.start_time.strftime("%b %d %H:%M") %> - 
-                  <%= item.end_time.strftime("%b %d %H:%M") %>
-                </p>
-              <% end %>
+              <%= render partial: 'conflicting_item', locals: { item: item } %>
             <% end %>
           <% else %>
             <p>No Conflicts</p>
           <% end %>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    
+  </div>
 </div>
+

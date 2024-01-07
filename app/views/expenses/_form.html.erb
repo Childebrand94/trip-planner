@@ -4,17 +4,17 @@
                         
   <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
-    <div class="my-2 ">
+    <div class="my-2">
 
       <div class="row">
           <%= f.text_field :name, label_as_placeholder: true, required: true %>
       </div>
 
-      <div class="row">
-        <div class="col">
+      <div class="row row-cols-auto">
+        <div class="col-sm w-100">
           <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date_expense" %>
         </div>
-        <div class="col">
+        <div class="col-sm w-100">
           <%= f.number_field :amount, 
             prepend: "$",
             step: '0.01', 
@@ -28,13 +28,6 @@
 
       <div class="row">
         <div class="col">
-          <%= f.select :expense_category_id, @categories, 
-            include_blank: "Select a Category", 
-            hide_label: true, class: 'form-control' %>
-
-          <%= f.check_box :paid %>
-        </div>
-        <div class="col">
           <%= bootstrap_fields_for :debtor do |df| %>
             <%= df.label :user_ids, 'Trip Members' %>
             <%= df.select :user_ids, 
@@ -45,12 +38,26 @@
                 disabled: (controller.action_name == 'edit')} %>
             <% end %>
         </div>
+        <div class="col-sm w-100">
+          <%= f.select :expense_category_id, @categories, 
+            include_blank: "Select a Category", 
+            hide_label: true, class: 'form-control' %>
+        </div>
+      </div>
+
+      <hr class="my-4">
+      
+      <div class="row">
+        <div class="col d-flex flex-row">
+          <%= f.check_box :paid, hide_label: true%>
+          <%= f.label :paid, "I have been paid" %>
+        </div>
       </div>
 
       <div class="row">
         <div class="col" >
           <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-            class: "btn btn-secondary inline" %>
+            class: "btn btn-primary text-white" %>
         </div>
       </div>
 
