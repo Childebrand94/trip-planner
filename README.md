@@ -3,11 +3,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/Childebrand94/trip-planner">
-  <img src="app/assets/images/readMe-comapas.png" alt="Logo" width="200" height="200" style="border-radius: 50%;">
+  <img src="app/assets/images/readMe-compas.png" alt="Logo" width="200" height="200" style="border-radius: 50%;">
   </a>
 <h3 align="center">PathFindr</h3>
   <p align="center">
-    
     <br />
     <a href="https://github.com/Childebrand94/trip-planner"><strong>Explore the docs »</strong></a>
     <br />
@@ -94,7 +93,6 @@ Before you begin, ensure you have the following prerequisites installed:
     cd trip-planner
     ```
 2. **Install Dependencies**
-- Insure the correct versions of ruby and rails
 - Install the required gems by running:
     ```sh
     bundle install
