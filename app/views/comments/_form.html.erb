@@ -5,8 +5,8 @@
   <div class="my-2">
     <%= f.text_field :body, label_as_placeholder: true, required: true %>
     <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-      class: "btn btn-secondary" %>
+      class: "btn btn-primary text-white" %>
       <%= link_to 'Back', trip_itinerary_item_path(@trip, @itinerary_item),
-        class: "btn btn-secondary" %>
+        class: "btn btn-outline-secondary" %>
   </div>
 <% end %> 

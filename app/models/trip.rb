@@ -16,6 +16,8 @@ class Trip < ApplicationRecord
   has_many :user_trips, dependent: :destroy
   has_many :users, through: :user_trips
 
+  belongs_to :trip_image, class_name: 'TripImage'
+
   has_many :itinerary_items, dependent: :destroy
   has_many :expenses, dependent: :destroy
 

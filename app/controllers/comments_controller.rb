@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
   before_action :set_date, only: %i[index edit create]
 
   def index
-    @comment = @itinerary_item.comments.new
-    @all_comments = @itinerary_item.comments
+    @comment = Comment.new(itinerary_item_id: @itinerary_item.id)
+    @all_comments = @itinerary_item.comments.where.not(id: nil)
   end
 
   def create

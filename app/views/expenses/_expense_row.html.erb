@@ -1,10 +1,10 @@
 <tr> 
   <th scope="row"></th>
-  <td><%= expense.date.strftime('%b %d, %Y') %></td>
+  <td><%= expense.date.strftime('%b %d') %></td>
   <td onclick="window.location='<%= edit_trip_expense_path(@trip, expense) %>'" style="cursor: pointer;">
     <%= expense.name %>
   </td>
-  <td>$ <%= expense.amount %></td>
+  <td><span class="d-inline-flex flex-nowrap">$<%= expense.amount %></span></td>
   <td><%= expense.expense_category.name %></td>
   <td><%= expense.paid.to_s.capitalize %></td>
   <td>

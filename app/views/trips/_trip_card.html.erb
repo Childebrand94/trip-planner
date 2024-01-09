@@ -1,6 +1,6 @@
 <div class="bg-white my-1 mx-4 lift-on-hover shadow card" style="width: 18rem; cursor: pointer" onclick="location.href='<%= trip_path(trip) %>'">
 
-    <%= image_tag "trip-image-1.png", class: "rounded-top", style: "" %> 
+    <%= image_tag  trip_image(trip), class: "rounded-top", style: "" %> 
     <div class="card-body">
       <div class="row">
         <h5 class="card-title pb-2 border-bottom"><%= trip.name.capitalize %></h5>
@@ -29,7 +29,7 @@
             form_class: "d-inline" do %>
             <%= image_tag "x-lg.svg", style: "width: 16px;" %> 
           <% end %>
-        </div>
+        </div> 
       </div>
     <% end %>
   <% end %>

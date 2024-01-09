@@ -2,10 +2,6 @@
   <div class="card-body row">
     <div class="col">
       <h1 class="card-title"><%= @trip.name.capitalize %></h1> 
-      <p class="card-subtitle text-body-secondary mt-4">
-      <%= image_tag "calendar.svg" %> <%= @trip.start_date.strftime("%m/%d") %> 
-      <%= image_tag "calendar.svg" %> <%= @trip.end_date.strftime("%m/%d") %>
-      </p> 
     </div>
 
     <div class="col d-flex align-items-end flex-column">
@@ -22,11 +18,25 @@
         </div>
       <% end %>
 
-      <div class="mt-4">
-        <%= link_to new_invite_path(trip_id: @trip), class: "d-flex text-decoration-none text-secondary" do %>
-          <%= image_tag "person-plus.svg", class: "", style: "width: 25px;", alt: "Add" %> 
+    </div>
+    <div class="row">
+      <div class="col-8 d-flex">
+        <div class="card-subtitle text-body-secondary mt-3">
+        <%= image_tag "calendar.svg" %> 
+        <%= @trip.start_date.strftime("%m/%d") %> 
+        </div>
+        <div class="card-subtitle text-body-secondary mt-3 mx-2"> 
+        <%= image_tag "calendar.svg" %> 
+        <%= @trip.end_date.strftime("%m/%d") %>
+        </div>
+      </div>
+
+      <div class="col d-flex justify-content-end ">
+        <%= link_to new_invite_path(trip_id: @trip)do %>
+          <%= image_tag "person-plus.svg", style: "width: 25px;", alt: "Add" %> 
         <% end %>
       </div>
+
     </div>
 
   </div>

@@ -44,7 +44,6 @@ class ItineraryVotesController < ApplicationController
 
   def set_itinerary_item
     @itinerary_item = ItineraryItem.find(params[:itinerary_item_id])
-    puts @itinerary_item.inspect
   end
 
   def set_trip

@@ -1,4 +1,4 @@
-<div class='container pb-2 mt-4'>
+<div class='container pb-2 mt-3' style="max-width: 720px;">
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <div class="border-bottom debtor-link">
@@ -6,36 +6,18 @@
     <%= image_tag "arrow-right", class:"mx-2" %> 
   </div>
 
-
   <section class='my-2 p-3 bg-light card rounded-4'>
     <h4 class='display-5'>Add an Expense</h4>
-    <%= render 'form' %>
+    <%= render partial: 'shared/form_toggle', locals: { form: 'expenses/form' } %>
   </section>
 
-
+ 
 
   <section class='my-2'>
-    <div class='p-3 m-2 bg-light card rounded-4'>
+    <div class='p-3 bg-light card rounded-4 table-responsive'>
       <h4 class='card-title mb-3'>Expenses</h4>
       <% if @all_expenses.present? %>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Date</th>
-              <th scope="col">Event Name</th>
-              <th scope="col">Price</th>
-              <th scope="col">Category</th>
-              <th scope="col">Paid</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @all_expenses.each do |expense| %>
-              <%= render partial: 'expense_row', locals: { expense: expense } %>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render partial: 'table', locals: { expenses: @all_expenses } %>
       <% else %>
         <p>You haven't added any expense yet.</p>
       <% end %>

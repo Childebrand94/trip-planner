@@ -1,0 +1,18 @@
+<table class="table table-hover overflow-x-scroll">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Date</th>
+      <th scope="col">Event</th>
+      <th scope="col">Price</th>
+      <th scope="col">Category</th>
+      <th scope="col">Paid</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% expenses.each do |expense| %>
+        <%= render partial: 'expense_row', locals: { expense: expense } %>
+      <% end %>
+  </tbody>
+</table>

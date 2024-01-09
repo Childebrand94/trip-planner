@@ -1,27 +1,11 @@
-<div class='container'>
+<div class='container pb-2 mt-3' style="max-width: 720px;">
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
   <section class='my-2'>
-    <div class='p-3 m-2 bg-white rounded-4'>
-      <h4 class='display-5 mb-3'>All of your debts</h4>
+    <div class='p-3 bg-light card rounded-4 table-responsive'>
+      <h4 class='display-5 mb-3'>Debts</h4>
       <% if @user_debts.present? %>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Date</th>
-              <th scope="col">Payer</th>
-              <th scope="col">Event Name</th>
-              <th scope="col">Total</th>
-              <th scope="col">Amount Owing</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @user_debts.each do |debt| %>
-              <%= render partial: 'debtor_row', locals: { debt: debt } %>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render partial: 'table', locals: { debts: @user_debts } %>
       <% else %>
         <p>No outstanding debts.</p>
       <% end %>

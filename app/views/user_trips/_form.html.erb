@@ -8,9 +8,11 @@
       <%= f.label :user_trip_role_id, "Roles" %>
       <%= f.select :user_trip_role_id, @roles, 
             hide_label: true, class: 'form-control' %>
+      <div class="d-flex flex-column">
         <%= f.submit (controller.action_name == 'edit' ? 'Update' : 
-                      'Create'), class: "btn btn-primary" %>
+                      'Create'), class: "btn btn-primary w-100" %>
         <%= link_to 'Back', 'javascript:history.back()',
-          class: "btn btn-secondary" %>
+          class: "btn btn-outline-secondary w-100 my-2" %>
+      </div>
     </div>
 <% end %>

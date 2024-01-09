@@ -1,0 +1,17 @@
+<table class="table table-hover overflow-x-scroll">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Date</th>
+      <th scope="col">Payer</th>
+      <th scope="col">Event</th>
+      <th scope="col">Total</th>
+      <th scope="col">Owing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% debts.each do |debt| %>
+      <%= render partial: 'debtor_row', locals: { debt: debt } %>
+    <% end %>
+  </tbody>
+</table>

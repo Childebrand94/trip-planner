@@ -1,7 +1,7 @@
-<div class="main-content min-vh-100 bg-body-tertiary">
-  <div class="card mb-4 max-w-2xl">
-    <div class="card-body text-center bg-light">
-      <%= image_tag "male-avatar.png", style: "width: 150px;", class: "rounded-circle img-fluid mx-5" %>
+<div class="main-content bg-dark">
+  <div class="card mb-4">
+    <div class="card-body text-center bg-white">
+      <%= image_tag "person-circle.svg", style: "width: 150px;", class: "rounded-circle img-fluid mx-5" %>
       <h5 class="my-3"><%= @user.display_name  %></h5>
       <p class="text-muted mb-1"><%= @user.email  %></p>
       <div class="d-flex justify-content-center flex-column mb-2">
@@ -12,6 +12,7 @@
         <%= button_to "Delete Account", @user, method: :delete,
           data: { turbo_confirm: "Are you sure?" },
           class: "btn btn-outline-danger my-1 d-block w-100" %>
+      </div>
     </div>
   </div>
 </div>

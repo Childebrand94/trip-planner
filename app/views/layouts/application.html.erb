@@ -12,24 +12,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
-  <body data-controller="nav-footer">
+  <body data-controller="nav-footer" >
     <div data-nav-footer-target="topSpacer"></div>
     <%= render "layouts/navbar" %>
 
-    <div class="position-absolute" style="top: 70px; z-index: 1030;">
-      <p ><%= "#{controller_name}##{action_name}" %></p>
-      <% flash.each do |key, message| %>
-        <div class="flash <%= key %>" style="top: 80px; z-index: 1030;"><%= message %></div>
+      <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;">
+        <p ><%= "#{controller_name}##{action_name}" %></p>
+      </div>
+
+      <% flash.each do |key, value| %>
+        <div class="<%= flash_class(key) %> alert-dismissible fade show" role="alert">
+          <%= value %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" 
+          aria-label="Close"></button>
+        </div>
       <% end %>
-    </div>
 
-    <%= yield %>
-
+      <%= yield %>
 
     <div class="itinerary-footer">
-      <%= render partial: 'shared/trip_itinerary_footer' if render_trip_itinerary_footer? %>
+      <% if render_trip_itinerary_footer? %>
+        <%= render partial: 'shared/trip_itinerary_footer' %>
+      <% else %>
+        <div data-nav-footer-target="mainFooter"></div>
+      <% end %>
     </div>
-
     <div data-nav-footer-target="bottomSpacer"></div>
   </body>
 </html>

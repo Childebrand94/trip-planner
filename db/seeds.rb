@@ -13,24 +13,27 @@ names = %w[Dining Stay Excursion Business Travel]
 names.each do |type|
   ItineraryItemType.create(name: type)
 end
-EXPENSES = %w[
-  flights
-  accommodation
-  transportation
-  food
-  activities
-  entertainment
-  shopping
-  insurance
-  health
-  wellness
-  personal_items
-  miscellaneous
-  travel_gear
+EXPENSES = [
+  'Flights',
+  'Lodging',
+  'Car rental',
+  'Public transit',
+  'Food',
+  'Drinks',
+  'Sightseeing',
+  'Activities',
+  'Shopping',
+  'Gas',
+  'Groceries',
+  'Other'
 ].freeze
 
 EXPENSES.each do |expense|
   ExpenseCategory.create(name: expense)
+end
+
+(1..6).each do |i|
+  TripImage.create(path: "trip-image-#{i}.png")
 end
 
 user_roles = %w[Admin Member]

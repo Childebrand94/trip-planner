@@ -1,24 +1,28 @@
 <div class="list-group-item list-group-item-action">
-    <div class="position-relative">
-    <p>
-    <span class="fs-5"><%= comment.body %></span>
-    <small class="text-secondary d-block"><%= comment.author.display_name %></small>
-    </p>
-    <div class="d-flex justify-content-end m-2 ">
-          <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, 
-                                                            comment.id, date: params[:date]), 
-            class: "text-info me-2 position-absolute top-0", style: "right: 25px;" do %>
-            <%= image_tag "pencil-square.svg" %> 
-          <% end %>
-          <%= button_to trip_itinerary_item_comment_path(@trip, 
-                                                         @itinerary_item, 
-                                                         comment.id,
-                                                         date: params[:date]), 
-            method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
-            data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline position-absolute top-0" do %>
-            <%= image_tag "x-lg.svg" %> 
-          <% end %>
+  <div class="row">
+    <div class="col-9">
+      <p class=""><%= comment.body %></p>
     </div>
+
+    <div class="col">
+      <div class="d-flex justify-content-end">
+            <%= link_to edit_trip_itinerary_item_comment_path(@trip.id, @itinerary_item.id, 
+                                                              comment.id), 
+              class: "text-info me-2" do %>
+              <%= image_tag "pencil-square.svg" %> 
+            <% end %>
+            <%= button_to trip_itinerary_item_comment_path(@trip, 
+                                                           @itinerary_item, 
+                                                           comment.id), 
+              method: :delete, class: "text-info text-decoration-none nav-link icon-hover", 
+              data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline" do %>
+              <%= image_tag "x-lg.svg" %> 
+            <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <small class="text-secondary d-block"><%= comment.author.display_name %></small>
   </div>
 </div>
 

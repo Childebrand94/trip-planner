@@ -11,14 +11,19 @@
       <%= f.check_box :completed %>
     <% end %>
 
-    <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-      class: "btn btn-primary my-1 text-white" %>
+    <div class="d-flex flex-column">
+      <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
+        class: "btn btn-primary my-1 text-white", 
+        style: "#{controller.action_name == 
+                  'edit'? "wight: 100%" : "width: 80px"}" %>
 
-    <% if controller.action_name == 'edit' %>
-      <%= button_to "Delete", trip_note_path(@trip, params[:id]), 
-        method: :delete, class: "btn btn-outline-danger d-block0", 
-        data: { turbo_confirm: "Are you sure?" } %>
-    <% end %>
+
+      <% if controller.action_name == 'edit' %>
+        <%= button_to "Delete", trip_note_path(@trip, params[:id]), 
+          method: :delete, class: "btn btn-outline-danger d-block0 w-100", 
+          data: { turbo_confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
   </div>
 
 <% end %> 

@@ -1,36 +1,23 @@
-<div class="container">
+<div class="container pb-2 mt-3 flex-grow-1" style="max-width: 720px;">
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section class="bg-white rounded-4 p-4">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Users</th>
-          <th scope="col">Roles</th>
-          <th scope="col" class="text-end">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %> 
+  <section class='my-2'>
+    <div class='p-3 card rounded-4'>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= user.user.display_name %></td>
-            <td><%=user.user_trip_role.role %></td>
-            <td class="d-flex justify-content-end">
-              <%= link_to edit_trip_user_trip_path(@trip, user) do %>
-                <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
-              <% end %>
-              <%= button_to trip_user_trip_path(@trip, user), method: :delete, 
-                class: "btn btn-link p-0", 
-                form: { data: { turbo_confirm: "Are you sure?" } } do %>
-                <%= image_tag "x-lg.svg", alt: "Delete" %>
-              <% end %>
-            </td>
+            <th scope="col">Users</th>
+            <th scope="col">Roles</th>
+            <th scope="col" class="text-end">Actions</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-
+        </thead>
+        <tbody>
+          <% @users.each do |user| %> 
+            <%= render partial: 'member_row', locals: { user: user } %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </section>
 
 </div>

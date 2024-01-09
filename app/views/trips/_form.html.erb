@@ -14,10 +14,40 @@
         required: true, class: 'date' %>
       <%= f.date_field :end_date, label_as_placeholder: true, 
         required: true, class: 'date' %>
+
+      <%= f.form_group :trip_image_id, label: { text: "Trip Thumbnail" } do %>
+        <div class="d-flex flex-wrap gap-2 justify-content-center">
+          <div>
+            <%= image_tag 'trip-image-1.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 1, hide_label: true, checked: true %>
+          </div>
+          <div>
+            <%= image_tag 'trip-image-2.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 2, hide_label: true %>
+          </div>
+          <div>
+            <%= image_tag 'trip-image-3.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 3, hide_label: true %>
+          </div>
+          <div>
+            <%= image_tag 'trip-image-4.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 4, hide_label: true %>
+          </div>
+          <div>
+            <%= image_tag 'trip-image-5.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 5, hide_label: true %>
+          </div>
+          <div>
+            <%= image_tag 'trip-image-6.png', style:"height: 80px" %>
+            <%= f.radio_button :trip_image_id, 6, hide_label: true %>
+          </div>
+        </div>
+      <% end %>
+
+
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 
                     'Create'), class: "btn btn-primary w-100 text-white" %>
       <%= link_to 'Back', 'javascript:history.back()',
-        class: "btn btn-outline-primary w-100 mt-2" %>
-
+        class: "btn btn-outline-secondary w-100 mt-2" %>
     </div>
 <% end %>

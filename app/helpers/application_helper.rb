@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def render_trip_itinerary_footer?
-    %w[itinerary_items expenses debts user_trips].include?(controller_name)
+    %w[itinerary_items expenses debts user_trips debtors].include?(controller_name) && action_name != 'edit'
   end
 
   def navigation_items(trip)
@@ -21,5 +21,17 @@ module ApplicationHelper
     nav_items << { title: 'Manage Members', path: trip_user_trips_path(trip) } if admin_for_trip?(trip)
 
     nav_items
+  end
+
+  def trip_image(trip)
+    "trip-image-#{trip.trip_image.id}.png"
+  end
+
+  def flash_class(level)
+    cases = { notice: 'alert alert-info',
+              success: 'alert alert-success',
+              error: 'alert alert-error',
+              alert: 'alert alert-error' }
+    cases[level]
   end
 end

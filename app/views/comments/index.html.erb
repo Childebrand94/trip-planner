@@ -1,49 +1,62 @@
-<div class="container">
-  <section class="card mt-2 p-2 shadow mb-4 bg-body-tertiary rounded">
-    <div class="card-body row">
+<div class="container" style="max-width: 720px;">
+  <section class="card mt-2 p-3 shadow mb-4 bg-body-tertiary rounded">
+    <div class="row">
       <div class="col">
-        <h1 class="card-title"><%= @itinerary_item.event_name %></h1> 
-        <span class='me-2'>
+
+        <%# Event time %>
+
+        <span class='text-secondary'>
           <%= @itinerary_item.start_time.strftime("%H:%M") %> - 
           <%= @itinerary_item.end_time.strftime("%H:%M") %>
         </span>
-        <p class="card-subtitle text-body-secondary mt-4">
-        <%= @itinerary_item.address %> 
-        </p> 
+
+        <%# Event name %>
+
+        <h1 class="card-title my-1"><%= @itinerary_item.event_name %></h1> 
       </div>
 
+        <%# Event Edit and Delete links %>
+
       <div class="col d-flex justify-content-end ">
-        <%= link_to  edit_trip_itinerary_item_path(@trip, @itinerary_item, date: @date), class: "text-info me-2" do %>
+        <%= link_to  edit_trip_itinerary_item_path(@trip, @itinerary_item, 
+                                                   date: @date), 
+                                                   class: "text-info me-2" do %>
           <%= image_tag "pencil-square.svg" %> 
         <% end %>
-        <%= button_to trip_itinerary_item_path(trip_id: @trip.id, id: @itinerary_item.id), method: :delete, class: "text-info text-decoration-none nav-link", data: { turbo_confirm: "Are you sure?" }, form_class: "d-inline"  do %>
+        <%= button_to trip_itinerary_item_path(trip_id: @trip.id, 
+                                               id: @itinerary_item.id), 
+                                               method: :delete, 
+                                               class: "text-info text-decoration-none nav-link", 
+                                               data: { turbo_confirm: "Are you sure?" }, 
+                                               form_class: "d-inline"  do %>
           <%= image_tag "x-lg.svg" %> 
         <% end %>
       </div>
     </div>
-  </section>
 
-  <section class="my-3">
-    <div class="card p-2">
-      <h5 class="card-subtitle my-1">Comment</h5>
-      <%= render 'form' %>
+    <%# Event address %>
+
+    <div class="row">
+      <span class="text-body-secondary">
+      <%= @itinerary_item.address %> 
+      </span> 
     </div>
   </section>
 
-  <section class="my-3">
-    <% if @all_comments.any? %> 
-      <% @all_comments.each do |comment| %>
-        <% if comment.author.blank? %>
-          <div></div>
-        <% else %>
-          <%= render partial: "comment_card", locals: { comment: comment } %>
+  <section class="my-2 p-3  bg-light card rounded-4">
+    <h4 class="display-5">Comments</h4>
+    <%= render 'form' %>
+      <% if @all_comments.any? %> 
+        <% @all_comments.each do |comment| %>
+          <div class="list-group">
+            <%= render partial: "comment_card", locals: { comment: comment } %>
+          </div>
         <% end %>
+      <% else %>
+        <div class="border-top mt-2">
+          <h4 class="lead p-2 mt-2">No Comments yet...</h4>
+        </div>
       <% end %>
-    <% else %>
-      <div class="card">
-        <h5 class="card-title p-2"> No Comments yet...</h5>
-      </div>
-    <% end %>
   </section>
 </div>
 
