@@ -4,7 +4,12 @@ Rails.application.routes.draw do
     get 'edit_password', to: 'users#edit_password'
     patch 'update_password', to: 'users#update_password'
   end
-  resources :invites
+  resources :invites do
+    member do
+      get 'accept', to: 'invites#show_accept'
+      post 'respond', to: 'invites#respond'
+    end
+  end
 
   resources :trips do
     get 'day/:date', to: 'trips#day', as: :trip_day

@@ -28,7 +28,10 @@
         </div>
       <% end %>
 
-      <%= yield %>
+      <div class="d-flex flex-column flex-grow-1">
+        <%= yield %>
+        <%= render partial: 'shared/footer' %>
+      </div>
 
     <div class="itinerary-footer">
       <% if render_trip_itinerary_footer? %>

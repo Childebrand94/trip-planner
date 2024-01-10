@@ -15,7 +15,61 @@ class InvitesController < ApplicationController
     end
   end
 
+  def show_accept
+    @invite = Invite.find_by(token: params[:invite_token])
+    redirect_to root_path, alert: 'Invite not found.' if @invite.nil?
+  end
+
+  def respond
+    @invite = load_invite_from_token
+
+    if @invite.nil?
+      redirect_to root_path, alert: 'Invite not found.'
+      return
+    end
+
+    process_invite_response
+  end
+
   private
+
+  def load_invite_from_token
+    invite_token = params[:invite][:invite_token]
+    Invite.find_by(token: invite_token)
+  end
+
+  def process_invite_response
+    case params[:response]
+    when 'accept'
+      process_accept
+    when 'decline'
+      process_decline
+    else
+      invalid_response_action
+    end
+  end
+
+  def process_accept
+    if @invite.present?
+      add_user_to_trip_with_role
+      redirect_to trip_path(@invite.trip_id), notice: 'Added to trip.'
+    else
+      render :show_accept, status: :unprocessable_entity
+    end
+  end
+
+  def process_decline
+    if @invite.present?
+      @invite.destroy
+      redirect_to root_path, notice: 'Invite was declined.'
+    else
+      render :show_accept, status: :unprocessable_entity
+    end
+  end
+
+  def invalid_response_action
+    render :show_accept, status: :unprocessable_entity, alert: 'Invalid response.'
+  end
 
   def build_invite
     invite = Invite.new(invite_params)
@@ -33,12 +87,13 @@ class InvitesController < ApplicationController
   end
 
   def handle_existing_user
-    InvitationMailer.existing_user_invite(@invite).deliver
-    add_user_to_trip_with_role
+    InvitationMailer.existing_user_invite(@invite,
+                                          accept_invite_url(@invite, invite_token: @invite.token)).deliver_now
   end
 
   def handle_new_user
-    InvitationMailer.new_user_invite(@invite, new_user_url(invite_token: @invite.token)).deliver
+    InvitationMailer.new_user_invite(@invite,
+                                     new_user_url(invite_token: @invite.token)).deliver
   end
 
   def add_user_to_trip_with_role
@@ -47,6 +102,6 @@ class InvitesController < ApplicationController
   end
 
   def invite_params
-    params.require(:invite).permit(:email, :trip_id)
+    params.require(:invite).permit(:email, :trip_id, :response)
   end
 end

@@ -3,7 +3,7 @@ Hi,
 You have been invited by <%= @sender.display_name %> to join a trip on <%= @trip.name %>!
 
 To view details about this trip, please visit the following URL:
-<%= trip_url(@trip) %>
+<%= link_to 'Accept form', @accept_url %>
 
 Looking forward to your participation!
 

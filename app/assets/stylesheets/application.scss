@@ -36,12 +36,6 @@ input[type=number] {
     background-color: #E9E8E8;
 }
 
-.form {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .main-content {
     display: flex;
     align-items: center;
@@ -71,11 +65,6 @@ input[type=number] {
 }
 
 
-.min-button-width {
-    min-width: 100px;
-    margin-right: 20px;
-}
-
 @media screen and (max-width: 540px) {
     .itinerary-nav {
         display: none;
@@ -103,9 +92,5 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-.wrapper {
-    flex-grow: 1;
-    background-color: #yourColor; /* Replace with your desired color */
 }
 

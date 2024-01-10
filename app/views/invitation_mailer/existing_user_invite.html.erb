@@ -5,14 +5,14 @@
 </head>
 <body>
   <h1>Hi,</h1>
-  <p>You have been invited by <%= @sender.display_name %> to join a trip on <%= @trip.name %>!</p>
+  <p>You have been invited by <%= @sender.first_name %> <%= @sender.last_name %> to join a trip on <%= @trip.name %>!</p>
   <p>
     To view details about this trip, please click the link below:
-    <%= link_to 'View Trip', trip_url(@trip) %>
+    <%= link_to 'Accept form', @accept_url %>
   </p>
   <p>Looking forward to your participation!</p>
   <p>Best regards,</p>
-  <p><%= @sender.display_name %></p>
+  <p><%= @sender.first_name %> <%= @sender.last_name %></p>
 </body>
 </html>
 

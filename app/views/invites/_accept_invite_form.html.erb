@@ -1,0 +1,19 @@
+<%= bootstrap_form_with(model: @invite, 
+                        url: respond_invite_url(@invite), 
+                        method: :post) do |f| %>
+
+  <%= f.alert_message "Please fix the errors below." %>
+  <%= f.hidden_field :invite_token, value: params[:invite_token] %>
+  <div class="container my-2">
+    <%= f.button 'Accept', 
+      class: "btn btn-primary w-100 text-white my-2", 
+      value: "accept", 
+      name: "response", 
+      title: "Accept" %>
+    <%= f.button "Decline", 
+      class: "btn btn-outline-danger w-100", 
+      value: "decline", 
+      name: "response", 
+      title: "Decline" %>
+  </div>
+<% end %>

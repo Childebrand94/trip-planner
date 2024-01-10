@@ -1,11 +1,12 @@
 class InvitationMailer < ApplicationMailer
   default from: ENV['EMAIL_USERNAME']
 
-  def existing_user_invite(invite)
+  def existing_user_invite(invite, accept_url)
     @invite = invite
     @trip = invite.trip
     @sender = invite.sender
     @recipient = invite.recipient
+    @accept_url = accept_url
 
     mail(to: @recipient.email,
          reply_to: @sender.email,
