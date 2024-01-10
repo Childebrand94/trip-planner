@@ -32,7 +32,7 @@ class NotesController < ApplicationController
 
     if @note.update(note_params)
       redirect_to trip_path(@trip),
-                  notice: 'Comment was updated successfully.'
+                  notice: 'Note was updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end

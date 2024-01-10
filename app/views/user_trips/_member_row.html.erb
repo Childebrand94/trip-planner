@@ -1,11 +1,11 @@
 <tr>
-  <td><%= user.user.display_name %></td>
-  <td><%=user.user_trip_role.role %></td>
+  <td><%= user_trip.user.display_name %></td>
+  <td><%=user_trip.user_trip_role.role %></td>
   <td class="d-flex justify-content-end">
-    <%= link_to edit_trip_user_trip_path(@trip, user) do %>
+    <%= link_to edit_trip_user_trip_path(@trip, user_trip) do %>
       <%= image_tag "pencil-square.svg", class: "mx-2", alt: "Edit" %> 
     <% end %>
-    <%= button_to trip_user_trip_path(@trip, user), method: :delete, 
+    <%= button_to trip_user_trip_path(@trip, user_trip.user.id), method: :delete, 
       class: "btn btn-link p-0", 
       form: { data: { turbo_confirm: "Are you sure?" } } do %>
       <%= image_tag "x-lg.svg", alt: "Delete" %>

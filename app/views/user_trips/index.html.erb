@@ -12,8 +12,8 @@
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %> 
-            <%= render partial: 'member_row', locals: { user: user } %>
+          <% @user_trips.each do |user_trip| %> 
+            <%= render partial: 'member_row', locals: { user_trip: user_trip } %>
           <% end %>
         </tbody>
       </table>

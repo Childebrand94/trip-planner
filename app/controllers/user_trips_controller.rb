@@ -7,7 +7,7 @@ class UserTripsController < ApplicationController
   end
 
   def index
-    @users = UserTrip.where(trip_id: @trip)
+    @user_trips = UserTrip.where(trip_id: @trip)
   end
 
   def edit
@@ -35,16 +35,21 @@ class UserTripsController < ApplicationController
   end
 
   def destroy
-    @user_trip = UserTrip.find(params[:id])
-    unless user_has_permission?(@user_trip, @trip)
-      redirect_back(fallback_location: trip_user_trips_path(@trip),
-                    alert: 'You are not authorized to perform this action.')
-      return
+    trip_id = params[:trip_id]
+    user_id = params[:id]
+
+    @user_trip = UserTrip.find_by(trip_id:, user_id:)
+
+    if @user_trip
+      @user_trip.destroy
+      if current_user.id.to_i == user_id.to_i
+        redirect_to trips_path, notice: 'You have successfully left the trip.'
+      else
+        redirect_to trip_user_trips_path(trip_id:), notice: 'User was successfully removed from the trip.'
+      end
+    else
+      redirect_to trip_path(trip_id), alert: 'User trip not found.'
     end
-
-    @user_trip.destroy
-
-    redirect_to trip_user_trips_path(trip_id: @trip)
   end
 
   private
