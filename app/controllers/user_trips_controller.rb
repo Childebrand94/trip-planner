@@ -35,13 +35,13 @@ class UserTripsController < ApplicationController
   end
 
   def destroy
-    unless admin_for_trip?(@trip)
+    @user_trip = UserTrip.find(params[:id])
+    unless user_has_permission?(@user_trip, @trip)
       redirect_back(fallback_location: trip_user_trips_path(@trip),
                     alert: 'You are not authorized to perform this action.')
       return
     end
 
-    @user_trip = UserTrip.find(params[:id])
     @user_trip.destroy
 
     redirect_to trip_user_trips_path(trip_id: @trip)
