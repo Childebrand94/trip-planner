@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>You are Invited to Join a Trip</title>
-</head>
-<body>
-  <h1>Hello!</h1>
-  <p>You have been invited by <%= @sender.display_name %> to join <%= @trip.name %> on our platform.</p>
-  <p>
-    To accept the invitation and register, please follow the link below:
-    <%= link_to 'Sign Up', @signup_url %>
-  </p>
-  <p>We're excited to have you onboard and join our trips!</p>
-  <p>Best regards</p>
-</body>
-</html>
+<body class="bg-light">
+  <div class="container">
+    <div class="card p-6 p-lg-10 space-y-4">
+      <h1 class="h3 fw-700">Welcome to PathFindr</h1>
+      
+      <p>Hello,</p>
 
+      <p>You have been invited by <%= @sender.first_name %> <%= @sender.last_name %> 
+      to join a trip to <%= @trip.name %>! We're thrilled at the possibility of you joining us for this adventure.</p>
+
+      <%= link_to 'Sign Up', @signup_url, class: 'btn btn-primary p-3 fw-700' %>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invitation to Join a Trip</title>
+</head>
+<body>
+  <h1>Hi,</h1>
+  <p>You have been invited by <%= @sender.first_name %> <%= @sender.last_name %> to join a trip on <%= @trip.name %>!</p>
+  <p>
+    To view details about this trip, please click the link below:
+    <%= link_to 'Start planning now', @accept_url %>
+  </p>
+  <p>Looking forward to your participation!</p>
+  <p>Best regards,</p>
+  <p><%= @sender.first_name %> <%= @sender.last_name %></p>
+</body>
+</html>
+

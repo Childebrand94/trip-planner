@@ -3,7 +3,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/Childebrand94/trip-planner">
-  <img src="app/assets/images/readMe-comapas.png" alt="Logo" width="200" height="200" style="border-radius: 50%;">
+  <img src="app/assets/images/logo.png" alt="Logo" width="200" height="200" 
+  style="border-radius: 50%;">
   </a>
 <h3 align="center">PathFindr</h3>
   <p align="center">

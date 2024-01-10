@@ -8,9 +8,9 @@ class InvitationMailer < ApplicationMailer
     @recipient = invite.recipient
     @accept_url = accept_url
 
-    mail(to: @recipient.email,
-         reply_to: @sender.email,
-         subject: 'Invitation to Join a Trip')
+    bootstrap_mail(to: @recipient.email,
+                   reply_to: @sender.email,
+                   subject: 'You are Invited to Join a Trip')
   end
 
   def new_user_invite(invite, signup_url)
@@ -19,8 +19,8 @@ class InvitationMailer < ApplicationMailer
     @sender = invite.sender
     @signup_url = signup_url
 
-    mail(to: invite.email,
-         reply_to: @sender.email,
-         subject: 'You are Invited to Join a Trip')
+    bootstrap_mail(to: invite.email,
+                   reply_to: @sender.email,
+                   subject: 'You are Invited to Join a Trip')
   end
 end

@@ -20,7 +20,7 @@ module TripPlanner
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
-    #
+    config.action_mailer.asset_host = 'http://127.0.0.1:3000/'
     config.time_zone = 'Eastern Time (US & Canada)'
     # config.eager_load_paths << Rails.root.join("extras")
   end

@@ -1,12 +1,12 @@
-Hello!
+Hello,
 
-You have been invited by <%= @sender.display_name %> to join <%= @trip.name %> on our platform.
+You have been invited by <%= @sender.first_name %> <%= @sender.last_name %> to join the trip '<%= @trip.name %>' on our platform.
 
-To accept the invitation and register, please follow the link below:
+To accept this invitation and register, please click on the following link:
 <%= @signup_url %>
 
-We're excited to have you onboard and join our trips!
+We're excited to have you onboard and look forward to your participation in our trips!
 
 Best regards,
-<%= @sender.display_name %>
+<%= @sender.first_name %> <%= @sender.last_name %>
 

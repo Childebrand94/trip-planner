@@ -7,6 +7,7 @@ ruby '3.2.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 5.3'
+gem 'bootstrap-email'
 gem 'bootstrap_form', '~> 5.4'
 gem 'dotenv-rails', groups: %i[development test]
 gem 'flatpickr'
@@ -20,7 +21,6 @@ gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]
-gem 'webpacker'
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'

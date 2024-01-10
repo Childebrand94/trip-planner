@@ -1,14 +1,17 @@
 <div class="list-group-item list-group-item-action">
-  <div class="position-relative">
-    <p>
-    <span class="fs-5"><%= note.body %></span>
-    <small class="text-secondary d-block"><%= note.author.display_name %></small>
-    </p>
-    <%= link_to edit_trip_note_path(@trip.id, note.id),
-      class: "text-info me-2 position-absolute top-0",
-      style: "right: 3%" do %>
-      <%= image_tag "pencil-square.svg" %> 
-    <% end %>
+  <div class="row">
+    <div class="col-10">
+      <p>
+       <span class=""><%= note.body %></span>
+       <small class="text-secondary d-block"><%= note.author.display_name %></small>
+      </p>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <%= link_to edit_trip_note_path(@trip.id, note.id),
+        class: "me-2" do %>
+        <%= image_tag "pencil-square.svg" %> 
+      <% end %>
+    </div>
   </div>
 </div>
 
