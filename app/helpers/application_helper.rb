@@ -34,4 +34,21 @@ module ApplicationHelper
               alert: 'alert alert-error' }
     cases[level]
   end
+
+  def background_color(type)
+    case type
+    when 'Dining'
+      'bg-dining'
+    when 'Stay'
+      'bg-stay'
+    when 'Excursion'
+      'bg-excursion'
+    when 'Business'
+      'bg-business'
+    when 'Travel'
+      'bg-travel'
+    else
+      'bg-light'
+    end
+  end
 end

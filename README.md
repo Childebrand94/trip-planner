@@ -126,8 +126,9 @@ Friends can be invited to collaborate through the Friend Mailer feature,
 allowing for group planning and real-time itinerary adjustments. Within the 
 app, participants can collectively add, and edit, daily plans, places to 
 visit, and activities. The inclusion of voting and commenting functionalities 
-facilitates democratic decision-making and interactive discussions. Thanks to the Bootstrap-powered responsive design, planning is accessible on any device, enabling users to engage in planning anytime, anywhere. Once the itinerary is finalized, the admin can lock in the plans, and users can share their exciting journey with others outside the app.
-
+facilitates democratic decision-making and interactive discussions. Thanks to 
+the Bootstrap-powered responsive design, planning is accessible on any device, 
+enabling users to engage in planning anytime, anywhere.
 <!-- ROADMAP -->
 
 ## Roadmap

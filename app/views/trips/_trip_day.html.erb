@@ -1,6 +1,6 @@
 <div class="list-group-item list-group-item-action">
   <%= link_to trip_trip_day_path(trip.id, date), class: "text-secondary" do %>
-    <h3 class='card-title text-secondary'><%= date.strftime("%A, %B %d") %></h3>
+    <h3 class='card-title text-secondary mb-2'><%= date.strftime("%A, %B %d") %></h3>
   <% end %>
   <% itinerary_items = trip.itinerary_by_day[date] %>
   <% if itinerary_items.present? %>

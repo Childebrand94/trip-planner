@@ -8,11 +8,12 @@
 #     MovieGenre.find or_create_by!(name: genre_name)
 #   endo
 
-names = %w[Dining Stay Excursion Business Travel]
+names = ['Dining', 'Check In', 'Check Out', 'Excursion', 'Business', 'Travel']
 
 names.each do |type|
   ItineraryItemType.create(name: type)
 end
+
 EXPENSES = [
   'Flights',
   'Lodging',

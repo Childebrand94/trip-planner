@@ -1,14 +1,26 @@
-<li class='list-group-item d-flex justify-content-between'>
-  <div>
-    <span class='me-2'><%= itinerary_item.start_time.strftime("%H:%M") %> - 
-      <%= itinerary_item.end_time.strftime("%H:%M") %></span>
-    <strong class='me-2'><%= itinerary_item.event_name %></strong>
-    <div>
-      <span class='me-2'><%= itinerary_item.address %></span>
+<li class='list-group-item <%= background_color(itinerary_item.item_type.name) %>'>
+    <div class='row w-100 ps-1 d-flex flex-column align-items-center justify-content-center'>
+      <div class='col-sm-9 row w-100 p-0 '>
+        <span class='p-0 d-flex justify-content-between'>
+          <%= itinerary_item.start_time.strftime("%H:%M") %> - 
+          <%= itinerary_item.end_time.strftime("%H:%M") %> 
+           <strong>
+            <%= itinerary_item.item_type.name %>
+           </strong>
+        </span>
+        <strong class='p-0 border-top border-secondary'><%= itinerary_item.event_name %></strong>
+      </div>
     </div>
-  </div>
-  <span>
-    <%= itinerary_item.creator.display_name %>
-  </span>
+
+    <div class='row mt-1 w-100 ps-1'>
+      <div class='col-7 p-0'>
+        <span class='me-2'><%= itinerary_item.address %></span>
+      </div>
+      <div class='col p-0 d-flex justify-content-end align-items-end'>
+        <span>
+          <%= itinerary_item.creator.display_name %>
+        </span>
+      </div>
+    </div>
 </li>
 

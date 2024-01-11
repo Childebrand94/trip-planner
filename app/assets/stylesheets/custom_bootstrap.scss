@@ -1,25 +1,15 @@
 @import "bootstrap/functions";
 @import "bootstrap/variables";
-// $theme-colors: (
-    // "primary": #5d3320,
-    // "secondary": #63605e,
-    // "success": #52941b,
-    // "info": #d85a2f,
-    // "warning": #feba49,
-    // "danger": #e91060,
-    // "light": #e9e2dc,
-    // "dark": #1b1f1d,
-    // "white": #ffffff,
-// );
+
 $theme-colors: (
-  "primary":   #007bff, // A strong blue from the sky
-  "secondary": #6c757d, // A neutral, versatile gray for less prominent elements
-  "success":   #28a745, // A green for positive actions or statuses
-  "info":      #17a2b8, // A lighter blue for informational messages
-  "warning":   #ffc107, // An amber/yellow for warnings or caution
-  "danger":    #dc3545, // A red for alerts and errors
-  "light":     #f8f9fa, // A very light gray for backgrounds or card headers
-  "dark":      #343a40  // A dark gray for text or other elements on light backgrounds
+  "primary":   #007bff,
+  "secondary": #6c757d,
+  "success":   #28a745,
+  "info":      #17a2b8,
+  "warning":   #ffc107,
+  "danger":    #dc3545,
+  "light":     #f8f9fa,
+  "dark":      #343a40 
 );
 
 
