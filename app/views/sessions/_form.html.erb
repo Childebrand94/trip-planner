@@ -4,6 +4,10 @@
       <%= flash[:alert] %>
     </div>
   <% end %>
+  <% if params[:invite_token].present? %>
+    <%= f.hidden_field :invite_token, value: params[:invite_token] %>
+  <% end %>
+
   <%= f.alert_message "Please fix the errors below." %>
   <div class="my-2">
     <%= f.email_field :email, 

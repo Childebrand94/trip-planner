@@ -18,6 +18,7 @@ class InvitesController < ApplicationController
   def show_accept
     @invite = Invite.find_by(token: params[:invite_token])
     redirect_to root_path, alert: 'Invite not found.' if @invite.nil?
+    redirect_to login_path(invite_token: @invite.token) unless current_user.present?
   end
 
   def respond
@@ -27,7 +28,6 @@ class InvitesController < ApplicationController
       redirect_to root_path, alert: 'Invite not found.'
       return
     end
-
     process_invite_response
   end
 
@@ -52,7 +52,7 @@ class InvitesController < ApplicationController
   def process_accept
     if @invite.present?
       add_user_to_trip_with_role
-      redirect_to trip_path(@invite.trip_id), notice: 'Added to trip.'
+      redirect_to trips_path, notice: 'Added to trip.'
     else
       render :show_accept, status: :unprocessable_entity
     end
@@ -99,6 +99,7 @@ class InvitesController < ApplicationController
   def add_user_to_trip_with_role
     role = UserTripRole.find_or_create_by(role: 'Member')
     UserTrip.create!(user: @invite.recipient, trip: @invite.trip, user_trip_role: role)
+    @invite.destroy
   end
 
   def invite_params
