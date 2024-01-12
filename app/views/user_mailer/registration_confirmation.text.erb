@@ -1,0 +1,8 @@
+Welcome to PathFindr
+
+Almost done, <%= @user.first_name %> <%= @user.last_name %>.
+To complete your PathFindr sign up, we just need to verify your email address <%= @user.email %>.
+
+Please confirm your email by visiting the following link:
+<%= confirm_email_user_url(@user.confirm_token) %>
+

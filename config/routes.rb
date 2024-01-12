@@ -1,8 +1,14 @@
+# frozen_string_literal: true
+
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   root 'home#home'
   resources :users do
     get 'edit_password', to: 'users#edit_password'
     patch 'update_password', to: 'users#update_password'
+    member do
+      get :confirm_email
+    end
   end
   resources :invites do
     member do
@@ -27,3 +33,4 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end
+# rubocop:enable Metrics/BlockLength

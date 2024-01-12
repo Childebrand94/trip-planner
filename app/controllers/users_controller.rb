@@ -37,11 +37,10 @@ class UsersController < ApplicationController
     # Using a transaction block in case any part of the user creation
     # with the invitation fails the whole transaction will be rolled back.
     User.transaction do
-      if @user.save
-        process_invite_token if @token.present?
-        redirect_to login_path, notice: 'User was successfully created.'
+      if @token.present?
+        invite_flow
       else
-        render :new, status: :unprocessable_entity
+        registration_flow
       end
     end
   end
@@ -60,12 +59,47 @@ class UsersController < ApplicationController
     redirect_to root_path, notice: 'User was successfully destroyed.'
   end
 
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the PathFindr! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_path
+    else
+      flash[:error] = 'Sorry. User does not exist'
+      redirect_to root_url
+    end
+  end
+
   private
+
+  def registration_flow
+    if @user.save
+      UserMailer.registration_confirmation(@user).deliver
+      flash[:success] = 'Please confirm your email address to continue'
+      redirect_to root_path
+    else
+      flash[:error] = 'Ooooppss, something went wrong!'
+      render 'new'
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def invite_flow
+    if @user.save
+      process_invite_token
+      redirect_to login_path, notice: 'User was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def process_invite_token
     invite = Invite.find_by_token(@token)
     if invite
       add_user_to_trip(invite.trip)
+      @user.email_activate
     else
       render :new, status: :unprocessable_entity
       raise ActiveRecord::Rollback

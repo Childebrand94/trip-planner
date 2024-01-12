@@ -11,10 +11,12 @@
 #
 class User < ApplicationRecord
   has_secure_password
+  before_create :confirmation_token
 
   has_many :user_trips, dependent: :destroy
 
-  has_many :trips, through: :user_trips
+  has_many :trips, through: :user_trips,
+                   dependent: :destroy
 
   has_many :created_itinerary_items,
            foreign_key: 'creator_id',
@@ -58,6 +60,18 @@ class User < ApplicationRecord
 
   def voted_on?(itinerary_item)
     itinerary_votes.exists?(itinerary_item_id: itinerary_item.id)
+  end
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(validate: false)
+  end
+
+  def confirmation_token
+    return unless confirm_token.blank?
+
+    self.confirm_token = SecureRandom.urlsafe_base64.to_s
   end
 
   private

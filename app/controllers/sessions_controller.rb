@@ -4,7 +4,13 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params.dig(:user, :email))
     if user&.authenticate(params.dig(:user, :password))
-      login(user)
+      if user.email_confirmed
+        login(user)
+      else
+        flash.now[:error] = 'Please activate your account by following the
+        instructions in the account confirmation email you received to proceed'
+        render 'new'
+      end
       handle_invite_token
     else
       flash.now[:alert] = 'Invalid email or password'

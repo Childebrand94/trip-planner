@@ -1,0 +1,18 @@
+<body class="bg-light">
+  <div class="container">
+    <div class="card p-6 p-lg-10 space-y-4">
+      <h1 class="h3 fw-700">
+        Welcome to PathFindr
+      </h1>
+
+      <p>Almost done, <%= @user.first_name %> <%= @user.last_name %>.
+      To complete your PathFindr sign up, we just need to verify your email 
+      address <%= @user.email %></p>
+
+      <%= link_to 'Confirm Email', confirm_email_user_url(@user.confirm_token), 
+        class: 'btn btn-primary p-3 fw-700'%>
+
+    </div>
+  </div>
+</body>
+
