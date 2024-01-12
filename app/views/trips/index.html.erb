@@ -9,7 +9,7 @@
 
     <h4 class="card-subtitle my-2 mx-5">Upcoming Plans</h4>
     <% if @trips.any? %>
-      <div class="d-flex flex-wrap justify-content-center" style="max-width: 768px;"> 
+      <div class="d-flex flex-wrap justify-content-center"> 
         <% @trips.each do |trip| %>
             <%= render partial: 'trip_card', locals: { trip: trip } %>
         <% end %>

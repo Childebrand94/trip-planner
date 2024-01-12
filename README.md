@@ -47,7 +47,9 @@
 <!-- ABOUT THE PROJECT -->
 About The Project
 
-![Alt Text]()
+![alt text](home-page.jpg)
+
+<img src="app/assets/images/pathfindr_views"> 
 
 PathFindr is an innovative trip planning application designed to make your 
 travel planning seamless, interactive, and collaborative. Whether you're 

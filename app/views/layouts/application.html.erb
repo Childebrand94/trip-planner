@@ -15,9 +15,13 @@
     <div data-nav-footer-target="topSpacer"></div>
     <%= render "layouts/navbar" %>
 
-      <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;">
-        <p ><%= "#{controller_name}##{action_name}" %></p>
-      </div>
+      <%# Development %>
+
+      <%# <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;"> %>
+        <%# <p ><%= "#{controller_name}##{action_name}"%>
+      <%# </div> %>
+
+      <%# Alerts %>
 
       <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %> alert-dismissible fade show" role="alert">
@@ -39,6 +43,8 @@
         <div data-nav-footer-target="mainFooter"></div>
       <% end %>
     </div>
+
     <div data-nav-footer-target="bottomSpacer"></div>
+
   </body>
 </html>
