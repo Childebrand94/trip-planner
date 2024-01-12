@@ -1,7 +1,7 @@
-<div class="container" style="max-width: 720px;">
-  <section class="card mt-2 p-3 shadow mb-4 bg-body-tertiary rounded">
+<div class="container " style="max-width: 720px;">
+  <section class="card mt-2 p-3 shadow mb-4 <%= background_color(@itinerary_item.item_type.name) %>">
     <div class="row">
-      <div class="col">
+      <div class="col-9">
 
         <%# Event time %>
 
@@ -12,7 +12,7 @@
 
         <%# Event name %>
 
-        <h1 class="card-title my-1"><%= @itinerary_item.event_name %></h1> 
+        <h1 class="h4 my-1 "><%= @itinerary_item.event_name %></h1> 
       </div>
 
         <%# Event Edit and Delete links %>
