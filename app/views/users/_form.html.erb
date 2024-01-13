@@ -3,7 +3,7 @@
    <% if @token.present? %>
     <%= f.hidden_field :invite_token, value: @token %>
   <% end %>
-  <div class="container my-2">
+  <div class="container my-2 text-center">
     <%= f.text_field :display_name, label_as_placeholder: true, required: true%>
     <%= f.text_field :first_name, label_as_placeholder: true, required: true%>
     <%= f.text_field :last_name, label_as_placeholder: true, required: true%>
@@ -12,6 +12,8 @@
     <%= f.password_field :password_confirmation, label_as_placeholder: true, 
       required: true, label: "Confirm Password" %>
     <%= f.submit (controller.action_name == 'new' ? 'Create': 'Update'), 
-      class: "btn btn-primary w-100 text-white" %>
+      class: "btn btn-primary w-100 text-white mb-2" %>
+    <%= link_to 'Aleardy have an account', login_path %>
   </div>
+
 <% end %>

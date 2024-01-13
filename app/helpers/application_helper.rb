@@ -39,8 +39,10 @@ module ApplicationHelper
     case type
     when 'Dining'
       'bg-dining'
-    when 'Stay'
-      'bg-stay'
+    when 'Check In'
+      'bg-chekIn'
+    when 'Check Out'
+      'bg-chekOut'
     when 'Excursion'
       'bg-excursion'
     when 'Business'

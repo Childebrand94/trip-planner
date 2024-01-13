@@ -1,14 +1,19 @@
 <li class='list-group-item <%= background_color(itinerary_item.item_type.name) %>'>
     <div class='row w-100 ps-1 d-flex flex-column align-items-center justify-content-center'>
       <div class='col-sm-9 row w-100 p-0 '>
-        <span class='p-0 d-flex justify-content-between'>
+        <span class='p-0 d-flex justify-content-between border-bottom border-secondary'>
           <%= itinerary_item.start_time.strftime("%H:%M") %> - 
           <%= itinerary_item.end_time.strftime("%H:%M") %> 
            <strong>
             <%= itinerary_item.item_type.name %>
            </strong>
         </span>
-        <strong class='p-0 border-top border-secondary'><%= itinerary_item.event_name %></strong>
+        <%= link_to  trip_itinerary_item_path(@trip, itinerary_item.id), 
+          class: "text-black text-decoration-none" do %>
+          <strong class='link-hover '>
+            <%= itinerary_item.event_name %>
+          </strong>
+        <% end %>
       </div>
     </div>
 
