@@ -13,11 +13,11 @@ gem 'dotenv-rails', groups: %i[development test]
 gem 'flatpickr'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.2'
 gem 'sassc-rails'
 gem 'sprockets-rails'
-gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'turbo-rails', '~> 1.0'
 gem 'tzinfo-data', platforms: %i[windows jruby]

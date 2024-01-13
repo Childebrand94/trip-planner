@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
-    t.integer "author_id", null: false
-    t.integer "parent_id"
-    t.integer "itinerary_item_id", null: false
+    t.bigint "author_id", null: false
+    t.bigint "parent_id"
+    t.bigint "itinerary_item_id", null: false
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,8 +27,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "debtors", force: :cascade do |t|
-    t.integer "expense_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "expense_id", null: false
+    t.bigint "user_id", null: false
     t.decimal "amount_owed", precision: 10, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,9 +43,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.integer "trip_id", null: false
-    t.integer "payer_id", null: false
-    t.integer "expense_category_id", null: false
+    t.bigint "trip_id", null: false
+    t.bigint "payer_id", null: false
+    t.bigint "expense_category_id", null: false
     t.string "name", null: false
     t.decimal "amount", precision: 10, scale: 2, null: false
     t.boolean "paid", default: false, null: false
@@ -71,9 +74,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "itinerary_items", force: :cascade do |t|
-    t.integer "creator_id", null: false
-    t.integer "trip_id", null: false
-    t.integer "item_type_id", null: false
+    t.bigint "creator_id", null: false
+    t.bigint "trip_id", null: false
+    t.bigint "item_type_id", null: false
     t.string "event_name", null: false
     t.string "address", null: false
     t.datetime "start_time", null: false
@@ -86,8 +89,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "itinerary_votes", force: :cascade do |t|
-    t.integer "itinerary_item_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "itinerary_item_id", null: false
+    t.bigint "user_id", null: false
     t.boolean "up_vote", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,8 +101,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   create_table "notes", force: :cascade do |t|
     t.text "body", null: false
     t.boolean "completed", default: false
-    t.integer "trip_id", null: false
-    t.integer "author_id", null: false
+    t.bigint "trip_id", null: false
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_notes_on_author_id"
@@ -113,7 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.integer "trip_image_id", null: false
+    t.bigint "trip_image_id", null: false
     t.string "name", null: false
     t.string "location", null: false
     t.date "start_date", null: false
@@ -132,9 +135,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_194239) do
   end
 
   create_table "user_trips", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "trip_id", null: false
-    t.integer "user_trip_role_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "trip_id", null: false
+    t.bigint "user_trip_role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trip_id"], name: "index_user_trips_on_trip_id"

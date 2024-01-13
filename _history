@@ -42,3 +42,5 @@ rails g rspec:request
 quit
 User.all
 quit
+Session.all
+quit
