@@ -37,10 +37,14 @@ class UsersController < ApplicationController
     # Using a transaction block in case any part of the user creation
     # with the invitation fails the whole transaction will be rolled back.
     User.transaction do
-      if @token.present?
-        invite_flow
+      if @user.save
+        if @token.present?
+          invite_flow
+        else
+          registration_flow
+        end
       else
-        registration_flow
+        render :new, status: :unprocessable_entity
       end
     end
   end
