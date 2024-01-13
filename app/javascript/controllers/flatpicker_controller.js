@@ -27,7 +27,7 @@ export default class extends Controller {
             enableTime: true,
             allowInput: true,
             altInput: 'M/j: h:i K',
-            onChange: function(selectedDates, dateStr, instance) {
+            onClose: function(selectedDates, dateStr, instance) {
                 if (selectedDates[0]) {
                     let newMinDate = new Date(selectedDates[0]);
                     newMinDate.setMinutes(newMinDate.getMinutes() + 1);
