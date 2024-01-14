@@ -1,5 +1,5 @@
 {
-  "name": "trip-planner",
+  "name": "trip_planner",
   "engines": {
     "node": "20.0.0"
   }
