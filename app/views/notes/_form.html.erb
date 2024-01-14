@@ -5,11 +5,7 @@
   <%= f.alert_message "Please fix the errors below." %>
 
   <div class="my-2">
-    <%= f.text_field :body, label_as_placeholder: true, required: true %>
-
-    <% if controller.action_name == 'edit' %>
-      <%= f.check_box :completed %>
-    <% end %>
+    <%= f.text_area :body, label_as_placeholder: true, required: true %>
 
     <div class="d-flex flex-column">
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
@@ -17,9 +13,8 @@
         style: "#{controller.action_name == 
                   'edit'? "wight: 100%" : "width: 80px"}" %>
       <% if controller.action_name == 'edit' %>
-        <%= button_to "Delete", trip_note_path(@trip, params[:id]), 
-          method: :delete, class: "btn btn-outline-danger d-block0 w-100", 
-          data: { turbo_confirm: "Are you sure?" } %>
+        <%= link_to 'Back', 'javascript:history.back()',
+          class: "btn btn-outline-secondary" %>
       <% end %>
     </div>
   </div>
