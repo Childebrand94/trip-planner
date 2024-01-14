@@ -41,8 +41,10 @@ class UsersController < ApplicationController
         if @token.present?
           invite_flow
         else
-          flash[:success] = 'Account created!'
-          redirect_to login_path
+          login(@user)
+          flash[:success] = 'Account created and logged in.'
+          redirect_to root_path
+
         end
       else
         render :new, status: :unprocessable_entity
