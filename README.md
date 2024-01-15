@@ -23,12 +23,11 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
+    <br>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#built-with">Built With</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -36,18 +35,15 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+<br>
 <!-- ABOUT THE PROJECT -->
-##About The Project
 
 ![alt text](app/assets/images/pathfindr_views/video.gif)
+
+## About The Project
 
 PathFindr is an innovative trip planning application designed to make your 
 travel planning seamless, interactive, and collaborative. Whether you're 
@@ -61,6 +57,7 @@ PathFindr brings convenience and connectivity to your fingertips.
 <!-- USAGE EXAMPLES -->
 
 ## Usage
+
 PathFindr offers an intuitive and collaborative platform that simplifies 
 trip planning. Users begin by logging into their account and creating a 
 new trip from their dashboard, entering essential details. One of PathFindr’s 
