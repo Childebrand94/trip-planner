@@ -6,14 +6,13 @@
   <img src="app/assets/images/logo.png" alt="Logo" width="200" height="200" 
   style="border-radius: 50%;">
   </a>
-<h3 align="center">PathFindr</h3>
+<h1 align="center">PathFindr</h1>
+
   <p align="center">
     <br />
     <a href="https://github.com/Childebrand94/trip-planner"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Childebrand94/trip-planner">View Demo</a>
-    ·
     <a href="https://github.com/Childebrand94/trip-planner/issues">Report Bug</a>
     ·
     <a href="https://github.com/Childebrand94/trip-planner/issues">Request Feature</a>
