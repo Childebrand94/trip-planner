@@ -10,6 +10,7 @@ gem 'bootstrap', '~> 5.3'
 gem 'bootstrap-email'
 gem 'bootstrap_form', '~> 5.4'
 gem 'dotenv-rails', groups: %i[development test]
+gem 'faker'
 gem 'flatpickr'
 gem 'importmap-rails'
 gem 'jbuilder'

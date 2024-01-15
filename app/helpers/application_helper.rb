@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def navigation_items(trip)
     nav_items = [
-      { title: 'Overview', path: trip_path(trip) },
+      { title: 'Notes', path: trip_path(trip) },
       { title: 'Itinerary', path: trip_itinerary_items_path(trip) },
       { title: 'Expenses', path: trip_expenses_path(trip) },
       { title: 'My Debts', path: trip_debtors_path(trip) }

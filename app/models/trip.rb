@@ -2,15 +2,24 @@
 #
 # Table name: trips
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  location   :string           not null
-#  start_date :date             not null
-#  end_date   :date             not null
-#  latitude   :decimal(10, 6)
-#  longitude  :decimal(10, 6)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  end_date      :date             not null
+#  latitude      :decimal(10, 6)
+#  location      :string           not null
+#  longitude     :decimal(10, 6)
+#  name          :string           not null
+#  start_date    :date             not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  trip_image_id :bigint           not null
+#
+# Indexes
+#
+#  index_trips_on_trip_image_id  (trip_image_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (trip_image_id => trip_images.id)
 #
 class Trip < ApplicationRecord
   has_many :user_trips, dependent: :destroy

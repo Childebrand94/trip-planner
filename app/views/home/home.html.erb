@@ -3,8 +3,20 @@
     <div class="card-body mx-3 bg-transparent rounded-4 p-3">
       <h2 class="display-2 text-white">Welcome to PathFindr</h2>
       <h4 class="card-subtitle text-white lead"> Your Journey awaits.</h4>
-      <%= link_to "Start Here", (user_signed_in? ? new_trip_path : new_user_path), 
-        class: "btn btn-outline-light m-4 py-2 px-3 fs-4 lead" %>
+      <div class="d-flex">
+        <%= link_to "Start Here", (user_signed_in? ? new_trip_path : new_user_path), 
+          class: "btn btn-outline-light m-4 py-2 px-3 fs-4 lead" %>
+        <%= button_to "Demo", login_path, 
+              method: :post, 
+              params: { 
+                user: { 
+                  email: "demo_user_1@example.com", 
+                  password: "password" 
+                } 
+              }, 
+              class: "ms-2 btn btn-outline-success m-4 py-2 px-3 fs-4 lead" %>
+
+      </div>
     </div>
   </div>
 </div>

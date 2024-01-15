@@ -2,7 +2,7 @@
 #
 # Table name: user_trip_roles
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  role       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

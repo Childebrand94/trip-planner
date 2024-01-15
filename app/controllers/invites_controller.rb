@@ -6,6 +6,9 @@ class InvitesController < ApplicationController
   end
 
   def create
+    puts '@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+    puts ENV['EMAIL_USERNAME']
+    puts ENV['EMAIL_PASSWORD']
     @trip = Trip.find(params[:invite][:trip_id])
     @invite = build_invite
     if @invite.save

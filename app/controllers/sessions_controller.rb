@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
     if invite.present?
       redirect_to accept_invite_path(id: invite.id, invite_token: token), notice: 'Successfully logged in.'
     else
-      redirect_to root_path, notice: 'Successfully logged in.'
+      redirect_to trips_path, notice: 'Successfully logged in.'
     end
   end
 
