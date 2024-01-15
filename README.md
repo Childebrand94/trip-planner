@@ -6,14 +6,13 @@
   <img src="app/assets/images/logo.png" alt="Logo" width="200" height="200" 
   style="border-radius: 50%;">
   </a>
-<h3 align="center">PathFindr</h3>
+<h1 align="center">PathFindr</h1>
+
   <p align="center">
     <br />
     <a href="https://github.com/Childebrand94/trip-planner"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Childebrand94/trip-planner">View Demo</a>
-    ·
     <a href="https://github.com/Childebrand94/trip-planner/issues">Report Bug</a>
     ·
     <a href="https://github.com/Childebrand94/trip-planner/issues">Request Feature</a>
@@ -23,12 +22,11 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
+    <br>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#built-with">Built With</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -36,24 +34,54 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+<br>
 <!-- ABOUT THE PROJECT -->
-About The Project
 
 ![alt text](app/assets/images/pathfindr_views/video.gif)
+
+## About The Project
 
 PathFindr is an innovative trip planning application designed to make your 
 travel planning seamless, interactive, and collaborative. Whether you're 
 embarking on a solo adventure or organizing a group trip, 
 PathFindr brings convenience and connectivity to your fingertips.
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+PathFindr offers an intuitive and collaborative platform that simplifies 
+trip planning. Users begin by logging into their account and creating a 
+new trip from their dashboard, entering essential details. One of PathFindr’s 
+standout features is its role system, allowing the trip's admin to make final 
+decisions, ensuring smooth coordination and agreement among participants. 
+Friends can be invited to collaborate through the Friend Mailer feature, 
+allowing for group planning and real-time itinerary adjustments. Within the 
+app, participants can collectively add, and edit, daily plans, places to 
+visit, and activities. The inclusion of voting and commenting functionalities 
+facilitates democratic decision-making and interactive discussions. Thanks to 
+the Bootstrap-powered responsive design, planning is accessible on any device, 
+enabling users to engage in planning anytime, anywhere.
+<!-- ROADMAP -->
+
+## Roadmap
+
+-   [x] Roles & Permissions
+-   [ ] Notifications 
+-   [ ] Integrate Google places Api
+-   [ ] Real Time Chat
+-   [ ] Document upload
+-   [ ] Expense Summary
+-   [ ] Check List Creation
+
+See the [open issues](https://github.com/Childebrand94/trip-planner/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,9 +106,6 @@ straightforward. Follow these steps to begin your journey:
 Before you begin, ensure you have the following prerequisites installed:
 
 -   [Ruby (3.2.2)](https://www.ruby-lang.org/en/)
--   [Rails (7.1.2)](https://rubyonrails.org/)
--   [Bootstrap](https://getbootstrap.com/)
-
 
 ### Installation
 
@@ -114,36 +139,6 @@ Before you begin, ensure you have the following prerequisites installed:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
-
-## Usage
-PathFindr offers an intuitive and collaborative platform that simplifies 
-trip planning. Users begin by logging into their account and creating a 
-new trip from their dashboard, entering essential details. One of PathFindr’s 
-standout features is its role system, allowing the trip's admin to make final 
-decisions, ensuring smooth coordination and agreement among participants. 
-Friends can be invited to collaborate through the Friend Mailer feature, 
-allowing for group planning and real-time itinerary adjustments. Within the 
-app, participants can collectively add, and edit, daily plans, places to 
-visit, and activities. The inclusion of voting and commenting functionalities 
-facilitates democratic decision-making and interactive discussions. Thanks to 
-the Bootstrap-powered responsive design, planning is accessible on any device, 
-enabling users to engage in planning anytime, anywhere.
-<!-- ROADMAP -->
-
-## Roadmap
-
--   [x] Roles & Permissions
--   [ ] Notifications 
--   [ ] Integrate Google places Api
--   [ ] Real Time Chat
--   [ ] Document upload
--   [ ] Expense Summary
--   [ ] Check List Creation
-
-See the [open issues](https://github.com/Childebrand94/trip-planner/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Feedback and Contributions
 
