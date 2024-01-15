@@ -70,7 +70,7 @@ demo_trip = Trip.create!(
   location: 'Las Vegas, NV, USA',
   trip_image_id: 4,
   start_date: Date.tomorrow + 1.year,
-  end_date: Date.tomorrow + 1.year + 5.days
+  end_date: Date.tomorrow + 1.year + 4.days
 )
 
 (1..5).each do |i|
@@ -96,7 +96,7 @@ notes.each do |note_body|
   )
 end
 
-# Create itinerary items
+# Create itinerary items Types
 # item_type_dining = ItineraryItemType.find_by(name: 'Dining')
 # item_type_checkin = ItineraryItemType.find_by(name: 'Check In')
 # item_type_checkout = ItineraryItemType.find_by(name: 'Check Out')
