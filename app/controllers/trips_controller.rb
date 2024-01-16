@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: %i[show edit update destroy]
+  before_action :check_demo_user, only: %i[update destroy]
 
   def index
     @trips = current_user.trips

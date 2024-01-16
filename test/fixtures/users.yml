@@ -4,6 +4,7 @@
 #
 #  id              :bigint           not null, primary key
 #  confirm_token   :string
+#  demo            :boolean          default(FALSE)
 #  display_name    :string           not null
 #  email           :string           not null
 #  email_confirmed :boolean          default(FALSE)

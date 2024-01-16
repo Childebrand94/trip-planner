@@ -1,6 +1,7 @@
 class UserTripsController < ApplicationController
   before_action :set_roles, only: %i[edit update]
   before_action :set_trip, only: %i[index edit update destroy update]
+  before_action :check_demo_user, only: %i[edit destroy]
 
   def new
     @user_trip = UserTrip.new

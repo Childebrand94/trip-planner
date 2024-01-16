@@ -3,6 +3,7 @@ class ItineraryItemsController < ApplicationController
   before_action :set_types, only: %i[index new edit update]
   before_action :set_itinerary_item, only: %i[show update edit]
   before_action :set_date, only: %i[show update]
+  before_action :check_demo_user, only: %i[update destroy]
 
   def index
     @itinerary_item = ItineraryItem.new

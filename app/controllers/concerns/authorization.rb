@@ -18,4 +18,11 @@ module Authorization
 
     record.send(user_id_method) == current_user.id
   end
+
+  def check_demo_user
+    return unless current_user.demo?
+
+    redirect_back(fallback_location: root_path,
+                  alert: 'Demo users are not authorized to perform this action.')
+  end
 end

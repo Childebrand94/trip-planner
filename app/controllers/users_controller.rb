@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     unless @user.authenticate(params[:user][:old_password])
       @user.errors.add(:old_password, 'is incorrect')
-      render :edit, status: :unprocessable_entity and return
+      render 'edit_password', status: :unprocessable_entity and return
     end
 
     if @user.update(user_params)
@@ -34,17 +34,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @token = params[:user][:invite_token]
 
-    # Using a transaction block in case any part of the user creation
-    # with the invitation fails the whole transaction will be rolled back.
     User.transaction do
       if @user.save
         if @token.present?
           invite_flow
         else
-          login(@user)
-          flash[:success] = 'Account created and logged in.'
-          redirect_to root_path
-
+          registration_flow
         end
       else
         render :new, status: :unprocessable_entity
@@ -70,9 +65,9 @@ class UsersController < ApplicationController
     user = User.find_by_confirm_token(params[:id])
     if user
       user.email_activate
-      flash[:success] = "Welcome to the PathFindr! Your email has been confirmed.
-      Please sign in to continue."
-      redirect_to login_path
+      login(user)
+      flash[:success] = "Welcome to the PathFindr #{user.display_name}! Your email has been confirmed."
+      redirect_to trips_path
     else
       flash[:error] = 'Sorry. User does not exist'
       redirect_to root_url

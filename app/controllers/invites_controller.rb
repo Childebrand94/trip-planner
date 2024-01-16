@@ -8,6 +8,12 @@ class InvitesController < ApplicationController
   def create
     @trip = Trip.find(params[:invite][:trip_id])
     @invite = build_invite
+
+    if @invite.trip_id.zero?
+      flash[:alert] = 'Only demo users can be added to this trip.'
+      render :new, status: :unprocessable_entity and return
+    end
+
     if @invite.save
       process_invite
     else

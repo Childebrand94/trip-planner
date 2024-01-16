@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :set_itinerary_item
   before_action :set_trip
   before_action :set_date, only: %i[index edit create]
+  before_action :check_demo_user, only: %i[update destroy]
 
   def index
     @comment = Comment.new(itinerary_item_id: @itinerary_item.id)

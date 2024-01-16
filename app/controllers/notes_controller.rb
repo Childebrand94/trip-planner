@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_trip, only: %i[index create show edit update destroy]
+  before_action :check_demo_user, only: %i[update destroy]
 
   def index
     @note = @tirp.notes.new

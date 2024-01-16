@@ -1,4 +1,3 @@
-require 'faker'
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -8,29 +7,14 @@ require 'faker'
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre name|
 #     MovieGenre.find or_create_by!(name: genre_name)
 #   endo
+require 'faker'
+require_relative 'seed_data'
 
-names = ['Dining', 'Check In', 'Check Out', 'Excursion', 'Business', 'Travel']
-
-names.each do |type|
+ITINERARY_ITEM_TYPES.each do |type|
   ItineraryItemType.find_or_create_by(name: type)
 end
 
-EXPENSES = [
-  'Flights',
-  'Lodging',
-  'Car rental',
-  'Public transit',
-  'Food',
-  'Drinks',
-  'Sightseeing',
-  'Activities',
-  'Shopping',
-  'Gas',
-  'Groceries',
-  'Other'
-].freeze
-
-EXPENSES.each do |expense|
+EXPENSE_CATEGORIES.each do |expense|
   ExpenseCategory.find_or_create_by(name: expense)
 end
 
@@ -38,9 +22,7 @@ end
   TripImage.find_or_create_by(path: "trip-image-#{i}.png")
 end
 
-user_roles = %w[Admin Member]
-
-user_roles.each do |r|
+USER_ROLES.each do |r|
   UserTripRole.find_or_create_by(role: r)
 end
 
@@ -65,23 +47,26 @@ user_password = 'password'
     user.display_name = "demo_user_#{i}"
     user.password = user_password
     user.email_confirmed = true
+    user.demo = true
   end
 end
 
-demo_user_1 = User.find_by(email: 'demo_user_1@example.com')
-demo_user_2 = User.find_by(email: 'demo_user_2@example.com')
-demo_user_3 = User.find_by(email: 'demo_user_3@example.com')
-demo_user_4 = User.find_by(email: 'demo_user_4@example.com')
-demo_admin = User.find_by(email: 'demo_user_5@example.com')
-
 # Create a demo trip
 demo_trip = Trip.create!(
+  id: 0,
   name: 'Demo Trip to Vegas',
   location: 'Las Vegas, NV, USA',
   trip_image_id: 4,
   start_date: Date.tomorrow + 1.year,
   end_date: Date.tomorrow + 1.year + 4.days
 )
+
+# Get all users from db
+demo_user_1 = User.find_by(email: 'demo_user_1@example.com')
+demo_user_2 = User.find_by(email: 'demo_user_2@example.com')
+demo_user_3 = User.find_by(email: 'demo_user_3@example.com')
+demo_user_4 = User.find_by(email: 'demo_user_4@example.com')
+demo_admin = User.find_by(email: 'demo_user_5@example.com')
 
 # Create admin for trip
 UserTrip.create!(user: demo_admin, trip: demo_trip, user_trip_role_id: 1)
@@ -90,15 +75,9 @@ UserTrip.create!(user: demo_admin, trip: demo_trip, user_trip_role_id: 1)
 [demo_user_1, demo_user_2, demo_user_3, demo_user_4].each do |user|
   UserTrip.create!(user:, trip: demo_trip, user_trip_role_id: 2)
 end
-# Example notes
-notes = [
-  'Booked a suite at the Bellagio Hotel with a view of the fountains. Check-in is at 3 PM.',
-  'Day 1: Evening walk along the Strip to see the light shows. Dinner reservations at 8 PM at Gordon Ramsay Steak.',
-  "Tickets booked for 'O' by Cirque du Soleil at the Bellagio at 7 PM. Pick up tickets at the box office by 6:30 PM."
-]
 
 # Create notes for the demo trip
-notes.each do |note_body|
+NOTES.each do |note_body|
   Note.create!(
     body: note_body,
     author_id: demo_admin.id,
@@ -106,15 +85,7 @@ notes.each do |note_body|
   )
 end
 
-# Create itinerary items Types
-# item_type_dining = ItineraryItemType.find_by(name: 'Dining')
-# item_type_checkin = ItineraryItemType.find_by(name: 'Check In')
-# item_type_checkout = ItineraryItemType.find_by(name: 'Check Out')
-# item_type_business = ItineraryItemType.find_by(name: 'Business')
-# item_type_travel = ItineraryItemType.find_by(name: 'Travel')
-# item_type_excursion = ItineraryItemType.find_by(name: 'Excursion')
-
-itinerary_items = [
+ITINERARY_ITEMS = [
   {
     event_name: 'Check-in at Bellagio Hotel',
     address: 'Bellagio, Las Vegas, NV, USA',
@@ -164,10 +135,10 @@ itinerary_items = [
     end_time: demo_trip.end_date.to_time,
     item_type: 3
   }
-]
+].freeze
 
 # Creating itinerary items
-itinerary_items.each do |item|
+ITINERARY_ITEMS.each do |item|
   ItineraryItem.create!(
     event_name: item[:event_name],
     address: item[:address],
@@ -179,12 +150,12 @@ itinerary_items.each do |item|
   )
 end
 
-expenses = [
+EXPENSES = [
   {
     name: 'Flights',
     amount: 550,
     date: demo_trip.start_date,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 3
   },
@@ -192,7 +163,7 @@ expenses = [
     name: 'Golf',
     amount: 100,
     date: demo_trip.start_date + 1.day,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 8
   },
@@ -200,7 +171,7 @@ expenses = [
     name: 'Hotel Booking',
     amount: 2500,
     date: demo_trip.start_date - 1.day,
-    payer_id: demo_admin,
+    payer_id: demo_user_1.id,
     trip_id: demo_trip.id,
     expense_category_id: 2
   },
@@ -208,7 +179,7 @@ expenses = [
     name: 'Restaurant Dinner',
     amount: 75,
     date: demo_trip.start_date + 2.days,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 2
   },
@@ -216,7 +187,7 @@ expenses = [
     name: 'Museum Tickets',
     amount: 50,
     date: demo_trip.start_date + 3.days,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 8
   },
@@ -224,7 +195,7 @@ expenses = [
     name: 'Transportation',
     amount: 200,
     date: demo_trip.start_date + 1.day,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 4
   },
@@ -232,18 +203,19 @@ expenses = [
     name: 'Souvenirs',
     amount: 50,
     date: demo_trip.start_date + 4.days,
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: demo_trip.id,
     expense_category_id: 6
   }
-]
+].freeze
 
-expenses.each do |exp|
+# Creating expenses
+EXPENSES.each do |exp|
   Expense.create!(
     name: exp[:name],
     amount: exp[:amount],
     date: exp[:date],
-    payer_id: demo_user_1.id,
+    payer_id: demo_admin.id,
     trip_id: exp[:trip_id],
     expense_category_id: exp[:expense_category_id]
   )
@@ -254,7 +226,7 @@ hotel_expense = Expense.find_by(name: 'Hotel Booking')
 Debtor.create!(
   amount_owed: 700,
   expense_id: hotel_expense.id,
-  user_id: demo_user_1.id
+  user_id: demo_admin.id
 )
 
 items = ItineraryItem.where(trip_id: demo_trip.id)

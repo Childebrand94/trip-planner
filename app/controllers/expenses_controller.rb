@@ -2,6 +2,7 @@ class ExpensesController < ApplicationController
   before_action :set_trip
   before_action :set_categories
   before_action :set_debtors
+  before_action :check_demo_user, only: %i[update destroy]
 
   def new
     @expense = @trip.expenses.new
