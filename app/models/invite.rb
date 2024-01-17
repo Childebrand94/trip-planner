@@ -17,12 +17,22 @@ class Invite < ApplicationRecord
   belongs_to :recipient, class_name: 'User', optional: true
 
   before_create :generate_token
-  before_save :check_user_existence
+  before_validation :check_recipient_existence, on: :create
   validates :email, presence: true
 
-  def check_user_existence
+  def check_recipient_existence
     user = User.find_by_email(email)
-    self.recipient_id = user.id if user.present?
+    return unless user.present?
+
+    self.recipient_id = user.id
+    check_recipient_in_trip(user)
+  end
+
+  def check_recipient_in_trip(user)
+    user_trip = UserTrip.find_by(trip_id:, user_id: user.id)
+    return unless user_trip
+
+    errors.add(:base, 'User is already in this trip')
   end
 
   def generate_token

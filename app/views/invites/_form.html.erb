@@ -1,7 +1,6 @@
 <%= form_with(model: @invite, url: invites_path) do |f| %>
   <% if @invite.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this invite from being saved:</h2>
       <ul>
         <% @invite.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -21,3 +20,4 @@
     <%= f.submit 'Send', class: "btn btn-primary w-100" %>
   </div>
 <% end %>
+
