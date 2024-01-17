@@ -4,19 +4,12 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: params.dig(:user, :email))
-    if user&.authenticate(params.dig(:user, :password))
-      if user.email_confirmed
-        login(user)
-        redirect_to trips_path
-      else
-        flash.now[:error] = 'Please activate your account by following the
-      instructions in the account confirmation email you received to proceed'
-        render :new, status: :unprocessable_entity
-      end
-      handle_invite_token if @token.present?
+    session_service = SessionService.new(user_params, @token)
+
+    if session_service.authenticate
+      handle_successful_authentication(session_service)
     else
-      flash.now[:alert] = 'Invalid email or password'
+      flash.now[:alert] = session_service.error_message
       render :new, status: :unprocessable_entity
     end
   end
@@ -28,21 +21,29 @@ class SessionsController < ApplicationController
 
   private
 
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
+
   def set_invite_token
     @token = params[:user][:invite_token]
   end
 
-  def handle_invite_token
-    invite = load_invite_from_token
-    if invite.present?
-      redirect_to accept_invite_path(id: invite.id, invite_token: token), notice: 'Successfully logged in.'
+  def handle_successful_authentication(service)
+    login(service.user)
+    if @token.present?
+      handle_invite_token
     else
-      redirect_to trips_path, notice: 'Successfully logged in.'
+      redirect_to root_path, notice: service.notice_message
     end
   end
 
+  def handle_invite_token
+    invite = load_invite_from_token
+    redirect_to accept_invite_path(id: invite.id, invite_token: invite.token), notice: 'Successfully logged in.'
+  end
+
   def load_invite_from_token
-    invite_token = params[:user][:invite_token]
-    Invite.find_by(token: invite_token)
+    Invite.find_by(token: @token)
   end
 end

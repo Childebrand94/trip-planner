@@ -94,7 +94,7 @@ class InvitesController < ApplicationController
 
   def handle_existing_user
     InvitationMailer.existing_user_invite(@invite,
-                                          accept_invite_url(@invite, invite_token: @invite.token)).deliver_now
+                                          accept_invite_url(@invite, invite_token: @invite.token)).deliver
   end
 
   def handle_new_user
