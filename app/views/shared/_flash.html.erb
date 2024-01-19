@@ -1,5 +1,5 @@
 <div id="flash" class="position-absolute start-50 translate-middle" 
-  style="z-index: 1030; top: 120px;">
+  style="z-index: 1030; top: 120px;" data-controller="flash">
   <% flash.each do |key, value| %>
     <div class="<%= flash_class(key.to_sym) %> alert-dismissible fade show" role="alert" style="max-width: 500px; width: 100%;">
       <% unless value == true %>

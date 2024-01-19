@@ -1,14 +1,16 @@
 <div class="home-page d-flex justify-content-center align-items-center">
-  <div class="d-flex flex-col justify-content-center align-items-center ">
+  <div class="d-flex flex-column justify-content-center align-items-center ">
     <div class="card-body mx-3 bg-transparent rounded-4 p-3">
       <h2 class="display-2 text-white">Welcome to PathFindr</h2>
       <h4 class="card-subtitle text-white lead"> Your Journey awaits.</h4>
-      <div class="d-flex">
-          <%= link_to "Start Here", (user_signed_in? ? new_trip_path : new_user_path), 
-            class: "btn btn-outline-light m-4 py-2 px-3 fs-4 lead" %>
+      <div class="d-flex flex-column justify-content-center flex-sm-row">
+        <%= link_to (user_signed_in? ? "Create a Trip" : "Start Here"), 
+            (user_signed_in? ? new_trip_path : new_user_path), 
+            class: "btn btn-outline-light m-1 py-2 px-3 fs-4 lead" %>
+
           <% if user_signed_in? %>
             <%= link_to "Your Trips", trips_path,
-              class: "btn btn-outline-light m-4 py-2 px-3 fs-4 lead" %>
+              class: "btn btn-outline-light m-1 py-2 px-3 fs-4 lead" %>
           <% end %>
         <%= button_to "Demo", login_path, 
           method: :post, 
@@ -18,7 +20,7 @@
               password: "password" 
             } 
           }, 
-          class: "ms-2 btn btn-outline-success m-4 py-2 px-3 fs-4 lead" %>
+          class: "btn btn-light m-1 py-2 px-3 fs-4 lead w-100 text-primary" %>
 
       </div>
     </div>
