@@ -28,10 +28,10 @@ module ApplicationHelper
   end
 
   def flash_class(level)
-    cases = { notice: 'alert alert-info',
+    cases = { notice: 'alert alert-success',
               success: 'alert alert-success',
-              error: 'alert alert-error',
-              alert: 'alert alert-error' }
+              error: 'alert alert-danger',
+              alert: 'alert alert-warning' }
     cases[level]
   end
 

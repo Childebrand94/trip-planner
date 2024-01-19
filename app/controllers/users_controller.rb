@@ -70,6 +70,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def resend_confirmation
+    flash[:notice] = 'Confirmation email has been resent. Please check your email.'
+    redirect_to root_path
+  end
+
   private
 
   def set_token

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if session_service.authenticate
       handle_successful_authentication(session_service)
     else
-      flash.now[:alert] = session_service.error_message
+      @error_message = session_service.error_message
       render :new, status: :unprocessable_entity
     end
   end

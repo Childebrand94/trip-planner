@@ -15,26 +15,22 @@
     <div data-nav-footer-target="topSpacer"></div>
     <%= render "layouts/navbar" %>
 
-      <%# Development %>
+        <%# Development %>
 
-      <%# <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;"> %>
-        <%# <p ><%= "#{controller_name}##{action_name}"%>
-      <%# </div> %>
+        <%# <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;"> %>
+          <%# <p ><%= "#{controller_name}##{action_name}"%>
+        <%# </div> %>
 
-      <%# Alerts %>
+        <%# Alerts %>
 
-      <% flash.each do |key, value| %>
-        <div class="<%= flash_class(key) %> alert-dismissible fade show" role="alert">
-          <%= value %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" 
-          aria-label="Close"></button>
+        <% flash.each do |key, value| %>
+          <%= render "shared/flash" %>
+        <% end %>
+
+        <div class="d-flex flex-column flex-grow-1">
+          <%= yield %>
+          <%= render partial: 'shared/footer' %>
         </div>
-      <% end %>
-
-      <div class="d-flex flex-column flex-grow-1">
-        <%= yield %>
-        <%= render partial: 'shared/footer' %>
-      </div>
 
     <div class="itinerary-footer">
       <% if render_trip_itinerary_footer? %>

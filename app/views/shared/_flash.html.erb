@@ -1,0 +1,12 @@
+<div id="flash" class="position-absolute start-50 translate-middle" 
+  style="z-index: 1030; top: 120px;">
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class(key.to_sym) %> alert-dismissible fade show" role="alert" style="max-width: 500px; width: 100%;">
+      <% unless value == true %>
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

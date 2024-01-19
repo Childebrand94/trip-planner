@@ -1,7 +1,7 @@
-<%= bootstrap_form_with(url: login_path, scope: :user, inline_error: false, label_errors:true)  do |f| %>
-  <% if flash[:alert] %>
+<%= bootstrap_form_with(url: login_path, scope: :user, inline_error: false, label_errors: true) do |f| %>
+  <% if @error_message %>
     <div class="alert alert-danger">
-      <%= flash[:alert] %>
+      <%= @error_message %>
     </div>
   <% end %>
   <% if params[:invite_token].present? %>
@@ -20,6 +20,6 @@
       label: 'Password', 
       required: true, 
       label_as_placeholder: true %>
-    <%= f.submit 'Sign In',class: "btn btn-primary text-white w-100" %>
+    <%= f.submit 'Sign In', class: "btn btn-primary text-white w-100" %>
   </div>
 <% end %>
