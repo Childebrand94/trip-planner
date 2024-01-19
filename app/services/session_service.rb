@@ -13,7 +13,8 @@ class SessionService
     return false unless @user&.authenticate(@user_params[:password])
 
     unless @user.email_confirmed
-      @error_message = 'Please activate your account by following the instructions in the account confirmation email you received to proceed'
+      @error_message = 'Please activate your account by following the
+      instructions in the account confirmation email you received to proceed'
       return false
     end
 

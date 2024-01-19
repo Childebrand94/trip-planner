@@ -6,7 +6,7 @@ class UserService
 
   def process
     if @user.save
-      UserMailer.registration_confirmation(@user).deliver
+      UserMailer.registration_confirmation(@user).deliver_later
       true
     else
       false

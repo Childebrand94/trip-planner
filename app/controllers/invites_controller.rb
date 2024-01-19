@@ -94,12 +94,12 @@ class InvitesController < ApplicationController
 
   def handle_existing_user
     InvitationMailer.existing_user_invite(@invite,
-                                          accept_invite_url(@invite, invite_token: @invite.token)).deliver
+                                          accept_invite_url(@invite, invite_token: @invite.token)).deliver_later
   end
 
   def handle_new_user
     InvitationMailer.new_user_invite(@invite,
-                                     new_user_url(invite_token: @invite.token)).deliver
+                                     new_user_url(invite_token: @invite.token)).deliver_later
   end
 
   def add_user_to_trip_with_role
