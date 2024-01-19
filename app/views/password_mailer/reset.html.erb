@@ -1,0 +1,15 @@
+<body class="bg-light">
+  <div class="container">
+    <div class="card p-6 p-lg-10 space-y-4">
+      <h1 class="h3 fw-700">
+        Reset Your Password 
+      </h1>
+
+      <p>Here is a link to reset you password. The link will expire in 15 minutes</p>
+
+      <%= link_to 'Reset Password',  password_reset_edit_url(token: @token), 
+        class: 'btn btn-primary p-3 fw-700'%>
+    </div>
+  </div>
+</body>
+

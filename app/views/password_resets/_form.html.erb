@@ -1,0 +1,18 @@
+<%= bootstrap_form_with(url: password_reset_path, inline_error: false, label_errors:true)  do |f| %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= f.alert_message "Please fix the errors below." %>
+  <div class="my-2">
+    <%= f.email_field :email, 
+      placeholder: 'Email', 
+      label: 'Email', 
+      required: true,
+      label_as_placeholder: true%>
+
+    <%= f.submit 'Reset Password',class: "btn btn-primary text-white w-100" %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<%= bootstrap_form_with(model: @user, url: password_reset_update_path, local: true, inline_error: false, label_errors:true) do |f| %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :token, value: params[:token] %>
+
+  <div class="container my-2">
+    <%= f.password_field :password, label_as_placeholder: true, required: true %>
+    <%= f.password_field :password_confirmation, label_as_placeholder: true, required: true, label: "Confirm Password" %>
+
+    <%= f.submit 'Update Password', class: "btn btn-primary w-100" %>
+  </div>
+<% end %>
+

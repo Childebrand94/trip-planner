@@ -37,3 +37,5 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
 end
+
+gem "sidekiq", "~> 7.2"

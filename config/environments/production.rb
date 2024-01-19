@@ -95,6 +95,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.default_url_options = { host: 'hildebrand-pathfindr-8907d282d8a0.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp

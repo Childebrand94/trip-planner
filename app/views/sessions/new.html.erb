@@ -2,5 +2,6 @@
   <div class="p-4 bg-white card">
     <h1 class="h1 mb-3 text-center card-title">Sign In</h1>
     <%= render "form", session: @session %>
+    <%= link_to "Forgot your password?", password_reset_path %>
   </div>
 </div>
