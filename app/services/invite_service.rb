@@ -16,7 +16,7 @@ class InviteService
   end
 
   def redirect_path
-    redirect_url
+    @redirect_url
   end
 
   def notice_message
