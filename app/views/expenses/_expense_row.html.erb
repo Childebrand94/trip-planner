@@ -6,7 +6,7 @@
   </td>
   <td><span class="d-inline-flex flex-nowrap">$<%= expense.amount %></span></td>
   <td><%= expense.expense_category.name %></td>
-  <td><%= expense.paid.to_s.capitalize %></td>
+  <td><%= expense.paid ? "Yes" : "No" %></td>
   <td>
     <%= button_to trip_expense_path(@trip.id, expense), 
       method: :delete, 
