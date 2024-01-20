@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    service = @token.present? ? InviteService.new(@user, @token, new_user_path) : UserService.new(@user, root_path)
+    service = @token.present? ? InviteService.new(@user, @token, login_path) : UserService.new(@user, root_path)
 
     if service.process
       redirect_to service.redirect_path, notice: service.notice_message
