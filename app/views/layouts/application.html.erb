@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Primary Meta Tags -->
     <title>PathFindr</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="title" content="PathFindr" />
+    <meta name="description" content="Discover the joy of hassle-free travel planning with PathFindr. Our cutting-edge app simplifies your trip organization, offering a seamless, interactive platform for both solo and group adventures. Embrace the ease of collaborative travel planning and let PathFindr turn your travel dreams into reality." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="PathFindr" />
+    <meta property="og:description" content="Discover the joy of hassle-free travel planning with PathFindr. Our cutting-edge app simplifies your trip organization, offering a seamless, interactive platform for both solo and group adventures. Embrace the ease of collaborative travel planning and let PathFindr turn your travel dreams into reality." />
+    <meta property="og:image" content="<%= image_url('meta-tag-image1.png') %>" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="<%= request.original_url %>" />
+    <meta property="twitter:title" content="PathFindr" />
+    <meta property="twitter:description" content="Discover the joy of hassle-free travel planning with PathFindr. Our cutting-edge app simplifies your trip organization, offering a seamless, interactive platform for both solo and group adventures. Embrace the ease of collaborative travel planning and let PathFindr turn your travel dreams into reality." />
+    <meta property="twitter:image" content="<%= image_url('meta-tag-image1.png') %>" />
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_include_tag "application" %>
@@ -15,22 +32,22 @@
     <div data-nav-footer-target="topSpacer"></div>
     <%= render "layouts/navbar" %>
 
-        <%# Development %>
+    <%# Development %>
 
-        <%# <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;"> %>
-          <%# <p ><%= "#{controller_name}##{action_name}"%>
-        <%# </div> %>
+    <%# <div class="position-fixed" style="top: 20px; left: 40%; z-index: 1030;"> %>
+      <%# <p ><%= "#{controller_name}##{action_name}"%>
+      <%# </div> %>
 
-        <%# Alerts %>
+    <%# Alerts %>
 
-        <% flash.each do |key, value| %>
-          <%= render "shared/flash" %>
-        <% end %>
+    <% flash.each do |key, value| %>
+      <%= render "shared/flash" %>
+    <% end %>
 
-        <div class="d-flex flex-column flex-grow-1">
-          <%= yield %>
-          <%= render partial: 'shared/footer' %>
-        </div>
+    <div class="d-flex flex-column flex-grow-1">
+      <%= yield %>
+      <%= render partial: 'shared/footer' %>
+    </div>
 
     <div class="itinerary-footer">
       <% if render_trip_itinerary_footer? %>

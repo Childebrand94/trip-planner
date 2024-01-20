@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       redirect_to service.redirect_path, notice: service.notice_message
     else
       flash.now[:error] = service.error_message
+
       render :new, status: :unprocessable_entity
     end
   end
