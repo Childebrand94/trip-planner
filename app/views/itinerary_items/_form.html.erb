@@ -8,21 +8,28 @@
       <%= f.text_field :event_name, label_as_placeholder: true, required: true%>
       <%= f.text_field :address, label_as_placeholder: true, required: true%>
 
-      <div class="d-flex flex-column flex-sm-row justify-content-sm-between">
-        <%= f.datetime_field :start_time, 
-          class: 'start_time flatpicker-mobile datetime-pointer', 
-          label_as_placeholder: true, 
-          required: true, 
-          type: 'text',
-          autocomplete: 'off',
-          data: { controller: 'flatpickr' } %>
-        <%= f.datetime_field :end_time, 
-          class: 'end_time flatpicker-mobile datetime-pointer', 
-          label_as_placeholder: true, 
-          required: true, 
-          autocomplete: 'off',
-          data: { controller: 'flatpickr' } %>
+      <div class="d-flex flex-column">
+        <!-- Start Time -->
+        <div class="d-flex flex-column">
+          <%= f.label :start_time, 'Start Time:', class: 'me-sm-2' %>
+          <%= f.datetime_field :start_time, 
+            class: 'start_time flatpicker-mobile datetime-pointer form-control', 
+            required: true, 
+            hide_label: true,
+            type: 'text',
+            autocomplete: 'off' %>
       </div>
+
+      <!-- End Time -->
+      <div class="d-flex flex-column">
+        <%= f.label :end_time, 'End Time:', class:'me-sm-2' %>
+        <%= f.datetime_field :end_time, 
+          class: 'end_time flatpicker-mobile datetime-pointer form-control', 
+          hide_label: true,
+          required: true, 
+          autocomplete: 'off' %>
+      </div>
+    </div>
 
       <%= f.select :item_type_id, @types, include_blank: "Select Category", 
         floating: true %>

@@ -4,8 +4,8 @@
 
   <div class="container-fluid">
     <ul class="nav nav-pills nav-fill w-100 flex-nowrap">
-      <% [['Overview', trip_path(@trip), 'house'],
-          ['Itinerary', trip_itinerary_items_path(@trip), 'card-list'],
+      <% [['Itinerary', trip_itinerary_items_path(@trip), 'card-list'],
+          ['Notes', trip_path(@trip), 'pen'],
           ['Expenses', trip_expenses_path(@trip), 'bank']].each do |label, path, icon| %>
         <li class="nav-item text-center">
           <%= link_to path, class: "nav-link text-secondary" do %>

@@ -1,8 +1,6 @@
 <%= bootstrap_form_with(model: [@trip, @expense || @trip.expenses.build ], 
-                        inline_error: false, label_errors:true, 
-                        data: { controller: "flatpicker"}) do |f| %>
+                        inline_error: false, label_errors:true ) do |f| %>
                         
-  <div data-trip-start="<%= @trip.start_date %>" data-trip-end="<%= @trip.end_date %>">
     <%= f.alert_message "Please fix the errors below." %>
     <div class="my-2">
 
@@ -12,7 +10,7 @@
 
       <div class="row row-cols-auto">
         <div class="col-sm w-100">
-          <%= f.date_field :date, label_as_placeholder: true, required: true, class: "date_expense" %>
+          <%= f.date_field :date, label_as_placeholder: true, required: true %>
         </div>
         <div class="col-sm w-100">
           <%= f.number_field :amount, 
@@ -67,7 +65,5 @@
       </div>
 
     </div>
-
-  </div>
 <% end %>
 

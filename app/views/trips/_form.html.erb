@@ -1,6 +1,5 @@
 <%= bootstrap_form_with(model: trip, inline_error: false, 
-                        label_errors:true,
-                        data: { controller: "flatpicker"}) do |f| %>
+                        label_errors:true ) do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
   <% if params[:return_to].present? %>
       <%= hidden_field_tag :return_to, params[:return_to] %>
@@ -11,9 +10,9 @@
       <%= f.text_field :location, label_as_placeholder: true, 
         required: true %>
       <%= f.date_field :start_date, label_as_placeholder: true, 
-        required: true, class: 'date' %>
+        required: true %>
       <%= f.date_field :end_date, label_as_placeholder: true, 
-        required: true, class: 'date' %>
+        required: true %>
 
       <%= f.form_group :trip_image_id, label: { text: "Trip Thumbnail" } do %>
         <div class="d-flex flex-wrap gap-2 justify-content-center">
