@@ -22,6 +22,7 @@ export default class extends Controller {
         let endTimeManuallySet = false;
 
         let startTimePicker = flatpickr('.start_time', {
+            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
@@ -43,6 +44,7 @@ export default class extends Controller {
         });
 
         let endTimePicker = flatpickr('.end_time', {
+            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
@@ -54,6 +56,7 @@ export default class extends Controller {
         });
 
         flatpickr('.date_expense', {
+            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             allowInput: true,
@@ -67,6 +70,7 @@ export default class extends Controller {
 
     initializeDatePicker() {
         flatpickr('.date', {
+            disableMobile: "true",
             allowInput: true,
             altInput: true,
             altFormat: 'F, d Y',
