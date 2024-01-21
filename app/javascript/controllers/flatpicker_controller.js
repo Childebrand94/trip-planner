@@ -9,7 +9,6 @@ export default class extends Controller {
 
         if (tripContainer) {
             this.initializeTimePickers();
-
         }
     }
 
@@ -22,7 +21,6 @@ export default class extends Controller {
         let endTimeManuallySet = false;
 
         let startTimePicker = flatpickr('.start_time', {
-            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
@@ -40,11 +38,15 @@ export default class extends Controller {
                     defaultEndDate.setHours(defaultEndDate.getHours() + 1);
                     endTimePicker.setDate(defaultEndDate, true);
                 }
+            },
+            onReady: (selectedDates, dateStr, instance) => {
+                if (!instance.isMobile) {
+                    this.addPlaceholderClass(instance.input);
+                }
             }
         });
 
         let endTimePicker = flatpickr('.end_time', {
-            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             enableTime: true,
@@ -52,11 +54,15 @@ export default class extends Controller {
             altInput: 'M/j: h:i K',
             onChange: function() {
                 endTimeManuallySet = true;
+            },
+            onReady: (selectedDates, dateStr, instance) => {
+                if (!instance.isMobile) {
+                    this.addPlaceholderClass(instance.input);
+                }
             }
         });
 
         flatpickr('.date_expense', {
-            disableMobile: "true",
             minDate: tripStart,
             maxDate: tripEnd,
             allowInput: true,
@@ -70,12 +76,15 @@ export default class extends Controller {
 
     initializeDatePicker() {
         flatpickr('.date', {
-            disableMobile: "true",
             allowInput: true,
             altInput: true,
             altFormat: 'F, d Y',
             dateFormat: 'Y-m-d'
         });
+    }
+
+    addPlaceholderClass(element) {
+        element.classList.add('show-placeholder');
     }
 
 }

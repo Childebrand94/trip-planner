@@ -118,3 +118,20 @@ body {
 .bg-travel {
     background-color: #9ad3de;
 }
+
+.datetime-pointer {
+    cursor: pointer;
+}
+
+.show-placeholder:not(:placeholder-shown)::after {
+    cursor: pointer;
+    color: #007bff;
+    content: attr(placeholder);
+}
+
+.show-placeholder:focus,
+.show-placeholder:valid {
+    &::after {
+        display: none;
+    }
+}

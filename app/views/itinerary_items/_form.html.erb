@@ -9,10 +9,19 @@
       <%= f.text_field :address, label_as_placeholder: true, required: true%>
 
       <div class="d-flex flex-column flex-sm-row justify-content-sm-between">
-        <%= f.datetime_field :start_time, class: 'start_time', 
-          label_as_placeholder: true, required: true %>
-        <%= f.datetime_field :end_time, class: 'end_time', 
-          label_as_placeholder: true, required: true %>
+        <%= f.datetime_field :start_time, 
+          class: 'start_time flatpicker-mobile datetime-pointer', 
+          label_as_placeholder: true, 
+          required: true, 
+          type: 'text',
+          autocomplete: 'off',
+          data: { controller: 'flatpickr' } %>
+        <%= f.datetime_field :end_time, 
+          class: 'end_time flatpicker-mobile datetime-pointer', 
+          label_as_placeholder: true, 
+          required: true, 
+          autocomplete: 'off',
+          data: { controller: 'flatpickr' } %>
       </div>
 
       <%= f.select :item_type_id, @types, include_blank: "Select Category", 
