@@ -6,9 +6,15 @@
     <%= image_tag "arrow-right.svg", class:"mx-2" %> 
   </div>
 
-  <section class='my-2 p-3 bg-light card rounded-4'>
-    <h4 class='display-5'>Add an Expense</h4>
-    <%= render partial: 'shared/form_toggle', locals: { form: 'expenses/form' } %>
+  <section class="my-2 p-3">
+    <div class="row">
+      <h4 class='display-2 d-inline-block col-sm-12 col-md-8'>Expenses</h4>
+      <div class="col-sm-12 col-md-4 d-flex justify-content-sm-center justify-content-md-end align-items-end">
+        <%= link_to "Add Expense", new_trip_expense_path(@trip), 
+          class: "btn btn-info text-white",
+          style: "width: 150px; height: 40px;" %>
+    </div>
+    </div>
   </section>
 
  

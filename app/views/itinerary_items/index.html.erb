@@ -2,17 +2,25 @@
 
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
-  <section class="my-2 p-3  bg-light card rounded-4">
-      <h4 class='display-5'>Plan Something</h4>
-      <%= render 'itinerary_items/form' %>
+  <section class="my-2 p-3">
+    <div class="row">
+      <h4 class='display-2 d-inline-block col-sm-12 col-md-8'>Itinerary</h4>
+      <div class="col-sm-12 col-md-4 d-flex justify-content-sm-center justify-content-md-end align-items-end">
+        <%= link_to "Create Event", new_trip_itinerary_item_path(@trip), 
+          class: "btn btn-info text-white",
+          style: "width: 150px; height: 40px;" %>
+    </div>
+    </div>
   </section>
+
+
 
   <section>
     <div class="list-group" >
-    <% @date_range.each do |date| %>
+      <% @date_range.each do |date| %>
         <%= render partial: 'trips/trip_day', 
           locals: { date: date, trip: @trip} %>
-    <% end %>
+      <% end %>
     </div>
   </section>
 </div>

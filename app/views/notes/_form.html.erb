@@ -9,13 +9,9 @@
 
     <div class="d-flex flex-column">
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-        class: "btn btn-primary my-1 text-white", 
-        style: "#{controller.action_name == 
-                  'edit'? "wight: 100%" : "width: 80px"}" %>
-      <% if controller.action_name == 'edit' %>
+        class: "btn btn-primary my-1 text-white w-100" %>
         <%= link_to 'Back', 'javascript:history.back()',
           class: "btn btn-outline-secondary" %>
-      <% end %>
     </div>
   </div>
 

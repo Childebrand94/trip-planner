@@ -44,3 +44,8 @@ User.all
 quit
 Session.all
 quit
+quit
+invite.inspect
+@user.inspect
+@redirect_url.inspect
+exit

@@ -55,12 +55,9 @@
       <div class="row">
         <div class="col" >
           <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Create'), 
-            class: "btn btn-primary text-white 
-          #{controller.action_name === 'edit' ? 'w-100' : ''}" %>
-        <% if controller.action_name == 'edit' %>
+            class: "btn btn-primary text-white w-100" %>
           <%= link_to 'Back', 'javascript:history.back()',
             class: "btn btn-outline-secondary w-100 mt-2" %>
-        <% end %>
         </div>
       </div>
 

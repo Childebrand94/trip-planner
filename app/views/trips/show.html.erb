@@ -2,13 +2,19 @@
 
   <%= render partial: 'shared/trip_itinerary_nav' %>
 
+  <section class="my-2 p-3">
+    <div class="row">
+      <h4 class='display-2 d-inline-block col-sm-12 col-md-8'>Notes</h4>
+      <div class="col-sm-12 col-md-4 d-flex justify-content-sm-center justify-content-md-end align-items-end">
+        <%= link_to "Create Note", new_trip_note_path(@trip), 
+          class: "btn btn-info text-white",
+          style: "width: 150px; height: 40px;" %>
+    </div>
+    </div>
+  </section>
+
   <section class="my-2 p-3  bg-light card rounded-4">
-    <h4 class="display-5">Notes</h4>
-    <small class="text-secondary">
-      Create a note to remind members of important details
-    </small>
-    <%= render partial: 'notes/form' %>
-    <div class="border-top border-secondary mb-3">
+  <div class="mb-3">
       <h5 class="card-subtitle my-4"> All Notes</h5>
       <div class="list-group ">
         <% if @all_notes.any? %> 

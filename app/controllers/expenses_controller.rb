@@ -6,7 +6,6 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = @trip.expenses.new
-    @expnese.build_debtor
   end
 
   def edit

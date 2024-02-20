@@ -33,12 +33,12 @@
 
       <%= f.select :item_type_id, @types, include_blank: "Select Category", 
         floating: true %>
+
       <%= f.submit (controller.action_name == 'edit' ? 'Update' : 'Add'), 
-        class: "btn btn-primary text-white" %>
-      <% if controller.action_name == 'edit' %>
-        <%= link_to 'Back', 'javascript:history.back()',
-          class: "btn btn-outline-secondary" %>
-      <% end %>
+        class: "btn btn-primary text-white w-100" %>
+      <%= link_to 'Back', 'javascript:history.back()',
+        class: "btn btn-outline-secondary w-100 mt-2" %>
+
     </div>
   </div>
 <% end %>
