@@ -3,6 +3,7 @@
 # Table name: user_trips
 #
 #  id                :bigint           not null, primary key
+#  budget            :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  trip_id           :bigint           not null
